@@ -1,4 +1,5 @@
-# SpeechAssistant
+# QuickFilter
+
 
 ### Dependencies
 `pip install -r requirements.txt`
