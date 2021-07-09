@@ -1,7 +1,7 @@
 from init import *
 
 def evaluation_process():
-    csv_df = pd.read_csv("final_2.csv")
+    csv_df = pd.read_csv("search.csv")
     X = csv_df[['search_innertext','search_attribute','Number_of_search_word','search_button_attribute_value','is_button']]
     y = csv_df[['sClass']]
     filtered_one = csv_df[csv_df['sClass'] == 1] 
@@ -18,21 +18,25 @@ def train_classifier(X,y):
     clf1 = make_pipeline(StandardScaler(), MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(5, 2), random_state=1))
     clf2 = make_pipeline(StandardScaler(), svm.SVC(kernel='rbf'))
     p_class_0, p_class_1, r_class_0, r_class_1 = [], [], [], []
-    iteration = 1
-    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=1)
-    for train_index, test_index in cv.split(X,y):
+    fivefold = [
+             (np.r_[1:168,209:335,376:418], np.r_[168:209,335:376]),
+             (np.r_[1:83,124:239, 280:418], np.r_[83:124, 239:280]),
+             (np.r_[1:124, 165:377], np.r_[124:165,377:418]),
+             (np.r_[1:168, 251:418], np.r_[168:251]),
+             (np.r_[1:100,142:209,250:418], np.r_[100:142, 209:250])
+    ]
+    for train_index, test_index in fivefold:
         #print('Iteration:',iteration)
         #print("No of Training Instance: ",(NoY - len(test_index)))
         #print("No of Testing Instance: ",(NoY - len(train_index)))
        # print("Train Index: ", train_index)
       #  print("Test Index: ", test_index)
         
-        iteration += 1
         model = clf1
         X_train, X_test, y_train, y_test = X.iloc[train_index], X.iloc[test_index], y.iloc[train_index], y.iloc[test_index]
         model.fit(X_train, y_train)
         y_score = model.predict(X_test)
-        cv_results = model_selection.cross_val_score(model, X_train, y_train, cv=cv, scoring='accuracy')
+        cv_results = model_selection.cross_val_score(model, X_train, y_train, scoring='accuracy')
         #print(cv_results)
         precision = precision_score(y_test, y_score, average=None)
         p_class_0.append(precision[0])
