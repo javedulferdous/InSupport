@@ -1,7 +1,6 @@
 
 
-filterFunction();
-function filterFunction(){
+(function() {
 //console.log("Hello from Filter.js");
 chrome.runtime.sendMessage(null, (response) => {
     console.log(response);
@@ -40,13 +39,14 @@ chrome.runtime.sendMessage(null, (response) => {
         console.log(list);
       
         // Inject into the DOM
-        let DisplayList = document.querySelector("#displayList");
+        var DisplayList = document.getElementById("displayList");
        
         if(DisplayList)
         {
-          DisplayList.appendChild(list);
+          document.getElementById("displayList").appendChild(list);
           alert(DisplayList);
         }
         console.log(DisplayList);
-        return DisplayList;
-      }  
+      
+     
+    })();
