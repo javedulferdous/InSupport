@@ -43,7 +43,7 @@ chrome.runtime.sendMessage(null, (response) => {
        
         if(DisplayList)
         {
-          document.getElementById("displayList").appendChild(list);
+          DisplayList.appendChild(list);
           alert(DisplayList);
         }
         console.log(DisplayList);
