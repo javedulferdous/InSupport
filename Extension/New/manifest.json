@@ -4,15 +4,16 @@
     "version": "1.0",
     "content_scripts": [
       {
-        "matches": [
-          "<all_urls>"
-        ],
+        "matches":["<all_urls>"],
         "js": ["content.js"]
       }
     ],
     "permissions": [
-      "tabs", "<all_urls>"
+      "tabs", "<all_urls>", "storage","activeTab"
   ],
+  "background": {
+    "scripts": ["background.js"]
+  },
   "browser_action": {
       "default_title":"Quick Filter",
       "default_popup": "basic.html",
