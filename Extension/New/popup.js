@@ -10,12 +10,19 @@ function registerEvent(){
         //console.log(filterList);
     chrome.tabs.getSelected(null, function(tab) {
         for (i = 0; i < filterList.length; i++) 
-        { 
-            var node = document.createElement("LI");  // Create a <li> node
-            var textnode = document.createTextNode(filterList[i].id); // Create a text node
-            node.appendChild(textnode); 
+        {   var hLink = document.createElement("a");
+            hLink.text = filterList[i].id;
+            hLink.target = '_blank';
+            hLink.href = 'https://www.amazon.com/';
+            var node = document.createElement("LI");
+            node.appendChild(hLink);
             document.getElementById("displayList").appendChild(node); ///append Item
+            //var node = document.createElement("LI");  // Create a <li> node
+            //var textnode = document.createTextNode(filterList[i].id); // Create a text node
+            //node.appendChild(textnode); 
+            //document.getElementById("displayList").appendChild(node); ///append Item
             console.log([i+1],"Done");
+            console.log(window.location);
         }	
       }
       

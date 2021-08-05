@@ -1,13 +1,10 @@
-console.log("content scripts");
-var x, i, fList = [];
+var x, i, fList = [], childList = [], temp = [];
 x = document.querySelectorAll('[data-attribute="filter"]');
-var list = document.createElement('ul');
 for (i = 0; i < x.length; i++) {
     fList.push({id:x[i].childNodes[1].textContent.trim()})
+    
 }
-//console.log(fList);
-
-//var listFilter = [{id:"Amazon Prime"}, {id:"Department"}, {id:"Avg. Customer Review"}, {id:"Brand"}];
+console.log(x[5].children[1].textContent.replace(/(\r\n|\n|\r)/gm, ""));
 
 chrome.runtime.onConnect.addListener((port) => {           
         port.postMessage({
