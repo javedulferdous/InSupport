@@ -14,6 +14,14 @@ sentSortList.push({id:(sortList[0].textContent.replace(/(.*?\s.*?\s)/g, '$1'+'\n
 pageList = document.querySelectorAll('[data-attribute="page"]');
 sentPageList.push({id:(pageList[0].textContent.replace(/(.*?\s.*?\s)/g, '$1'+'\n')).split('\n\n').filter(word => word.trim().length > 0)});
 
+//Search
+/*searchList = document.querySelectorAll('[data-attribute="search"]');
+console.log(searchList[0]);
+console.log(searchList[0].action);
+console.log(searchList[0].method);
+let temprary = searchList[0].children;
+console.log(temprary.querySelector('value'))
+*/
 chrome.runtime.onConnect.addListener((port) => {           
         port.postMessage({
             filterList: fList, 

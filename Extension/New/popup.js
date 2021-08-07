@@ -78,7 +78,22 @@ function registerEvent(){
     //Clicking the Search Button
     var checkSearchButton= document.getElementById('searchButton');
     checkSearchButton.addEventListener('click', function() {
-        alert("Message from search attribute!");
+        /*var form = document.createElement('form');
+        form.setAttribute('action', 'https://www.amazon.com/s/ref=nb_sb_noss_2');
+        form.setAttribute('method', 'post');
+
+        var text_field = document.createElement('input');
+        text_field.setAttribute('type', 'text');
+        text_field.setAttribute('value', 'enter something here...');
+
+        var button = document.createElement('input');
+        button.setAttribute('type', 'submit');
+        button.setAttribute('value', 'Go!');
+
+        form.appendChild(text_field);
+        form.appendChild(button);
+
+        document.body.appendChild(form);*/
     }, false);
 
 }

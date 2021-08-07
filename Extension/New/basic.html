@@ -2,12 +2,16 @@
 <html>  
     <head>
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <style>
             body {
-                width: 200px;
+                width: 234px;
                 font-family: 'Source Sans Pro', sans-serif;
+                line-break: normal;
+                font-size: large;
             }
+            
             .title {
                 font-weight: 700;
                 margin-top: 20px;
@@ -21,13 +25,14 @@
    
     </head>  
 <body>  
-    <button id="searchButton" class="searchButton">Search</button>  
-    <button id="filterButton" class="filterButton">Filter</button>  
-    <button id="sortButton" class="sortButton">Sort</button>  
-    <button id="pageButton" class="pageButton">Page</button>  
-    <div id="displayList" class="displayList">
+    <button type="button" class="btn btn-primary" id="searchButton" class="searchButton">Search</button>  
+    <button type="button" class="btn btn-primary" id="filterButton" class="filterButton">Filter</button>  
+    <button type="button" class="btn btn-primary" id="sortButton" class="sortButton">Sort</button>  
+    <button type="button" class="btn btn-primary" id="pageButton" class="pageButton">Page</button>  
+    <div class="container" > 
+    <div style="width:800px; margin:0 auto;" id="displayList" class="displayList">
         
-    </div>
+    </div></div>
     
 </body>
 <script type="text/javascript" src="popup.js"></script> 
