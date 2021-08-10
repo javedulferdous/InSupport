@@ -13,29 +13,32 @@ function registerEvent(){
     filterList = getthelist();
     chrome.tabs.getSelected(null, function(tab) {
         for (i = 0; i < filterList.length; i++) 
-        {   var cbutton = document.createElement("input");
-            cbutton.setAttribute('type', 'submit');
-            cbutton.setAttribute('value', filterList[i].name);
-            cbutton.setAttribute("class", "collapsible");
-            cbutton.setAttribute("id", "collapsible");
-            cbutton.setAttribute("data-toggle", "collapse");
-            cbutton.setAttribute("data-target", "#demo");
-         
-            let node = document.createElement("Li");
-            let para = document.createElement("li");
-            for(let j=0; j<filterList.length; j++)
-            {
-                para.text=filterList[j].id;
-            }
+        {   var cinput = document.createElement("input");
+            cinput.setAttribute('type', 'submit');
+            cinput.setAttribute('value', filterList[i].name);
+            cinput.setAttribute("class", "collapsible");
+            cinput.setAttribute("id", "collapsible");
+            cinput.setAttribute("data-toggle", "collapse");
+            cinput.setAttribute("data-target", "#demo");
             
-            cbutton.appendChild(para);
+            document.body.appendChild(cinput);
+            let node = document.createElement("div");
+            node.className = 'content';
+            let cbutton = document.createTextNode(filterList[i].id);
             node.appendChild(cbutton);
-            domList.appendChild(node);
+            document.body.appendChild(node);
         }	
         var coll = document.getElementsByClassName("collapsible");
         for (let i = 0; i < coll.length; i++) {
             coll[i].addEventListener("click", function() {
                 console.log(filterList[i].id);
+                
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                content.style.display = "none";
+                } else {
+                content.style.display = "block";
+                }
             })
         }
       }
