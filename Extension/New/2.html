@@ -1,0 +1,24 @@
+<!doctype html>  
+<html>  
+    <head>
+    </head>
+    <body>
+        <div id="divid"></div>
+        <button id= btn onclick="clickme()">click</button>
+        <script type="text/javascript">
+        function clickme(){
+         var hold = document.getElementById("divid");
+         var checkbox = document.createElement('input');
+         checkbox.type = "checkbox";
+         checkbox.name = "chkbox1";
+         checkbox.id = "cbid";
+         var label = document.createElement('label');
+         var tn = document.createTextNode("Not A RoBot");
+         label.htmlFor="cbid";
+         label.appendChild(tn); 
+         hold.appendChild(label);
+         hold.appendChild(checkbox);
+        }
+        </script>
+    </body>
+</html>

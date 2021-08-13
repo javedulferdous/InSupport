@@ -13,6 +13,7 @@ function registerEvent(){
     filterList = getthelist();
     chrome.tabs.getSelected(null, function(tab) {
         for (i = 0; i < filterList.length; i++) 
+        // creating input box as button 
         {   var cinput = document.createElement("input");
             cinput.setAttribute('type', 'submit');
             cinput.setAttribute('value', filterList[i].name);
@@ -20,13 +21,20 @@ function registerEvent(){
             cinput.setAttribute("id", "collapsible");
             cinput.setAttribute("data-toggle", "collapse");
             cinput.setAttribute("data-target", "#demo");
-            
+        // adding button in the dom
             document.body.appendChild(cinput);
+        // creating div to store all the checkbox and label
             let node = document.createElement("div");
             node.className = 'content';
-            let cbutton = document.createTextNode(filterList[i].id);
-            node.appendChild(cbutton);
+        // creating a list for all subgroup
+        for(let j = 0; j<filterList[i].id.length; j++)
+        {
+            let aList = document.createElement('li');
+            let cbutton = document.createTextNode(filterList[i].id[j]);
+            aList.appendChild(cbutton);
+            node.appendChild(aList);
             document.body.appendChild(node);
+        }
         }	
         var coll = document.getElementsByClassName("collapsible");
         for (let i = 0; i < coll.length; i++) {
