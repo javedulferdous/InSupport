@@ -29,10 +29,13 @@ function registerEvent(){
         // creating a list for all subgroup
         for(let j = 0; j<filterList[i].id.length; j++)
         {
-            let aList = document.createElement('li');
+            let brk = document.createElement('br');
+            let checkbox = document.createElement('input');
             let cbutton = document.createTextNode(filterList[i].id[j]);
-            aList.appendChild(cbutton);
-            node.appendChild(aList);
+            checkbox.type = "checkbox";
+            node.appendChild(checkbox);
+            node.appendChild(cbutton);
+            node.appendChild(brk);
             document.body.appendChild(node);
         }
         }	
