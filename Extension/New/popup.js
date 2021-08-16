@@ -1,10 +1,6 @@
-//var response = ["Amazon Prime", "Department", "Avg. Customer Review", "Brand", "Price", "Office Products Material", "Subscribe & Save", "From Our Brands", "Packaging Option", "Certification", "Amazon Global Store"];
- //var response = [{id:"Amazon Prime"}, {id:"Department"}, {id:"Avg. Customer Review"}, {id:"Brand"}];
- var emptyList = [], emptySortList = [], emptyPageList=[]; 
- let domList = document.getElementById("displayList");
-//document.addEventListener('DOMContentLoaded', function() {
+var emptyList = [], emptySortList = [], emptyPageList=[]; 
+let domList = document.getElementById("displayList");
 registerEvent();
-
 function registerEvent(){
     // Clicking the Filter Button
     var checkfilterButton= document.getElementById('filterButton');
@@ -53,7 +49,6 @@ function registerEvent(){
             })
         }
       }
-      
       );
     }, false);
     //Clicking the Sort Button
@@ -69,14 +64,9 @@ function registerEvent(){
             var node = document.createElement("LI");
             node.appendChild(hLink);
             domList.appendChild(node); ///append Item
-            //var node = document.createElement("LI");  // Create a <li> node
-            //var textnode = document.createTextNode(filterList[i].id); // Create a text node
-            //node.appendChild(textnode); 
-            //document.getElementById("displayList").appendChild(node); ///append Item
             console.log([i+1],"Sort");
         }	
       }
-      
       );
     }, false);
     //Clicking the Page Button
@@ -92,10 +82,6 @@ function registerEvent(){
             var node = document.createElement("LI");
             node.appendChild(hLink);
             document.getElementById("displayList").appendChild(node); ///append Item
-            //var node = document.createElement("LI");  // Create a <li> node
-            //var textnode = document.createTextNode(filterList[i].id); // Create a text node
-            //node.appendChild(textnode); 
-            //document.getElementById("displayList").appendChild(node); ///append Item
             console.log([i+1],"Page");
         }	
       }
@@ -125,8 +111,6 @@ function registerEvent(){
     }, false);
 
 }
- // }, false);
-
 function getthelist(){
         chrome.tabs.query({
             active: true,
@@ -135,12 +119,9 @@ function getthelist(){
             let port = chrome.tabs.connect(tabs[0].id);
 
             port.onMessage.addListener((response) => {
-                //console.log(response.filterList);
                 for (i = 0; i < response.dropDownFilter.length; i++) {
                     emptyList.push(response.dropDownFilter[i]);
                 }
-                //emptyList.push(response.filterList);
-                //console.log(emptyList);
                 console.log("From Popup script",response.dropDownFilter);
             });        
         });
