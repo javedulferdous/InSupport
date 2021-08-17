@@ -13,13 +13,14 @@ for (let i = 0; i < x.length; i++) {
         id: x[i].childNodes[1].textContent.trim()
     })
 }
-for (let i = 0; i < 6; i+=1) {
-    if ((x[i].childNodes[3]).textContent != [] ) {
-        temp.push({name:x[i].childNodes[1].textContent.trim(),id: (x[i].childNodes[3]).textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n').split('\n\n').filter(word => word.trim().length > 0)}
-        );
-        }
+for (let i = 0; i < 6; i += 1) {
+    if ((x[i].childNodes[3]).textContent != []) {
+        temp.push({
+            name: x[i].childNodes[1].textContent.trim(),
+            id: (x[i].childNodes[3]).textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n').split('\n\n').filter(word => word.trim().length > 0)
+        });
+    }
 }
-console.log(temp);
 
 //Sort
 sortList = document.querySelectorAll('[data-attribute="sort"]');
@@ -45,6 +46,7 @@ chrome.runtime.onConnect.addListener((port) => {
         filterList: fList,
         sentSortListAttribute: sentSortList,
         sentPageListAttribute: sentPageList,
-        dropDownFilter:temp
+        dropDownFilter: temp
     });
 });
+

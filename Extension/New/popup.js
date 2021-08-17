@@ -1,95 +1,113 @@
-var emptyList = [], emptySortList = [], emptyPageList=[]; 
+var emptyList = [],
+    emptySortList = [],
+    emptyPageList = [];
 let domList = document.getElementById("displayList");
 registerEvent();
-function registerEvent(){
+
+function registerEvent() {
     // Clicking the Filter Button
-    var checkfilterButton= document.getElementById('filterButton');
+    var checkfilterButton = document.getElementById('filterButton');
     checkfilterButton.addEventListener('click', function() {
-    
-    filterList = getthelist();
-    chrome.tabs.getSelected(null, function(tab) {
-        for (i = 0; i < filterList.length; i++) 
-        // creating input box as button 
-        {   var cinput = document.createElement("input");
-            cinput.setAttribute('type', 'submit');
-            cinput.setAttribute('value', filterList[i].name);
-            cinput.setAttribute("class", "collapsible");
-            cinput.setAttribute("id", "collapsible");
-            cinput.setAttribute("data-toggle", "collapse");
-            cinput.setAttribute("data-target", "#demo");
-        // adding button in the dom
-            document.body.appendChild(cinput);
-        // creating div to store all the checkbox and label
-            let node = document.createElement("div");
-            node.className = 'content';
-        // creating a list for all subgroup
-        for(let j = 0; j<filterList[i].id.length; j++)
-        {
-            let brk = document.createElement('br');
-            let checkbox = document.createElement('input');
-            let cbutton = document.createTextNode(filterList[i].id[j]);
-            checkbox.type = "checkbox";
-            node.appendChild(checkbox);
-            node.appendChild(cbutton);
-            node.appendChild(brk);
-            document.body.appendChild(node);
-        }
-        }	
-        var coll = document.getElementsByClassName("collapsible");
-        for (let i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
-                console.log(filterList[i].id);
-                
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                content.style.display = "none";
-                } else {
-                content.style.display = "block";
+
+        filterList = getthelist();
+        chrome.tabs.getSelected(null, function(tab) {
+            for (i = 0; i < filterList.length; i++)
+            // creating input box as button 
+            {
+                var cinput = document.createElement("input");
+                cinput.setAttribute('type', 'submit');
+                cinput.setAttribute('value', filterList[i].name);
+                cinput.setAttribute("class", "collapsible");
+                cinput.setAttribute("id", "collapsible");
+                cinput.setAttribute("data-toggle", "collapse");
+                cinput.setAttribute("data-target", "#demo");
+                // adding button in the dom
+                document.body.appendChild(cinput);
+                // creating div to store all the checkbox and label
+                let node = document.createElement("div");
+                node.className = 'content';
+                // creating a list for all subgroup
+                var counter = 0;
+                for (let j = 0; j < filterList[i].id.length; j++) {
+                    let r = Math.random().toString(36).substr(2, 5);
+                    let brk = document.createElement('br');
+                    let checkbox = document.createElement('input');
+                    let cbutton = document.createTextNode(filterList[i].id[j]);
+                    checkbox.type = "checkbox";
+                    checkbox.id = r+counter;
+                    checkbox.name = filterList[i].id[j];
+                    checkbox.onclick = sendingAttribute;
+                    node.appendChild(checkbox);
+                    node.appendChild(cbutton);
+                    node.appendChild(brk);
+                    document.body.appendChild(node);
+                    counter++;
                 }
-            })
-        }
-      }
-      );
+            }
+            function sendingAttribute(e)
+            {
+                console.log(e.target.getAttribute('name'));
+                chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+                    // Connect to the active tab
+                    let port = chrome.tabs.connect(tabs[0].id);
+                    port.postMessage({
+                        dataAttribute: e.target.getAttribute('name')
+                    });
+                });
+            }
+            var coll = document.getElementsByClassName("collapsible");
+            for (let i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    console.log(filterList[i].id);
+
+                    var content = this.nextElementSibling;
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                    } else {
+                        content.style.display = "block";
+                    }
+                })
+            }
+        });
     }, false);
     //Clicking the Sort Button
-    var checkSortButton= document.getElementById('sortButton');
+    var checkSortButton = document.getElementById('sortButton');
     checkSortButton.addEventListener('click', function() {
-    sortList = getthesortlist();
-    chrome.tabs.getSelected(null, function(tab) {
-        for (i = 0; i < sortList.length; i++) 
-        {   var hLink = document.createElement("a");
-            hLink.text = sortList[i];
-            hLink.target = '_blank';
-            hLink.href = 'https://www.amazon.com/';
-            var node = document.createElement("LI");
-            node.appendChild(hLink);
-            domList.appendChild(node); ///append Item
-            console.log([i+1],"Sort");
-        }	
-      }
-      );
+        sortList = getthesortlist();
+        chrome.tabs.getSelected(null, function(tab) {
+            for (i = 0; i < sortList.length; i++) {
+                var hLink = document.createElement("a");
+                hLink.text = sortList[i];
+                hLink.target = '_blank';
+                hLink.href = 'https://www.amazon.com/';
+                var node = document.createElement("LI");
+                node.appendChild(hLink);
+                domList.appendChild(node); ///append Item
+                console.log([i + 1], "Sort");
+            }
+        });
     }, false);
     //Clicking the Page Button
-    var checkPageButton= document.getElementById('pageButton');
+    var checkPageButton = document.getElementById('pageButton');
     checkPageButton.addEventListener('click', function() {
-    pageList = getthepagelist();
-    chrome.tabs.getSelected(null, function(tab) {
-        for (i = 0; i < pageList.length; i++) 
-        {   var hLink = document.createElement("a");
-            hLink.text = pageList[i];
-            hLink.target = '_blank';
-            hLink.href = 'https://www.amazon.com/';
-            var node = document.createElement("LI");
-            node.appendChild(hLink);
-            document.getElementById("displayList").appendChild(node); ///append Item
-            console.log([i+1],"Page");
-        }	
-      }
-      
-      );
+        pageList = getthepagelist();
+        chrome.tabs.getSelected(null, function(tab) {
+                for (i = 0; i < pageList.length; i++) {
+                    var hLink = document.createElement("a");
+                    hLink.text = pageList[i];
+                    hLink.target = '_blank';
+                    hLink.href = 'https://www.amazon.com/';
+                    var node = document.createElement("LI");
+                    node.appendChild(hLink);
+                    document.getElementById("displayList").appendChild(node); ///append Item
+                    console.log([i + 1], "Page");
+                }
+            }
+
+        );
     }, false);
     //Clicking the Search Button
-    var checkSearchButton= document.getElementById('searchButton');
+    var checkSearchButton = document.getElementById('searchButton');
     checkSearchButton.addEventListener('click', function() {
         var form = document.createElement('form');
         form.setAttribute('action', 'https://www.amazon.com/s/ref=nb_sb_noss_2');
@@ -111,23 +129,25 @@ function registerEvent(){
     }, false);
 
 }
-function getthelist(){
-        chrome.tabs.query({
-            active: true,
-            currentWindow: true
-        }, (tabs) => {
-            let port = chrome.tabs.connect(tabs[0].id);
 
-            port.onMessage.addListener((response) => {
-                for (i = 0; i < response.dropDownFilter.length; i++) {
-                    emptyList.push(response.dropDownFilter[i]);
-                }
-                console.log("From Popup script",response.dropDownFilter);
-            });        
+function getthelist() {
+    chrome.tabs.query({
+        active: true,
+        currentWindow: true
+    }, (tabs) => {
+        let port = chrome.tabs.connect(tabs[0].id);
+
+        port.onMessage.addListener((response) => {
+            for (i = 0; i < response.dropDownFilter.length; i++) {
+                emptyList.push(response.dropDownFilter[i]);
+            }
+            console.log("From Popup script", response.dropDownFilter);
         });
+    });
     return emptyList;
 }
-function getthesortlist(){
+
+function getthesortlist() {
     chrome.tabs.query({
         active: true,
         currentWindow: true
@@ -138,12 +158,13 @@ function getthesortlist(){
             for (i = 0; i < response.sentSortListAttribute[0].id.length; i++) {
                 emptySortList.push(response.sentSortListAttribute[0].id[i]);
             }
-            console.log("From Popup script",emptySortList);
-        });      
+            console.log("From Popup script", emptySortList);
+        });
     });
-return emptySortList;
+    return emptySortList;
 }
-function getthepagelist(){
+
+function getthepagelist() {
     chrome.tabs.query({
         active: true,
         currentWindow: true
@@ -156,21 +177,21 @@ function getthepagelist(){
                 emptyPageList.push(response.sentPageListAttribute[0].id[i]);
             }
             console.log(emptyPageList);
-        });        
+        });
     });
-return emptyPageList;
+    return emptyPageList;
 }
-function testingFunction()
-{
-    for (let i = 0; i < filterList.length; i++) 
-        {   let aLink = document.createElement("a");
-            aLink.text = filterList[i].id;
 
-            var node = document.createElement("LI");
-            node.appendChild(aLink);
-            console.log(filterList[i].id); 
-            return node;          
-        }	
+function testingFunction() {
+    for (let i = 0; i < filterList.length; i++) {
+        let aLink = document.createElement("a");
+        aLink.text = filterList[i].id;
+
+        var node = document.createElement("LI");
+        node.appendChild(aLink);
+        console.log(filterList[i].id);
+        return node;
+    }
 }
 getthesortlist();
 getthelist();

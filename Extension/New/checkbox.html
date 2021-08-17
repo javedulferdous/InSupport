@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <input type="checkbox" id="accept" name="test">  
+    <script>
+        tempJson = [{"id":1,"name":"A"}, {"id":2,"name":"B"},{"id":3,"name":"C"}];
+        const cb = document.querySelector('#accept');
+        //console.log(cb);
+        cb.onclick = () => {
+                for(let i = 0; i<tempJson.length; i++){
+                    let firstCheckBox = document.createElement("input");
+                    firstCheckBox.type = "checkbox";
+                    firstCheckBox.id = tempJson[i].name;
+                    firstCheckBox.onclick = testingFunction;
+                    document.body.appendChild(firstCheckBox)
+                    
+            }
+        };
+        var counter = 0;
+        function testingFunction(e)
+        {
+            
+            console.log([counter+1],"Here");
+            console.log(e.target.getAttribute('id'));
+            counter++;
+        }
+        
+    </script>
+</body>
+</html>
