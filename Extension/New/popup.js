@@ -47,19 +47,17 @@ function registerEvent() {
             function sendingAttribute(e)
             {
                 console.log(e.target.getAttribute('name'));
-                chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-                    // Connect to the active tab
-                    let port = chrome.tabs.connect(tabs[0].id);
-                    port.postMessage({
-                        dataAttribute: e.target.getAttribute('name')
-                    });
+                
+                chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
+                    var activeTab = tabs[0];
+                    chrome.tabs.sendMessage(activeTab.id, {dataAttribute: e.target.getAttribute('name')});
                 });
+                
             }
             var coll = document.getElementsByClassName("collapsible");
             for (let i = 0; i < coll.length; i++) {
                 coll[i].addEventListener("click", function() {
-                    console.log(filterList[i].id);
-
+                    //console.log(filterList[i].id);
                     var content = this.nextElementSibling;
                     if (content.style.display === "block") {
                         content.style.display = "none";
@@ -141,7 +139,7 @@ function getthelist() {
             for (i = 0; i < response.dropDownFilter.length; i++) {
                 emptyList.push(response.dropDownFilter[i]);
             }
-            console.log("From Popup script", response.dropDownFilter);
+            //console.log("From Popup script", response.dropDownFilter);
         });
     });
     return emptyList;
@@ -158,7 +156,7 @@ function getthesortlist() {
             for (i = 0; i < response.sentSortListAttribute[0].id.length; i++) {
                 emptySortList.push(response.sentSortListAttribute[0].id[i]);
             }
-            console.log("From Popup script", emptySortList);
+            //console.log("From Popup script", emptySortList);
         });
     });
     return emptySortList;
@@ -172,11 +170,11 @@ function getthepagelist() {
         let port = chrome.tabs.connect(tabs[0].id);
 
         port.onMessage.addListener((response) => {
-            console.log(response.sentPageListAttribute[0].id);
+            //console.log(response.sentPageListAttribute[0].id);
             for (i = 0; i < response.sentPageListAttribute[0].id.length; i++) {
                 emptyPageList.push(response.sentPageListAttribute[0].id[i]);
             }
-            console.log(emptyPageList);
+            //console.log(emptyPageList);
         });
     });
     return emptyPageList;
