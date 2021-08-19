@@ -34,7 +34,7 @@ function registerEvent() {
                     let checkbox = document.createElement('input');
                     let cbutton = document.createTextNode(filterList[i].id[j]);
                     checkbox.type = "checkbox";
-                    checkbox.id = r+counter;
+                    checkbox.id = filterList[i].id_child[j];
                     checkbox.name = filterList[i].id[j];
                     checkbox.onclick = sendingAttribute;
                     node.appendChild(checkbox);
@@ -46,11 +46,11 @@ function registerEvent() {
             }
             function sendingAttribute(e)
             {
-                console.log(e.target.getAttribute('name'));
+                console.log(e.target.getAttribute('id'));
                 
                 chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
                     var activeTab = tabs[0];
-                    chrome.tabs.sendMessage(activeTab.id, {dataAttribute: e.target.getAttribute('name')});
+                    chrome.tabs.sendMessage(activeTab.id, {dataAttribute: e.target.getAttribute('id')});
                 });
                 
             }
@@ -139,7 +139,7 @@ function getthelist() {
             for (i = 0; i < response.dropDownFilter.length; i++) {
                 emptyList.push(response.dropDownFilter[i]);
             }
-            //console.log("From Popup script", response.dropDownFilter);
+            console.log("From Popup script", response.dropDownFilter);
         });
     });
     return emptyList;

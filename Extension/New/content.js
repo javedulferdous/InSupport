@@ -13,10 +13,21 @@ for (let i = 0; i < x.length; i++) {
         id: x[i].childNodes[1].textContent.trim()
     })
 }
+function getIds_1(tempv){
+    let id = tempv.querySelectorAll('[id]');
+    
+    return [].slice.call(id).map(function(elem){
+      return elem.id;
+    });
+  }
+  
 for (let i = 0; i < 6; i += 1) {
     if ((x[i].childNodes[3]).textContent != undefined) {
         temp.push({
             name: x[i].childNodes[1].textContent.trim(),
+            test:"hello",
+            id_parrent:x[i].getAttribute('id'),
+            id_child:getIds_1(x[i].childNodes[3]),
             id: (x[i].childNodes[3]).textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n').split('\n\n').filter(word => word.trim().length > 0)
         });
     }
