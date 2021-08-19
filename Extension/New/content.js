@@ -62,7 +62,19 @@ chrome.runtime.onConnect.addListener((port) => {
 });
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-     console.log(request.dataAttribute);
+     console.log("ID: ",request.dataAttribute);
+     let checkBoxNode = document.getElementById(request.dataAttribute);
+     var chks = checkBoxNode.querySelectorAll("input[type='checkbox']");
+     console.log(!checkBoxNode.querySelectorAll("input[type='checkbox']").checked);
+     if(chks.checked===true)
+     {
+        console.log("uncheck");
+        chks.forEach(c => { c.checked = false; });
+     }
+     else{
+        console.log("check");
+        chks.forEach(c => { c.checked = true; });
+        }
     }
   );
 
