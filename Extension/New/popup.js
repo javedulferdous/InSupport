@@ -14,6 +14,7 @@ function registerEvent() {
             for (i = 0; i < filterList.length; i++)
             // creating input box as button 
             {
+                console.log(filterList[i].id_link);
                 var cinput = document.createElement("input");
                 cinput.setAttribute('type', 'submit');
                 cinput.setAttribute('value', filterList[i].name);
@@ -33,12 +34,19 @@ function registerEvent() {
                     let brk = document.createElement('br');
                     let checkbox = document.createElement('input');
                     let cbutton = document.createTextNode(filterList[i].id[j]);
+                    let idLink = document.createElement('a');
+
+                    idLink.href = filterList[i].id_link[j];
+                    idLink.innerHTML = filterList[i].id[j];
+                    idLink.target = "_blank";
                     checkbox.type = "checkbox";
                     checkbox.id = filterList[i].id_child[j];
                     checkbox.name = filterList[i].id[j];
                     checkbox.onclick = sendingAttribute;
+
+                    checkbox.appendChild(idLink);
                     node.appendChild(checkbox);
-                    node.appendChild(cbutton);
+                    node.appendChild(idLink);
                     node.appendChild(brk);
                     document.body.appendChild(node);
                     counter++;
