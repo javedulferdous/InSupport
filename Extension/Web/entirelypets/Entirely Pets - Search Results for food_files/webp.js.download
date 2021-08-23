@@ -1,0 +1,132 @@
+var script_tag = document.getElementById('webpSite')
+var site = script_tag.getAttribute("data");
+
+if(site === "EP" || site === "HP" || site === "HL"){ //HL: heartland
+    var webpEl = {
+        mainClass: ".slide-wrap .slick-track",
+        deskClass: [".home-slider",".image"],
+        mobClass: [".mobile-slider",".MBimage"]
+    };
+}else{
+    var webpEl = {
+        mainClass: "#hero-container .slick-track",
+        deskClass: [".hero",".image"],
+        mobClass: [".hero-mobile",".image"]
+    };
+}
+
+Modernizr.on("webp", function (result) {
+    //console.log(webpEl);
+    function waitForElementToDisplay(selector, time) {
+        var imgContainer = document.querySelectorAll(selector);
+
+        if (imgContainer.length > 0) {
+            if (result) {
+                console.log("Webp supported");
+            } else {    
+                            
+                var deskClass = document.querySelector(webpEl.deskClass[0]);
+                desktop(deskClass, webpEl.deskClass[1]);
+                var mobClass = document.querySelector(webpEl.mobClass[0]);
+                mobile(mobClass, webpEl.mobClass[1]);                
+            }
+            return;
+        } else {
+            //console.log("Loading...");
+            setTimeout(function () {
+                waitForElementToDisplay(selector, time);
+            }, time);
+        }
+    }
+    waitForElementToDisplay(webpEl.mainClass, 0);
+});
+
+function desktop(k, c) {
+    //console.log("desktop");
+    /*
+     1. Change background
+     - Find the div tag .image has style attribute
+    - Replace .webp to .jpg
+      - Update CSS for the tag
+    - slide-wrap -> slick-track -> image
+    */
+    var imgClass = jQuery(k).find(c);
+    if (imgClass.length > 0) {
+        jQuery(imgClass).each(function () {
+            var divStyle = jQuery(this).attr("style");
+            var replacedImg = urlReplace(divStyle, ".jpg");
+            jQuery(this)
+                .css("background", "url(" + replacedImg + ")");
+            /*
+            2. Change img src
+            */
+            var deskSubImg = jQuery(this).find("img").attr("data-lazy");
+            
+            if (!deskSubImg) {
+                // browser not supported
+                deskSubImg = jQuery(this).find("img").attr("src");
+            }
+            var pngImage = urlReplace(deskSubImg, ".png");
+            //console.log(pngImage);
+            jQuery(this).find("img").attr("src", pngImage);
+        });
+    }
+}
+
+function mobile(k, c) {
+    /*
+    2. Change img src for mobile
+    - slide-wrap -> slick-track -> MBimage
+    */
+    jQuery(k)
+        .find(c)
+        .each(function () {
+            var mobImg = jQuery(this).find("img").attr("data-lazy");
+            if (!mobImg) {
+                // browser not supported
+                mobImg = jQuery(this).find("img").attr("src");
+            }
+            var replacedImg = urlReplace(mobImg, ".jpg");
+            jQuery(this).find("img").attr("src", replacedImg);
+        });
+}
+
+function urlReplace(selector, type) {
+    var imgBg = getURL(selector);
+    if (imgBg.length > 0) {
+        var url = imgBg[0].file;
+        var ext = imgBg[0].ext;
+        // - Replace .webp to .jpg
+        return ext == ".webp" ? url.replace(ext, type) : url;
+    }
+
+}
+
+function getURL(string) {
+    var matches = [],
+        match,
+        index;
+    var regex = /(?:(?:https?:\/\/))[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b(?:[-a-zA-Z0-9@:%_\+.~#?&\/=]*(\.jpg|\.webp|\.png|\.jpeg))/g;
+
+    while ((match = regex.exec(string))) {
+        if (index === regex.lastIndex) {
+            error = {
+                id: "infinite",
+                warning: true,
+            };
+            ++regex.lastIndex;
+        }
+        index = regex.lastIndex;
+        //console.log(match);
+        matches.push({
+            l: match[0].length,
+            file: match[0],
+            ext: match[1],
+        });
+
+        if (!regex.global) {
+            break;
+        } // or it will become infinite.
+    }
+    return matches;
+}

@@ -1,0 +1,149 @@
+console.log('FulcrumSaaS: v2.4 2020-11-01 11:58:34.840')
+
+if( window['fulcrum'].p != undefined && window['fulcrum'].p.event_listener != undefined){
+    var l=window['fulcrum'].p.event_listener;
+}else{
+    var l="data-event"
+}
+
+var b=document.querySelector('body');
+b.addEventListener('click', function(e) {
+    var ep = e.target;
+    var found = false;
+    var epexit = false;
+    while (ep != document && found === false && epexit === false){
+        if(ep !== null && ep.hasAttribute(l)){
+            fulcrum_event(ep.getAttribute(l));
+            found = true;
+        }
+        if(ep.parentNode !== null){
+            ep = ep.parentNode;
+        }else{
+            epexit = true;
+        }
+    }
+});
+
+(function(w,d,f){w[f] = function(v,x,p,z,r){
+ 
+    var fcsid = cookie_get();
+    var xhr;
+    if(fcsid==""){
+        fcsid = cookie_set();
+    }
+    var report = {
+        url: w.location.href,
+        instance_code: x,
+        fcsid: fcsid,
+        referrer: r,
+        interaction: v,
+        params: p,
+        browser: navigator.userAgent,
+        language: navigator.language,
+        platform: navigator.platform
+    };
+    
+    CORS('POST', 'https://log-v1-web.fulcrumsaas.net/log', report, function( err, resp ) {
+        if(!err){
+            console.log(resp);
+        }else{
+            console.log(err);
+            console.log(resp);
+        }
+    });
+    
+    if(Object.keys(z).length > 0){
+        for(var index in z){
+            if(z[index]['type']=='zonerule'){
+                (function (zi) {
+                  var zone = d.getElementById(zi['id']);
+                  if(zone !=null){
+                    report['zone'] = z[index];
+                    CORS('POST', zi['url'], report, function( err, resp ) {
+                        if(!err){
+                            zone.innerHTML = resp;
+
+                            // placeholder for function executes
+
+                        }else{
+                            console.log(err);
+                        }
+                    });
+                  }
+                }(z[index]));
+            }
+        }
+    }
+
+    function cookie_get() {
+        var name = "fulcrum_csid=";
+        var ca = document.cookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function cookie_set() {
+        var id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
+        var d = new Date();
+        
+        var dm = document.domain.split('.');
+        var dmt = '';
+        if(dm.length > 1){
+            dmt = dm.pop();
+            dmt = dm.pop() + '.' + dmt;
+        }else{
+            dmt = dm.pop()
+        }
+        d.setTime(d.getTime() + (99 * 365 * 24 * 60 * 60 * 1000));
+        var expires = "expires="+d.toUTCString();
+        var cstring = "fulcrum_csid=" + id + ";" + expires + ";path=/;domain="+dmt+"; SameSite=Lax;";
+        document.cookie = cstring
+        return id;
+    }
+
+    function CORS(method, url, data, cb) {
+
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function() {
+          if(this.readyState === 4) {
+            console.log(this.responseText);
+          }
+        });
+
+        xhr.open(method, url);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.send(JSON.stringify(data));
+
+        return xhr
+
+    }
+
+}})(window, document, 'fulcrum_wedge');
+
+fulcrum_wedge('view','x53p1d6451oe2',window['fulcrum'].p,{},document.referrer);
+
+
+window.addEventListener('hashchange', function() {
+  fulcrum_wedge('view','x53p1d6451oe2',window['fulcrum'].p,{},document.referrer);
+}, false);
+
+window.addEventListener('popstate', function() {
+  fulcrum_wedge('view','x53p1d6451oe2',window['fulcrum'].p,{},document.referrer);
+}, false);
+
+
+function fulcrum_event(p){
+    fulcrum_wedge('event','x53p1d6451oe2',JSON.parse(p),{},'');
+    console.log('Fulcrum Event Triggered');
+}

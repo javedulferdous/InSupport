@@ -1,0 +1,306 @@
+var cartLocation = "https://secure.entirelypets.com/entirelypets/cgi-bin/wg-order?entirelypets";
+var cartCheckout = "https://secure.entirelypets.com/entirelypets/ymix/MetaController.html?ysco_key_event_id=1&ysco_key_store_id=entirelypets&sectionId=ysco.ship-bill";
+var caPopupHeight = 0;
+var caPopupWidth = 1180;
+var ytAddedToCart = false;
+var ytCanHideCart = false;
+var ytLeaveTimer = 12000;
+var ytReaddTimer = 0;
+var totalQuan = 0;
+
+function is_touch_device() {
+	try {
+	document.createEvent("TouchEvent");
+	return true;
+	} catch (e) {
+	return false;
+	}
+}
+
+function has_mouse() {
+	try {
+	window.addEventListener('mousemove', function mouseCheck(e) {
+		window.removeEventListener('mousemove', mouseCheck);
+		return false;
+	});
+	} catch (e) {
+	return false
+	}
+}
+
+function ytimesHideAdded() {
+	if (ytCanHideCart) {
+	jQuery("#ytimesCartAdded").fadeOut();
+	jQuery("#caRelated").empty();
+	jQuery("#addingItemToCartBack").fadeOut();
+	}
+}
+
+function ytimesShowAdded() {
+	var screenHeight = window.innerHeight;
+	var screenWidth = window.innerWidth;
+	window.scrollTo(0, 0);
+	var posTop = (screenHeight <= caPopupHeight ? 0 : Math.round(screenHeight / 2) - (caPopupHeight / 2));
+	var posLeft = (screenWidth <= caPopupWidth ? 0 : Math.round(screenWidth / 2) - (caPopupWidth / 2));
+	var backHeight = jQuery(document).height();
+	var backWidth = jQuery(document).width();
+	jQuery("#ytimesCartAdded").css({
+	"max-height": jQuery("#itemarea").height() + "px"
+	});
+	jQuery("#ytimesCartAdded").fadeIn(300);
+	setTimeout(function() {
+	if (jQuery("#emCartList")) {
+		jQuery("#emCartList").slick({
+		lazyLoad: 'ondemand',
+		dots: true,
+		arrows: true,
+		infinite: true,
+		speed: 300,
+		slidesToShow: 4,
+		slidesToScroll: 4,
+		nextArrow: "<img src=https://sep.yimg.com/ty/cdn/entirelypets/slider-prev-and-next.png class=slick-next alt=slick-next>",
+		prevArrow: "<img src=https://sep.yimg.com/ty/cdn/entirelypets/slider-prev-and-next.png class=slick-prev alt=slick-prev>",
+		responsive: [{
+			breakpoint: 1280,
+			settings: {
+				slidesToShow: 3,
+				slidesToScroll: 3
+			}
+			},
+			{
+			breakpoint: 1024,
+			settings: {
+				slidesToShow: 3,
+				slidesToScroll: 3
+			}
+			},
+			{
+			breakpoint: 768,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 2
+			}
+			}
+		]
+		});
+	}
+	if (jQuery("#TopSellList")) {
+		jQuery("#TopSellList").slick({
+		lazyLoad: 'ondemand',
+		dots: true,
+		arrows: true,
+		infinite: true,
+		speed: 300,
+		slidesToShow: 4,
+		slidesToScroll: 4,
+		nextArrow: "<img src=https://sep.yimg.com/ty/cdn/healthypetscom/next-arrow.png class=slick-next alt=slick-next>",
+		prevArrow: "<img src=https://sep.yimg.com/ty/cdn/healthypetscom/back-arrow.png class=slick-prev alt=slick-prev>",
+		responsive: [{
+			breakpoint: 1200,
+			settings: {
+				slidesToShow: 3,
+				slidesToScroll: 3
+			}
+			},
+			{
+			breakpoint: 992,
+			settings: {
+				slidesToShow: 3,
+				slidesToScroll: 3
+			}
+			},
+			{
+			breakpoint: 768,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 2
+			}
+			}
+		]
+		});
+	}
+	jQuery("#caRelated").empty();
+	jQuery("#caRelated").append(jQuery('#customers-viewed').clone(true));
+	}, 310);
+}
+
+function getFCCookie(name) {
+	var start = document.cookie.indexOf(name + "=");
+	var len = start + name.length + 1;
+	if ((!start) && (name != document.cookie.substring(0, name.length))) return null;
+	if (start == -1) return null;
+	var end = document.cookie.indexOf(";", len);
+	if (end == -1) end = document.cookie.length;
+	return unescape(document.cookie.substring(len, end));
+}
+
+jQuery(document).ready(function() {
+
+	if (!document.getElementById("ytimesRunningCart")) {
+	jQuery("body").append("<iframe id=ytimesRunningCart name=ytimesRunningCart style='display:none' src='about:blank'></iframe>");
+	}
+	if (!document.getElementById("addingItemToCartBack")) {
+	jQuery("body").append("<div id=addingItemToCartBack></div>");
+	}
+	if (!document.getElementById("addingItemToCart")) {
+	jQuery("body").append("<div id=addingItemToCart>Adding item to cart...</div>");
+	}
+
+	if (typeof(jQuery.fn.prop) == 'undefined') {
+	jQuery.fn.prop = jQuery.fn.attr;
+	}
+
+	jQuery("form[action*='secure.entirelypets.com'], form[action*='cgi-bin/test-order']").on('submit', function() {
+	if (jQuery(this).parents("#caRelated").length > 0) {
+		ytAddedToCart = true;
+		var addedItemImg = jQuery(this).parent().find(".image img").attr("src");
+		var addedItemName = jQuery(this).parent().find(".name a").text();
+		var addedItemQty = 1;
+		jQuery("#ytimesCartAdded #addedElements").html("");
+		jQuery("#ytimesCartAdded #addedElements").append("<div class=img><img src=" + addedItemImg + "></div>");
+		jQuery("#ytimesCartAdded #addedElements").append("<div class=info><h2><img src=https://sep.yimg.com/ty/cdn/yhst-135855760451349/eprx-ca-check.png>Added to Cart</h2>" + addedItemName + "<br>Qty: " + addedItemQty + "</div>");
+		ytCanHideCart = true;
+		jQuery("input.addtocartImg", this).attr("src", "https://sep.yimg.com/ty/cdn/yhst-135855760451349/added2cart.png");
+	} else {
+		ytAddedToCart = true;
+		jQuery("#addingItemToCart").width(jQuery("body").width())
+		.css("display", "block")
+		.css("top", jQuery(window).height() / 2 + jQuery(window).scrollTop() + "px");
+		jQuery("#addingItemToCartBack").width(jQuery(document).width())
+		.height(jQuery(document).height())
+		.fadeIn();
+		jQuery("#addingItemToCart").fadeIn();
+
+		if (jQuery("#etalage").length > 0) {
+		var addedItemImg = jQuery("#etalage li.etalage_thumb_active img.etalage_thumb_image").attr("src");
+		} else {
+		var addedItemImg = jQuery("#itemImages img:first").attr("src");
+		}
+		var addedItemName = jQuery("h1.item-title").text();
+		var addedItemQty = jQuery("#itemQty input[name=vwquantity]").val();
+
+		jQuery("#ytimesCartAdded #addedElements").html("");
+		jQuery("#ytimesCartAdded #addedElements").append("<div class=img><img src=" + addedItemImg + "></div>");
+		jQuery("#ytimesCartAdded #addedElements").append("<div class=info><h2><img src=https://sep.yimg.com/ty/cdn/yhst-135855760451349/eprx-ca-check.png>Added to Cart</h2>" + addedItemName + "<br>Qty: " + addedItemQty + "</div>");
+
+		setTimeout(function() {
+		jQuery("#addingItemToCart").hide();
+		ytimesShowAdded();
+		ytCanHideCart = true;
+		//self.setTimeout(ytimesHideAdded, ytLeaveTimer);
+		}, 2000);
+	}
+	});
+
+	jQuery("form[action*='cgi-bin/test-order']").attr("target", "ytimesRunningCart");
+	jQuery("form[action*='secure.entirelypets.com']").attr("target", "ytimesRunningCart");
+
+	jQuery("#itemarea").append("<div id=ytimesCartAdded></div>");
+	jQuery("#ytimesCartAdded").append("<div class=caClose id=topClose></div>");
+	jQuery("#ytimesCartAdded").append("<div id=addedElementsFrame></div>");
+	jQuery("#ytimesCartAdded #addedElementsFrame").append("<div id=addedElements></div>");
+	jQuery("#ytimesCartAdded #addedElementsFrame").append("<div id=addedCartTotal>Cart subtotal: <span id=aCartTotal></span> <span id=aCartItems></span></div>");
+	jQuery("#ytimesCartAdded #addedElementsFrame").append("<div class=buttons></div>");
+	jQuery("#ytimesCartAdded #addedElementsFrame .buttons").append("<a href=" + cartLocation + "><img class=caViewCart src=https://sep.yimg.com/ty/cdn/yhst-135855760451349/ca-viewcart.png border=0></a>");
+	jQuery("#ytimesCartAdded #addedElementsFrame .buttons").append("<a href=" + cartCheckout + "><img class=caCheckout src=https://sep.yimg.com/ty/cdn/yhst-135855760451349/ca-checkout.png border=0></a>");
+	jQuery("#ytimesCartAdded #addedElementsFrame .buttons").append("<button class=caClose>KEEP SHOPPING</button>");
+	jQuery("#ytimesCartAdded #addedElementsFrame .buttons").append("<div class=ca></div>");
+	jQuery("#ytimesCartAdded #addedElementsFrame").append("<div class=ca></div>");
+	jQuery("#ytimesCartAdded").append("<div id=caRelated></div>");
+	jQuery("#ytimesCartAdded").append("<div id=cart-recs></div>");
+	jQuery("#ytimesCartAdded").append("<div id=topSells-recs><div class=emRelatedItemsFrame><div class=wl><div class=emRelatedItemsContainer><div class=titleLine><h2>Customer Favorites</h2></div><div id=TopSellList></div></div></div></div></div>");
+	jQuery("#ytimesCartAdded").append("<div id=caBottomTotals></div>");
+	jQuery("#ytimesCartAdded #caBottomTotals").append("<div id=addedBCartTotal>Cart subtotal: <span id=aBCartTotal></span> <span id=aBCartItems></span></div>");
+	jQuery("#ytimesCartAdded #caBottomTotals").append("<div class=buttons></div>");
+	jQuery("#ytimesCartAdded #caBottomTotals .buttons").append("<a href=" + cartLocation + "><img class=caViewCart src=https://sep.yimg.com/ty/cdn/yhst-135855760451349/ca-viewcart.png border=0></a>");
+	jQuery("#ytimesCartAdded #caBottomTotals .buttons").append("<a href=" + cartCheckout + "><img class=caCheckout src=https://sep.yimg.com/ty/cdn/yhst-135855760451349/ca-checkout.png border=0></a>");
+	jQuery("#ytimesCartAdded #caBottomTotals .buttons").append("<button class=caClose>KEEP SHOPPING</button>");
+	jQuery("#ytimesCartAdded #caBottomTotals").append("<div class=ca></div>");
+	if (hasPageType() && (dataLayer["2"].page.type === "product" || dataLayer["2"].page.type === "categoryProduct")) {
+	ScarabQueue.push(['recommend', {
+		logic: 'CART',
+		containerId: 'cart-recs',
+		templateId: 'cart-template',
+		limit: '10'
+	}]);
+	}
+
+	ScarabQueue.push(['go']);
+	var hpTop100 = "https://www.pet-tools.co/s/api-s/getTopSellSku.php?s=ep";
+	$.get(hpTop100).then((json) => {
+	var topSellArray;
+	if (!json || !json[0] || !json[0].top_sells_array) {
+		return;
+	}
+	topSellArray = JSON.parse(json[0].top_sells_array);
+	if (!topSellArray || topSellArray.length < 100) {
+		return;
+	}
+	var TopSellObject = {};
+	var testTopSell = 0;
+	for (var i = 0; i < 10; i++) {
+		var topSellIndexTemp = Math.floor(Math.random() * 100);
+		while (TopSellObject[topSellIndexTemp]) {
+		topSellIndexTemp = Math.floor(Math.random() * 100);
+		}
+		TopSellObject[topSellIndexTemp] = 1;
+		var topSellsItem = "https://www.pet-tools.co/s/api-s/topSellProduct.php?s=entirelypets&c=" + topSellArray[topSellIndexTemp];
+		//var topSellPromise = $.get(topSellsItem).done((item)=>{
+		$.get(topSellsItem).then((item) => {
+		if (!item || !item[0]) {
+			return;
+		}
+		$("#TopSellList").append("<div class=\"crossSellItem\"><div class=\"contentsElement\"><div class=\"image\"><a href=\"https://www.entirelypets.com/" + item[0].urlID + ".html\"><img src=\"" + item[0].image + "\" id=\"" + item[0].SKU + "\"></a></div><div class=\"name\"><a href=\"https://www.entirelypets.com/" + item[0].urlID + ".html\">" + item[0].display_name + "</a></div><div class = \"price\" ><span class=\"reg\">$" + item[0].originalPrice + "</span><span class=\"sale\"> $" + item[0].salePrice + "</span></div></div></div>");
+		});
+		// topSellPromise.then(function() {
+		//   testTopSell++;
+		//   if(testTopSell == 10 && jQuery("#TopSellList")) {
+		//     jQuery("#TopSellList").slick({
+		//       lazyLoad: 'ondemand',
+		//       dots: true,
+		//       arrows: true,
+		//       infinite: true,
+		//       speed: 300,
+		//       slidesToShow: 4,
+		//       slidesToScroll: 4,
+		//       nextArrow: "<img src=https://sep.yimg.com/ty/cdn/healthypetscom/next-arrow.png class=slick-next alt=slick-next>",
+		//       prevArrow: "<img src=https://sep.yimg.com/ty/cdn/healthypetscom/back-arrow.png class=slick-prev alt=slick-prev>",
+		//       responsive: [
+		//         {
+		//           breakpoint: 1200,
+		//           settings: {
+		//             slidesToShow: 3,
+		//             slidesToScroll: 3
+		//           }
+		//         },
+		//         {
+		//           breakpoint: 992,
+		//           settings: {
+		//             slidesToShow: 3,
+		//             slidesToScroll: 3
+		//           }
+		//         },
+		//         {
+		//           breakpoint: 768,
+		//           settings: {
+		//             slidesToShow: 2,
+		//             slidesToScroll: 2
+		//           }
+		//         }
+		//       ]
+		//     });
+		//   }
+		// })
+	}
+	});
+	jQuery(".caClose").click(function() {
+	ytCanHideCart = true;
+	ytimesHideAdded();
+	});
+	jQuery("#addingItemToCartBack").click(function() {
+	ytCanHideCart = true;
+	ytimesHideAdded();
+	});
+
+});
+

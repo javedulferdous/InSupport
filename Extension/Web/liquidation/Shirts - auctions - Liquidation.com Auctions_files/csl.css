@@ -1,0 +1,61 @@
+@import url('/shared/css/csl_dialog.css');
+@import url('/shared/css/csl_intro.css');
+@import url('/shared/css/csl_data.css');
+.cross-results {
+border-top: 2px solid #808080;
+font-family: Arial, sans-serif !important;
+font-size: 12px !important;
+padding-top: 1px;
+}
+.csl-dym {color:grey;font-size:14px;margin:10px 0;}
+.cross-lcom .cross-result-table a:hover {
+color: #db812d;
+}
+
+.cross-gl .cross-result-table a:hover {
+color: #666;
+}
+
+.cross-gd .cross-result-table a:hover {
+color: #900;
+}
+
+.csl-feedback {
+border: 1px solid #b8b8b8;
+border-top: none;
+background-color: #cce4f3;
+padding: 15px;
+text-align: center;
+}
+
+.csl-feedback h4 {
+font-family: Arial, sans-serif !important;
+font-size: 15px !important;
+margin: 0;
+}
+
+.csl-feedback p {
+display: block;
+font-family: Arial, sans-serif !important;
+font-size: 12px !important;
+font-weight: 400;
+margin: 15px 0 10px;
+}
+
+.csl-feedback button {
+background: #d9d9d9;
+border: 1px solid #808080;
+color: #454545;
+font-family: Arial, sans-serif !important;
+font-size: 12px !important;
+font-weight: 400;
+padding: 5px 10px;
+}
+
+.cross-gl .csl-feedback {
+display: none;
+}
+
+#google-form {
+display: none;
+}

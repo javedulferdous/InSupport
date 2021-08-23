@@ -1,0 +1,12 @@
+BrightTag.site('6EeDEhH',function(s){
+s.dbe('bang - entirely pets - product sku - product description page', 'jQuery(\x27.item-code\x27)',{pageId:2786669});
+s.dbe('referral url', 'document.referrer',{pageId:2786669});
+s.dbe('url', 'location.href',{pageId:303432});
+s.domready(function(){
+s.secondary(function(c){
+c.when('!!bt_data(\x27bang - entirely pets - product sku - product description page\x27)').fire(4838442);
+c.when('bt_data(\x27referral url\x27).indexOf(\x22entirelypets.com\x22) \x3e -1').fire(4838447);
+c.when('bt_data(\x27url\x27).indexOf(\x22/search#w\\x3d\x22) \x3e -1').fire(4850594);
+});
+});
+});

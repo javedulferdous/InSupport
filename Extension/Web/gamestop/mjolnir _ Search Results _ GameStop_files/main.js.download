@@ -1,0 +1,40 @@
+var products;
+
+function init() {
+	TweenMax.set([viewport, border], { autoAlpha: 1 })
+	frameOne();
+}
+// duration
+var d = 2.5;
+function frameOne() {
+	TweenMax.set([frame1], { autoAlpha: 1 })
+	TweenMax.delayedCall(d, frameTwo)
+
+}
+function frameTwo() {
+	TweenMax.set(frame1, { autoAlpha: 0 })
+	TweenMax.set(frame2, { autoAlpha: 1 })
+
+	TweenMax.delayedCall(d, frameThree)
+}
+function frameThree() {
+	TweenMax.set(frame2, { autoAlpha: 0 })
+	TweenMax.set(frame3, { autoAlpha: 1 })
+
+	TweenMax.delayedCall(d, frameFour)
+
+}
+
+function frameFour() {
+	TweenMax.set(frame3, { autoAlpha: 0 })
+	TweenMax.set(frame4, { autoAlpha: 1 })
+
+	TweenMax.delayedCall(d, frameFive)
+
+}
+
+function frameFive() {
+	TweenMax.set(frame4, { autoAlpha: 0 })
+	TweenMax.set(frame5, { autoAlpha: 1 })
+
+}

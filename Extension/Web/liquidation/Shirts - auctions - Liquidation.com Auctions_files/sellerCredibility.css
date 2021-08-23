@@ -1,0 +1,404 @@
+.popup * {
+    padding: 0px;
+    margin: 0px;
+}
+.cl, .clear {
+	font-size: 0;
+	line-height: 0;
+	height: 0;
+	display: block;
+	clear: both;
+}
+.popup {
+    position: absolute;
+	width: 503px;    
+}
+.popup .popup-top,
+.popup .popup-bot {
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	text-indent: -4000px;
+}
+.popup .popup-top {
+	background: url(/images/popup-top.png) no-repeat 0 0;
+    height: 15px;
+}
+.popup .popup-flipped-top {
+	background: url(/images/popup-flipped-top.png) no-repeat 0 0;
+    height: 34px;
+}
+.popup .popup-bot {
+	background: url(/images/popup-bot.png) no-repeat 0 0;
+    height: 27px;
+}
+.popup .popup-flipped-bot {
+	background: url(/images/popup-flipped-bot.png) no-repeat 0 0;
+    height: 20px;
+}
+.popup .popup-cnt {
+	width: 503px;
+	background: url(/images/popup-cnt.png) repeat-y 0 0;
+}
+.popup .popup-in {
+	margin-left: 1px;
+	width: 491px;
+	position: relative;
+	font-family: Arial, Helvetica, Sans-Serif;
+	font-size: 12px;
+	line-height: 14px;
+	font-weight: normal;
+	color: #000000;
+}
+.popup .popup-in .seller-info {
+	padding: 0 16px 10px 16px;
+}
+.popup .popup-in .seller-info div#newSeller {
+    display: none;
+    height: 153px;
+    width: 460px;
+}
+.popup .seller-info .top-seller {
+	display: none;
+	margin: 4px 10px 10px 0;
+}
+.popup .seller-info .main-nfo {
+    float: left;
+	display: inline;
+	width: 393px;
+	margin-bottom: 10px;
+}
+.popup .seller-info .main-nfo h2 span#sellerName {
+    display: block;
+	font-size: 18px;
+	line-height: 20px;
+	font-weight: bold;
+}
+.popup .seller-info .main-nfo h2 {
+	font-size: 13px;
+	font-weight: normal;
+}
+.popup .seller-info .main-nfo p {
+	color: #999;
+}
+.popup .seller-info table {
+	padding-bottom: 10px;
+    width: 460px;
+}
+.popup .seller-info table tr th {
+	line-height: 23px;
+	background: #eeeeee;
+	color: #999;
+	font-weight: normal;
+	text-align: right;
+	padding-right: 13px;
+}
+.popup .seller-info table tr td {
+	line-height: 25px;
+	border-bottom: solid 1px #ccc;
+	text-align: right;
+	padding-right: 13px;
+	font-weight: bold;
+}
+.popup .seller-info table tr td.first {
+	text-align: left;
+	font-weight: normal;
+}
+.popup .seller-info table tr td.rank div.rank_00 {
+    background: url(/images/bar_00.gif); 
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;  
+}
+.popup .seller-info table tr td.rank div.rank_10 {
+    background: url(/images/bar_10.gif); 
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;  
+}
+.popup .seller-info table tr td.rank div.rank_20 {
+    background: url(/images/bar_20.gif); 
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;  
+}
+.popup .seller-info table tr td.rank div.rank_30 {
+    background: url(/images/bar_30.gif); 
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;  
+}
+.popup .seller-info table tr td.rank div.rank_40 {
+    background: url(/images/bar_40.gif); 
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;  
+}
+.popup .seller-info table tr td.rank div.rank_40 {
+    background: url(/images/bar_40.gif); 
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;  
+}
+.popup .seller-info table tr td.rank div.rank_50 {
+    background: url(/images/bar_50.gif); 
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;  
+}
+.popup .seller-info table tr td.rank div.rank_60 {
+    background: url(/images/bar_60.gif); 
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;  
+}
+.popup .seller-info table tr td.rank div.rank_70 {
+    background: url(/images/bar_70.gif); 
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;  
+}
+.popup .seller-info table tr td.rank div.rank_80 {
+    background: url(/images/bar_80.gif); 
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;  
+}
+.popup .seller-info table tr td.rank div.rank_90 {
+    background: url(/images/bar_90.gif); 
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;  
+}
+.popup .seller-info table tr td.rank div.rank_100 {
+    background: url(/images/bar_100.gif); 
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;  
+}
+.popup .popup-close {
+	position: absolute;
+	top: 0;
+	right: 11px;
+	color: #cccccc;
+	font-family: Verdana, Arial, Helvetica, Sans-Serif;
+	font-size: 9px;
+	line-height: 11px;
+	padding-right: 16px;
+	background: url(/images/close-button.gif) no-repeat right 2px;
+	cursor: pointer;
+	float: right;
+	display: inline;
+}
+
+/*********************************************************/
+/* for inline implementations of widget */
+/****************************************/
+
+.inline * {
+    padding: 0px;
+    margin: 0px;
+}
+.cl, .clear {
+	font-size: 0;
+	line-height: 0;
+	height: 0;
+	display: block;
+	clear: both;
+}
+.inline {
+	width: 503px;
+}
+.inline .inline-top,
+.inline .inline-bot {
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	text-indent: -4000px;
+}
+.inline .inline-top {
+    height: 15px;
+}
+.inline .inline-flipped-top {
+    height: 52px;
+}
+.inline .inline-bot {
+	height: 40px;
+}
+.inline .inline-flipped-bot {
+}
+.inline .inline-cnt {
+	width: 503px;
+}
+.inline .inline-in {
+	width: 491px;
+	position: relative;
+	font-family: Arial, Helvetica, Sans-Serif;
+	font-size: 12px;
+	line-height: 14px;
+	font-weight: normal;
+	color: #000000;
+}
+.inline .inline-in .seller-info {
+	padding: 0;
+}
+.inline .inline-in .seller-info div#newSeller {
+    display: none;
+    height: 153px;
+    width: 460px;
+}
+.inline .seller-info .top-seller {
+	display: none;
+	margin: 4px 10px 10px 0;
+}
+.inline .seller-info .main-nfo {
+    float: left;
+	display: inline;
+	width: 393px;
+	margin-bottom: 10px;
+}
+.inline .seller-info .main-nfo h2 span#sellerName {
+    display: block;
+	font-size: 18px;
+	line-height: 20px;
+	font-weight: bold;
+}
+.inline .seller-info .main-nfo h2 {
+	font-size: 13px;
+	font-weight: normal;
+}
+.inline .seller-info .main-nfo p {
+	color: #999;
+}
+.inline .seller-info table {
+	padding-bottom: 10px;
+    width: 460px;
+}
+.inline .seller-info table tr th {
+	line-height: 23px;
+	background: #eeeeee;
+	color: #999;
+	font-weight: normal;
+	text-align: right;
+	padding-right: 13px;
+}
+.inline .seller-info table tr td {
+	line-height: 25px;
+	border-bottom: solid 1px #ccc;
+	text-align: right;
+	padding-right: 13px;
+	font-weight: bold;
+}
+.inline .seller-info table tr td.first {
+	text-align: left;
+	font-weight: normal;
+}
+.inline .seller-info table tr td.rank div.rank_00 {
+    background: url(/images/bar_00.gif);
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+.inline .seller-info table tr td.rank div.rank_10 {
+    background: url(/images/bar_10.gif);
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+.inline .seller-info table tr td.rank div.rank_20 {
+    background: url(/images/bar_20.gif);
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+.inline .seller-info table tr td.rank div.rank_30 {
+    background: url(/images/bar_30.gif);
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+.inline .seller-info table tr td.rank div.rank_40 {
+    background: url(/images/bar_40.gif);
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+.inline .seller-info table tr td.rank div.rank_40 {
+    background: url(/images/bar_40.gif);
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+.inline .seller-info table tr td.rank div.rank_50 {
+    background: url(/images/bar_50.gif);
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+.inline .seller-info table tr td.rank div.rank_60 {
+    background: url(/images/bar_60.gif);
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+.inline .seller-info table tr td.rank div.rank_70 {
+    background: url(/images/bar_70.gif);
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+.inline .seller-info table tr td.rank div.rank_80 {
+    background: url(/images/bar_80.gif);
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+.inline .seller-info table tr td.rank div.rank_90 {
+    background: url(/images/bar_90.gif);
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+.inline .seller-info table tr td.rank div.rank_100 {
+    background: url(/images/bar_100.gif);
+    background-position: 22px 9px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+.inline .inline-close {
+	position: absolute;
+	top: 0;
+	right: 11px;
+	color: #cccccc;
+	font-family: Verdana, Arial, Helvetica, Sans-Serif;
+	font-size: 9px;
+	line-height: 11px;
+	padding-right: 16px;
+	cursor: pointer;
+	float: right;
+	display: inline;
+}

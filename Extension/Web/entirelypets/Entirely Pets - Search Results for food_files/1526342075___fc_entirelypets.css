@@ -1,0 +1,157 @@
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel {
+	display:inline;
+	margin:0;
+	padding:0;
+}
+.yui-skin-sam ul.yui-accordionview {
+    *border-color: #ffffff;
+}
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle {
+	background-color: #f1f2ed;
+	color: #b3504a;
+	font-family: Verdana; 
+	*border-color: #ffffff;
+}
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle.active {
+	background-color: #f1f2ed;
+	color: #b3504a;
+	font-family: Verdana;
+	*border-color: #ffffff;
+}
+.yui-skin-sam .yui-accordionview li.yui-accordion-panel a.yui-accordion-toggle:hover {
+	color: color: #b3504a;
+	font-family: Verdana;
+}
+.smb-fc .yui-panel .bodybg {
+	background-color: #98a280; /*Outer background color*/
+}
+.smb-fc .yui-dt td {
+	background-color: #ffffff; /*Inner background color*/
+}
+.yui-skin-sam .yui-accordionview div.yui-accordion-content {
+	background-color: #ffffff; /*Inner background color*/
+	border: 0 none;
+	color: #000000;
+}
+.smb-fc #yfc_itemDetails .yui-dt-bd {
+	background-color: #ffffff;
+}
+.smb-mc {
+	font-family: Verdana;
+	color: #000000;
+}
+.smb-mc .mini_msg,.mini_item_count,.mini_subtotal {
+	font-family: Verdana;
+	color: #000000;
+}
+.smb-mc .minicart_c2 {
+	background-color: #98a280; /*Minicart background color when FC is open = Outer background color*/
+}
+.smb-mc .mini_icon {
+	background: url("") no-repeat;
+}
+.smb-mc .mini_close {
+	font-family: Verdana;
+	color: #000000;
+}
+.smb-fc #yfc_close_btn {
+	color: #000000;
+	background-color: #98a280;
+}
+.smb-fc .remove-btn {
+	background: url("https://s.yimg.com/ae/l.yimg.com/a/lib/smbiz/store/yfc/img/remove.png") no-repeat;
+}
+.smb-fc .respWait {
+	background: url("https://s.yimg.com/ae/l.yimg.com/a/lib/smbiz/store/yfc/img/loader-black.gif") no-repeat;
+}
+.yui-skin-sam .yui-accordion-toggle .indicator {
+	background: url("https://s.yimg.com/ae/l.yimg.com/a/lib/smbiz/store/yfc/img/arrow_right_black.gif") no-repeat;
+}
+.yui-skin-sam .yui-accordion-toggle.active .indicator {
+	background: url("https://s.yimg.com/ae/l.yimg.com/a/lib/smbiz/store/yfc/img/arrow_down_black.gif") no-repeat;
+}
+.smb-fc .yui-panel {
+	border-color: #98a280; /*Outer background color*/
+	background-color: #98a280; /*Outer background color*/
+}
+.smb-fc .yui-panel .bodybg {
+	background-color: #98a280; /*Outer background color*/
+}
+.smb-fc .yui-panel .bd {
+	background-color: #98a280; /*Outer background color*/
+}
+.smb-fc {
+	z-index: 9999; /* to prevent other things overlapping on this */
+	left:595px;
+	font-family: Verdana;
+	color: #000000;
+}
+.smb-fc .sum {
+	background-color: #ffffff; /*Inner background color*/
+}
+.smb-fc .sum span {
+	color: #000000;
+}
+.smb-fc #yfc_sh_promo,#yfc_sh_extra {
+	color: #000000;
+}
+#yfc_subTotal, #yfc_shipPromo, #yfc_extraDiv {
+	background-color: #ffffff; /*Inner background color*/
+}
+.smb-fc .shipFooter,.couponHeader {
+	color: #000000;
+}
+.smb-fc .inner-bg-col {
+	background-color: #ffffff; /*Inner background color*/
+}
+.smb-fc .yui-dt-liner span.item-options {
+	font-family: Verdana; /*Primary font*/
+    color: #000000; /*Primary font color*/
+}
+.smb-fc .yui-dt-liner .qty {
+        font-family: Verdana; /*Primary font*/
+    color: #000000; /*Primary font color*/
+}
+.smb-fc .yui-dt-liner .price span.normal,span.full,span.save {
+	font-family: Verdana; /*Primary font*/
+	color: #000000; /*Primary font color*/
+}
+.smb-fc .yui-dt-liner .price span.disc {
+	font-family: Verdana; /* Emphasis font */
+	color: #b3504a; /* Emphasis font color */
+	font-weight: bold;
+}
+/* ------------------------- 
+	Set style for links
+------------------------- */
+.smb-fc a:link { /* unvisited link */
+	font-family: Verdana;
+	color: #98a280;
+}     
+.smb-fc a:active { /* active link */
+	font-family: Verdana;
+	color: #98a280;
+}
+.smb-fc a:visited { /* visited link */
+	font-family: Verdana;
+	color: #98a280;
+}
+.smb-fc a:hover { /* mouseover link */
+	font-family: Verdana;	
+	color: #98a280;
+}
+.smb-fc #yfc_ship-promo-link {
+	font-family: Verdana;
+    color: #98a280;
+} 
+/* Button styling */
+.smb-fc .btn1 {
+	font-family: Verdana;
+	color: #f1f2ed;
+	background-color: #b3504a; 
+}
+.smb-fc .btn2 {
+	font-family: Verdana;
+	color: #790000;
+	background-color: #f9a835;
+}

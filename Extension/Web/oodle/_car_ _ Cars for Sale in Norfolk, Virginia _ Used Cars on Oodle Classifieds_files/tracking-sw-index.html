@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)https://ecdn.firstimpression.io/static/sw/tracking-sw-index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Title</title>
+    <script>
+
+        window.state = {
+            trackingSw: {
+                state: "none"
+            }
+        };
+
+        var urlParser = document.createElement('a');
+        urlParser.href = document.referrer;
+        var publisherDomain = urlParser.protocol + '//' + urlParser.hostname;
+        var adServerDomain = window.location.protocol + '//' + window.location.host;
+        var dbg = getURLParameter(window.name, 'dbg');
+        if(dbg=="null") dbg = false;
+
+        var websiteId = getURLParameter(window.name, 'websiteId');
+
+        function getURLParameter (params, name) {
+            return decodeURI(
+                (RegExp('[#|&]' + name + '=' + '(.+?)(&|$)').exec(params)||[,null])[1]
+            );
+        }
+        function checkOrigin(eventOrigin) {
+            if(window.top==window) return false;
+
+            var urlParser = document.createElement('a');
+            urlParser.href = document.referrer;
+            var publisherDomain = urlParser.protocol + '//' + urlParser.hostname;
+            var adServerDomain = window.location.protocol + '//' + window.location.host;
+
+            return publisherDomain === eventOrigin;
+        }
+
+        function SWisReady(serviceWorker) {
+            window.state.trackingSw.state = 'active';
+            ficonsole.log("SW frame: SWisReady: " + window.state.trackingSw.state);
+
+            let swmessage = {event: 'init'};
+            if(dbg) swmessage.dbg = 1;
+            ficonsole.log(["controller: ", navigator.serviceWorker.controller]);
+            navigator.serviceWorker.controller.postMessage(swmessage);
+
+            var parentMessage = {
+                message: 'SW frame is ready',
+                adId: websiteId,
+                adServerDomain: adServerDomain
+            };
+            window.parent.postMessage(parentMessage, publisherDomain);
+
+            ficonsole.log("SW frame: ready for messages");
+        }
+
+        function prepareServiceWorker(registration) {
+
+            ficonsole.log("SW frame: Ok, registered");
+
+            if (registration.installing) {
+                window.state.trackingSw.state = 'installing';
+                ficonsole.log("SW frame SWisReady: " + window.state.trackingSw.state);
+
+                var _this = this;
+                registration.installing.addEventListener('statechange', function(statechangeevent) {
+                    ficonsole.log("SW frame state change - from installing to " + statechangeevent.target.state);
+                    if(statechangeevent.target.state=="activated") _this.SWisReady();
+                });
+
+            } else if (registration.waiting) {
+                window.state.trackingSw.state = 'waiting';
+                ficonsole.log("SW frame: " + window.state.trackingSw.state);
+
+                var _this = this;
+                registration.waiting.addEventListener('statechange', function(statechangeevent) {
+                    ficonsole.log("SW frame state change - from installing to " + statechangeevent.target.state);
+                    if(statechangeevent.target.state=="activated") _this.SWisReady();
+                });
+            } else if (registration.active) {
+                ficonsole.log("SW frame: we have an active service worker");
+                this.SWisReady();
+            }
+        }
+
+        if ('serviceWorker' in navigator) {
+
+            navigator.serviceWorker.register("/static/sw/tracking-sw.js")
+                .then(this.prepareServiceWorker)
+                .catch(function (error) {
+                    window.state.trackingSw.state = 'error';
+                    window.state.trackingSw.errorDetail = 'Error: ' + error;
+                    ficonsole.log(error);
+                });
+
+        } else {
+            window.state.trackingSw.state = 'error';
+            window.state.trackingSw.errorDetail = "Сurrent browser doesn't support service workers.";
+        }
+
+
+        window.addEventListener("message", function(event) {
+            if (!checkOrigin(event.origin || event.originalEvent.origin)) {
+                return;
+            }
+
+            var command = event.data.event;
+            ficonsole.log("SW frame: got message - " + command);
+
+            switch(command) {
+                case "ping":
+                    navigator.serviceWorker.controller.postMessage({event: 'ping'});
+                    break;
+                case "pageview":
+                    ficonsole.log("SW frame: got message for trackPageview");
+
+                    navigator.serviceWorker.controller.postMessage({
+                        event: 'pageview', data: event.data.data
+                    });
+
+                    break;
+            }
+        });
+
+        var ficonsole = {
+            badgeCode: "padding: .05em .3em;vertical-align: baseline;border-radius: .25rem; margin:0 0.45em; font-weight:bold;",
+            log: function(msg) {
+
+                if(!dbg) return;
+
+                let output = [];
+                let css = [];
+                let finalOutput;
+
+                output.push("%cFI:");
+                css.push(this.badgeCode + "color:white;background-color: #e56e25;");
+
+                output.push("%cSW-frame:");
+                css.push(this.badgeCode + "color:white;background-color: #3f51b5;");
+
+                if (!Array.isArray(msg)) {
+                    msg = [msg];
+                }
+
+                output.push("%c" + msg);
+                css.push("");
+
+                finalOutput = [output.join(" ")].concat(css);
+                if(msg[1]) {
+                    finalOutput = finalOutput.concat(msg.slice(1, 100));
+                }
+                console.log.apply(null, [output.join(" ")].concat(css));
+            }
+
+        }
+    </script>
+</head>
+<body data-new-gr-c-s-check-loaded="14.983.0">
+
+
+</body></html>

@@ -1,0 +1,95 @@
+selected = false;
+
+function startAd() {
+    adDiv = document.getElementById("ad");
+    startFlashing();
+}
+
+//custom JS
+
+function startFlashing() {
+  intervalId = window.setInterval(blinking, 1000);
+}
+
+var timer = 0;
+
+// function blinking() {
+//   if (!selected){
+
+//     var input =  document.getElementById('area')
+//     input.placeholder = "";
+
+//     var timeout = window.setTimeout(function() {
+//       if (!selected) {
+//         input.placeholder = "|";
+//       }
+//       if (timer === 14000) {
+//         clearInterval (intervalId);
+//       }
+//       timer += 500;
+//     }, 500);
+//   }
+// }
+
+document.getElementById("vin").addEventListener("click", function(e){
+  window.clearInterval(window.intervalId);
+  var input =  document.getElementById('vin');
+  input.style.border = "";
+  input.style.boxShadow = "none";
+  window.setTimeout(function(){
+    input.placeholder = "";
+  }, 500);
+  e = e || window.event;
+  e.stopPropagation();
+});
+
+// document.getElementById("firstN").addEventListener("click", function(e){
+//   window.clearInterval(window.intervalId);
+//   var input =  document.getElementById('firstN');
+//   input.style.border = "";
+//   input.style.boxShadow = "none";
+//   window.setTimeout(function(){
+//     input.placeholder = "";
+//   }, 500);
+//   e = e || window.event;
+//   e.stopPropagation();
+// });
+
+// document.getElementById("lastN").addEventListener("click", function(e){
+//   window.clearInterval(window.intervalId);
+//   var input =  document.getElementById('lastN');
+//   input.style.border = "";
+//   input.style.boxShadow = "none";
+//   window.setTimeout(function(){
+//     input.placeholder = "";
+//   }, 500);
+//   e = e || window.event;
+//   e.stopPropagation();
+// });
+
+document.getElementById("clickthrough-button").addEventListener("click", function(e){
+  e = e || window.event;
+  e.stopPropagation();
+});
+
+
+function validate_form(form) {
+
+  var vin = document.getElementById('vin').value;
+  // var firstN = document.getElementById('firstN').value;
+  // var lastN = document.getElementById('lastN').value;
+  //document.getElementById('phone-number').value = "" + vin;
+  //var phone = (document.getElementById('phone-number').value);
+  var encode_vin = encodeURIComponent(base64.encode(vin).replace(/=/g, '%3D'));
+
+  if(vin === '') {
+    /*alert("Please enter a valid phone number");
+    return false;*/
+  } else {
+    var qpSep = (window.clickTag.indexOf("?") !== -1) ? "&" : "?";
+    var newUrl = qpSep + "vin=" + encode_vin;
+    window.clickTag += newUrl;
+  }
+}
+
+startAd();

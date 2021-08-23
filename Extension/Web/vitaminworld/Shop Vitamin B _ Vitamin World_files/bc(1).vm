@@ -1,0 +1,5 @@
+window.pageViewer.check(1,1);
+window.pageViewer.update('0.9334958642510587', 'http://www.vitaminworld.com/on/demandware.static/-/Sites-vitaminworld_us-Library/default/images/BoldChat/chattab2.jpg', null, null);
+window.pageViewer.update('0.2754545517409186', 'http://images.boldchat.com/ext/images/buttons/chat/gallery/Button_Navy_Flat_1A.png', null, null);
+window.pageViewer.update('0.5973685013902172', 'http://images.boldchat.com/ext/images/buttons/chat/gallery/Button_Navy_Flat_1A.png', null, null);
+window.pageViewer.update('0.08765110750612148', 'unavailable', '0.8498503809828857', null);

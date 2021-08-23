@@ -1,0 +1,255 @@
+* {
+	margin: 0;
+	padding: 0;	
+	/*--safari text weight fix--*/
+	-webkit-font-smoothing: subpixel-antialiased !important;
+}
+html, body {
+	color: #fff;
+	height: 100%;
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 100%; 
+}
+#ad {
+	box-sizing: border-box;
+	cursor: pointer;
+	display: block;
+	height: 250px;/*100%;*/
+	left: 0;
+	overflow: hidden;
+	position: relative;
+	top: 0;
+	width: 300px;/*100%;*/
+} 
+
+#border {
+	border: #000 1px solid;
+	box-sizing: border-box; 
+	height: 250px;
+	left: 0px;
+	opacity: 1;
+	overflow: hidden;
+	position: absolute;
+	top: 0px;
+	width: 300px;
+	z-index: 1000;
+}
+
+/* --  content start  --------------------------------------------------------  */
+
+#finger{
+	background: url(finger.png) no-repeat;
+	height: 250px;
+	left: 0px;
+	position: absolute;
+	transform: scale(1,1);
+	transition: all .15s;
+	top: 0px;
+	width: 300px;
+}
+.tap-in #finger{
+	left: 23px;
+	transform: scale(1.2,1.2);
+	top: 80px;
+}
+#flo1{
+	background: url(flo.jpg) no-repeat;
+	height: 300px;
+	left: 0;
+	position: absolute;
+	top: -22px;
+	transition: all .15s;
+	width: 300px;
+}
+.tap-in #flo1{
+	top: -25px;
+}
+#overlay{
+	background:#ffffff;
+	border-radius: 0px;
+	height: 300px;
+	left: 0;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	top: -25px;
+	transition: all .25s;
+	width: 300px;
+}
+#overlay.in{
+	opacity: 1;
+}
+#overlay.close{
+	border-radius: 150px;
+	height: 139px;
+	left: -25px;
+	top: 68px;
+	width: 139px;
+}
+#flo2{
+	background: url(06_Toll_Booth_0808_RT_cropped.jpg) no-repeat;
+	height: 250px;
+	left: -75px;
+	position: absolute;
+	top: 140px;
+	width: 300px;
+	transform: scale(.98);
+}
+.close #flo2{
+	left: -50px;
+	top: 1px;
+	transition: all .25s;
+}
+#blue{
+	background: #1e73e9;
+	border-radius: 350px;
+	height: 80px;
+	left: 5px;
+	opacity: 0;
+	position: absolute;
+	top: 100px;
+	width: 80px;
+}
+#blue.in{
+	opacity: 1;
+	transition: opacity .05s .15s;
+}
+#blue.expand{
+	height: 500px;
+	left: -145px;
+	top: -110px;
+	transition: all .5s;
+	width: 500px;
+}
+
+#line1{
+	background: #ff8a39;
+	height: 4px;
+	left: 37px;
+	opacity: 0;
+	position: absolute;
+	top: 20px;
+	width: 250px;
+}
+#line1.in{
+	opacity: 1;
+	position: absolute;
+}
+#line2{
+	background: #ff8a39;	
+	height: 4px;
+	left: 37px;
+	opacity: 0;
+	position: absolute;
+	top: 169px;
+	width: 250px;
+}
+#line2.in{
+	opacity: 1;
+	position: absolute;
+}
+/* text */
+#rectangle1 {
+	height: 140px;
+	left: 104px;
+	opacity: 1;
+	position: absolute;
+	top: 28px;
+	width: 186px;
+}
+#text {
+    background: url(screentap_300x250.svg) no-repeat;
+	height: 100%;
+    opacity: 0;
+	position: absolute;
+	width: 100%;
+} 
+#text.in {
+	opacity: 1;
+	position: absolute;
+}
+
+/* logo */
+#rectangle2 {
+	bottom: 14px;
+	height: 17px;
+	left: 18px;
+	opacity: 1;
+	position: absolute;
+	width: 124px;
+	transform: scale(1.04);
+}
+#logo{
+	background: url(savings_logo.svg) no-repeat;
+	height: 100%;
+	opacity: 0;
+	position: absolute;
+	width: 100%;
+}
+#logo.in{
+	opacity: 1;
+}
+
+/* --  content ends  ---------------------------------------------------------  */
+
+/* --  CTA  ------------------------------------------------------------------  */
+
+/* button */
+#rectangle3 {
+	bottom: 11px;
+	height: 36px;
+	left: 154px;
+	opacity: 1;
+	position: absolute;
+	width: 134px;
+	z-index: 100;
+}
+#rectangle3.in {
+	opacity: 1;
+	position: absolute;
+}
+#orangeButton {
+    background: url(savings_ScreenTap_OrangeButton_134x36.svg) no-repeat;
+	height: 100%;
+    opacity: 0;
+	position: absolute;
+	width: 100%;
+	z-index: 100;
+	-webkit-transition: all 2s;
+	-moz-transition: all 2s;
+	-ms-transition: all 2s;
+	transition: all 2s;
+}
+#orangeButton.in {
+	opacity: 1;
+	position: absolute;
+	
+}
+
+#bgExitArea { 
+	cursor: pointer; 
+	height: 100%; 
+	left: 0;
+	opacity: 0; 
+	position: absolute; 
+	top: 0;   
+	width: 100%;
+}
+#bgExitArea a {
+	display: none;
+}
+
+/* ---------------------------------------------------------------------------- */
+
+/*ANIMATION*/
+.hover #finger{
+	animation: hover 1s infinite;
+}
+@keyframes hover{
+	0%	{transform:translate(0,0)}
+	25%	{transform:translate(2px,0)}
+	50%	{transform:translate(2px,2px)}
+	75%	{transform:translate(0,2px)}
+	100%{transform:translate(0,0)}
+}

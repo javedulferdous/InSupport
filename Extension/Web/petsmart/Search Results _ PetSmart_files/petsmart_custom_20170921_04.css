@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+#liveForm span, #liveForm .btn, #liveForm div > label, #liveForm div > span, #liveForm .neb-select .neb-content.native-arrow select,#liveForm .kpl_builder .kpl-thank-you .kpl-thankYouHolder .thankYouPageLogoPreviewText, textarea.form-control
+{
+font-family:"Lato" !important;
+}
+/* gap between question and NPS scale*/
+.neb-website-nps{
+    margin-top:10px;
+}
+.neb-content md-radio-group div.radio md-radio-button ._md-on {
+ background-color: #4a90e2 !important;
+}
+#liveForm .neb-content .md-checked ._md-icon {
+ background-color: #4a90e2 !important;
+}
+
+#liveForm .kpl_builder .pageRepeater label {
+    font-weight: bold;
+}
+
+.NPSanchor .neb-content:after {
+   font-size: 12px;
+   float: left;
+   text-align: center;
+   padding-right: 0px;
+content: "Not at all likely\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0 Extremely likely";
+}
+
+@media (max-width: 400px) {
+.NPSanchor .neb-content::after {
+   font-size: 12px;
+   float: left;
+   text-align: center;
+   padding-right: 20px;
+content: "Not at all likely\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\ Extremely likely";
+white-space:pre;}
+
+div.kplNps {
+width:331px !important;
+}
+div.neb-component {
+padding-left: 20px !important;
+}
+}
+
+.NPSanchorMobile .content-block-title:after {
+   font-size: 12px;
+   float: left;
+   text-align: center;
+   padding-top:10px;
+content: "Not at all likely\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\ Extremely likely";
+white-space:pre;}
+
+.CSATanchor .neb-content:after {
+   font-size: 12px;
+   float: left;
+   text-align: center;
+   padding-right: 10px;
+content: "Not at all satisfied\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\ Extremely satisfied";
+}
+
+@media (max-width: 400px) {
+.CSATanchor .neb-content::after {
+   font-size: 12px;
+   float: left;
+   text-align: center;
+   padding-right: 20px;
+content: "Not at all satisfied\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\ Extremely satisfied";
+white-space: pre;}}
+
+.CSATanchorMobile .content-block-title:after {
+   font-size: 12px;
+   float: left;
+   text-align: center;
+   padding-top: 10px;
+content: "Not at all satisfied\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\ Extremely satisfied";
+white-space: pre;}
+
+.KNOWanchor .neb-content:after {
+   font-size: 12px;
+   float: left;
+   text-align: center;
+   padding-right: 10px;
+content: "Not knowledgeable\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\ Extremely knowledgeable";
+}
+
+@media (max-width: 400px) {
+.KNOWanchor .neb-content::after {
+   font-size: 12px;
+   float: left;
+   text-align: center;
+   padding-right: 20px;
+content: "Not knowledgeable\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\ Extremely knowledgeable";
+white-space: pre;}}
+
+.KNOWanchorMobile .content-block-title:after {
+   font-size: 12px;
+   float: left;
+   text-align: center;
+   padding-top: 10px;
+content: "Not at all knowledgeable\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\ Extremely knowledgeable";
+white-space: pre;}
+
+.AVAILanchor .neb-content:after {
+   font-size: 12px;
+   float: left;
+   text-align: center;
+   padding-right: 10px;
+content: "Nothing was available\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\ Everything was available";
+}
+
+@media (max-width: 400px) {
+.AVAILanchor .neb-content::after {
+   font-size: 12px;
+   float: left;
+   text-align: center;
+   padding-right: 20px;
+content: "Nothing was available\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\ Everything was available";
+white-space: pre;}}
+
+.AVAILanchorMobile .content-block-title:after {
+   font-size: 12px;
+   float: left;
+   text-align: center;
+   padding-top: 10px;
+content: "Nothing was available\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\ Everything was available";
+white-space: pre;}
+
+
+/*
+neb-rating .neb-rating.numbers label {
+    background: url("https://assets.kampyle.com/ps/MedalliaDemo/circle-Light-Grey.png") no-repeat; }
+neb-rating .neb-rating.numbersSquare label {
+    background: url("https://assets.kampyle.com/ps/MedalliaDemo/square-Light-Grey.png") no-repeat; }
+neb-rating .neb-rating.stars label {
+    background: url("https://assets.kampyle.com/ps/MedalliaDemo/stars-Light-Grey.png") no-repeat; }
+neb-rating .neb-rating.bars label {
+    background: url("https://assets.kampyle.com/ps/MedalliaDemo/stripes-Light-Grey.png") no-repeat; }
+.nps-square-number-0, .nps-square-number-1, .nps-square-number-2, .nps-square-number-3, .nps-square-number-4, .nps-square-number-5,
+.nps-square-number-6, .nps-square-number-7, .nps-square-number-8, .nps-square-number-9, .nps-square-number-10,
+.nps-square-number-0-off, .nps-square-number-1-off, .nps-square-number-2-off, .nps-square-number-3-off, .nps-square-number-4-off,
+.nps-square-number-5-off, .nps-square-number-6-off, .nps-square-number-7-off, .nps-square-number-8-off, .nps-square-number-9-off,
+.nps-square-number-10-off {
+ background: url("https://assets.kampyle.com/clients/nebula/bpp/nps_blue_white.png") no-repeat; }
+.nps-square-number-0-off {
+ background-position: 0 0; }
+.nps-square-number-1-off {
+ background-position: -30px 0; }
+.nps-square-number-2-off {
+ background-position: -60px 0; }
+.nps-square-number-3-off {
+ background-position: -90px 0; }
+.nps-square-number-4-off {
+ background-position: -120px 0; }
+.nps-square-number-5-off {
+ background-position: -150px 0; }
+.nps-square-number-6-off {
+ background-position: -180px 0; }
+.nps-square-number-7-off {
+ background-position: -210px 0; }
+.nps-square-number-8-off {
+ background-position: -240px 0; }
+.nps-square-number-9-off {
+ background-position: -270px 0; }
+.nps-square-number-10-off {
+ background-position: -300px 0; }
+.nps-square-number-0 {
+ background-position: 0 -31px; }
+.nps-square-number-1 {
+ background-position: -30px -31px; }
+.nps-square-number-2 {
+ background-position: -60px -31px; }
+.nps-square-number-3 {
+ background-position: -90px -31px; }
+.nps-square-number-4 {
+ background-position: -120px -31px; }
+.nps-square-number-5 {
+ background-position: -150px -31px; }
+.nps-square-number-6 {
+ background-position: -180px -31px; }
+.nps-square-number-7 {
+ background-position: -210px -31px; }
+.nps-square-number-8 {
+ background-position: -240px -31px; }
+.nps-square-number-9 {
+ background-position: -270px -31px; }
+.nps-square-number-10 {
+ background-position: -300px -31px; }
+ 
+.npsMobile .nps-square-number-0, .npsMobile .nps-square-number-1, .npsMobile .nps-square-number-2, .npsMobile .nps-square-number-3, .npsMobile .nps-square-number-4, .npsMobile .nps-square-number-5,
+.npsMobile .nps-square-number-6, .npsMobile .nps-square-number-7, .npsMobile .nps-square-number-8, .npsMobile .nps-square-number-9, .npsMobile .nps-square-number-10,
+.npsMobile .nps-square-number-0-off, .npsMobile .nps-square-number-1-off, .npsMobile .nps-square-number-2-off, .npsMobile .nps-square-number-3-off, .npsMobile .nps-square-number-4-off,
+.npsMobile .nps-square-number-5-off, .npsMobile .nps-square-number-6-off, .npsMobile .nps-square-number-7-off, .npsMobile .nps-square-number-8-off, .npsMobile .nps-square-number-9-off,
+.npsMobile .nps-square-number-10-off {
+ background: url("https://assets.kampyle.com/clients/nebula/bpp/light_blue-nps-sq-mobile.png") no-repeat; 
+ margin-right: 4px;
+ }
+.npsMobile .nps-square-number-0-off {
+ background-position: 0 0; }
+.npsMobile .nps-square-number-1-off {
+ background-position: -26px 0; }
+.npsMobile .nps-square-number-2-off {
+ background-position: -52px 0; }
+.npsMobile .nps-square-number-3-off {
+ background-position: -78px 0; }
+.npsMobile .nps-square-number-4-off {
+ background-position: -104px 0; }
+.npsMobile .nps-square-number-5-off {
+ background-position: -130px 0; }
+.npsMobile .nps-square-number-6-off {
+ background-position: -156px 0; }
+.npsMobile .nps-square-number-7-off {
+ background-position: -182px 0; }
+.npsMobile .nps-square-number-8-off {
+ background-position: -208px 0; }
+.npsMobile .nps-square-number-9-off {
+ background-position: -234px 0; }
+.npsMobile .nps-square-number-10-off {
+ background-position: -260px 0; }
+.npsMobile .nps-square-number-0 {
+ background-position: 0 -26px; }
+.npsMobile .nps-square-number-1 {
+ background-position: -26px -26px; }
+.npsMobile .nps-square-number-2 {
+ background-position: -52px -26px; }
+.npsMobile .nps-square-number-3 {
+ background-position: -78px -26px; }
+.npsMobile .nps-square-number-4 {
+ background-position: -104px -26px; }
+.npsMobile .nps-square-number-5 {
+ background-position: -130px -26px; }
+.npsMobile .nps-square-number-6 {
+ background-position: -156px -26px; }
+.npsMobile .nps-square-number-7 {
+ background-position: -182px -26px; }
+.npsMobile .nps-square-number-8 {
+ background-position: -208px -26px; }
+.npsMobile .nps-square-number-9 {
+ background-position: -234px -26px; }
+.npsMobile .nps-square-number-10 {
+ background-position: -260px -26px; }
+ 
+ label.control-label[for="NPS_numbersSquare"] {
+    background: black; 
+    width: 70% !important;
+}*/
