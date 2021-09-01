@@ -1,0 +1,35 @@
+(function() {
+try {
+    (function(){
+/**/
+
+})();
+(function() {
+    try {
+        if (document.getElementById('mm_sync_back_ground'))
+           return;
+        var frm = document.createElement('iframe');
+        frm.style.visibility = 'hidden';
+        frm.style.display = 'none';
+        frm.src = "https://sync.mathtag.com/sync/iframe?mt_uuid=36285ea2-3427-4400-9551-30e22eb96717&no_iframe=1&mt_lim=2&type=1,2";
+        frm.setAttribute("id", "mm_sync_back_ground");
+        frm.title="MediaMath Advertising";
+
+        if (document.body)
+            document.body.appendChild(frm);
+        else
+            if (document.head)
+                document.head.appendChild(frm);
+    }
+    catch(ex)
+    {
+        document.createElement("img").src="//sync.mathtag.com/error/img?error_domain=synciframe&what="+encodeURIComponent(ex.message);
+    }
+})();
+
+}
+catch(ex)
+{
+   document.createElement("img").src="//sync.mathtag.com/error/img?error_domain=wrap_js&what="+encodeURIComponent(ex.message);
+}
+})();

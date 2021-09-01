@@ -1,0 +1,230 @@
+/***********************
+ * Font styles
+ **********************/
+
+
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'OpenSans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'),
+       url('../fonts/open-sans-v13-latin-regular.woff') format('woff'); /* Modern Browsers */
+}
+
+/* open-sans-600 - latin */
+@font-face {
+  font-family: 'OpenSans-Semibold';
+  font-style: bold;
+  font-weight: 600;
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'),
+       url('../fonts/open-sans-v13-latin-600.woff') format('woff'); /* Modern Browsers */
+}
+
+
+/* merriweather-700 - latin */
+@font-face {
+  font-family: 'Merriweather-Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Merriweather Bold'), local('Merriweather-Bold'),
+       url('../fonts/merriweather-v15-latin-700.woff') format('woff'); /* Modern Browsers */
+}
+
+
+/***********************
+ * Global styles
+ **********************/
+* {
+	margin: 0; padding: 0;
+	line-height: 125%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*.ad-size{ 
+	width: 300px; height: 600px; 
+}
+
+*.hidden{ 
+	opacity: 0; 
+}
+
+body{
+	margin: 0px;
+	padding: 0px;
+	font-family: "OpenSans", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-size: 10px;
+	font-style: normal;
+}
+
+/*i, em{
+	font-family: "OpenSans", Helvetica, Arial, "Lucida Grande", sans-serif;
+} 
+
+
+strong i, strong em{
+	font-family: "OpenSans-Semibold", Helvetica, Arial, "Lucida Grande", sans-serif;
+}*/
+
+strong{
+	font-family: "OpenSans-Semibold", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+
+div#container{
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	cursor: pointer;
+	border: 1px solid #000;
+	-webkit-transition: all .5s linear;
+  -moz-transition: all .5s linear;
+  -ms-transition: all .5s linear;
+  -o-transition: all .5s linear;
+  transition: all .5s linear;
+}
+
+/***********************
+ * Ad styles
+ **********************/
+
+#container ft-dynamic[name="CTA_text"] {
+  border: 1px solid;
+  border-top-color: currentcolor;
+  border-right-color: currentcolor;
+  border-bottom-color: currentcolor;
+  border-left-color: currentcolor;
+  display: inline-block;
+  position: absolute;
+  overflow: hidden;
+  /* letter-spacing: 0px;
+  left: 0px;
+  top: 0; */
+  -webkit-box-shadow: 0 0 3px 0 rgba(0,0,0,.3);
+  box-shadow: 0 0 3px 0 rgba(0,0,0,.3);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 7px 21px;
+  /* width: 110px;
+  text-align: center;
+  padding-top: 5px; 
+  height: 27px;*/
+}
+
+
+
+@keyframes shine{
+  10% {
+    opacity: 1;
+    top: -30%;
+    left: 200%;
+  }
+  100% {
+    opacity: 0;
+    top: -30%;
+    left: 200%;
+  }
+}
+
+ft-dynamic[name="CTA_text"]:after {
+  animation: shine 5s 1s ease-in-out 3;
+  animation-fill-mode: forwards;  
+  content: "";
+  position: absolute;
+  top: -65%;
+  left: -210%;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  transform: rotate(45deg);
+  
+  background: rgba(255, 255, 255, 0.63);
+  background: linear-gradient(
+    to right, 
+    rgba(255, 255, 255, 0.63) 0%,
+    rgba(255, 255, 255, 0.63) 77%,
+    rgba(255, 255, 255, 0.7) 92%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+}
+
+
+#container ft-dynamic[name="Hotel_Name"] {
+    font-size: 10px;
+    position: absolute;
+    width: 100%;
+    color: #fff;
+    font-size: 12px;
+    left: 0px;
+    top: 0px;
+}
+
+#container > img{
+	position: absolute;
+  top: -1px;
+  left: -1px;
+}
+
+#container > img.bgImage{
+	z-index: 0;
+}
+
+#container > img.logo{
+	z-index: 1;
+}
+
+#container ft-dynamic{
+	z-index: 2;
+}
+
+#container > div#headlines {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    font-size: 24px;
+    color: #484343;
+    text-align: left;
+}
+
+
+#container > div#headlines > ft-dynamic {
+    /* padding-left: 0px; */
+}
+
+
+#container > div#headlines > ft-dynamic[name="Headline_1"] {
+    font-family: "Merriweather-Bold", Helvetica, Arial, "Lucida Grande", serif;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    /* font-size: 21px;
+    line-height: 27px; */
+    color: #fff;
+}
+
+
+#container > div#headlines > ft-dynamic[name="Headline_2"] {
+    font-family: "Merriweather-Bold", Helvetica, Arial, "Lucida Grande", serif;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    /* font-size: 21px;
+    line-height: 27px; */
+    color: #fff;
+}
+
+
+#container > div#headlines > ft-dynamic[name="Headline_3"] {
+    font-family: "OpenSans", Helvetica, Arial, "Lucida Grande", sans-serif;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: #fff;
+    font-size: 18px;
+}
+

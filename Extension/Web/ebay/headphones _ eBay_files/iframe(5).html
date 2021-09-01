@@ -1,0 +1,70 @@
+
+<!-- saved from url=(0101)file:///C:/Users/jafra/OneDrive/Desktop/New%20Dataset/ebay/headphones%20_%20eBay_files/iframe(1).html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head><body data-new-gr-c-s-check-loaded="14.981.0">
+<script type="text/javascript">
+try {
+   /**/
+(function() {
+    try {
+	var sync_4815162342 = function() {
+this.urls = [
+[0, "https://sync.mathtag.com/misc/img?mop_seq=0:2&mt_cb=249533&mop_top="],
+[30, "https://sync.search.spotxchange.com/partner?adv_id=6653&uid=36285ea2-3427-4400-9551-30e22eb96717"],
+[10041, "https://uipus.semasio.net/mediamath/1/info?sType=sync&sExtCookieId=36285ea2-3427-4400-9551-30e22eb96717&sInitiator=external"],
+[0, "https://sync.mathtag.com/misc/img?mop_seq=2:2&mt_cb=781008&check=36285ea2-3427-4400-9551-30e22eb96717&mop_top=30:1604178919|10041:1604178919|"]
+]
+this.progress = 0;
+	    var self = this;
+	    var tims = "";
+	    var errs = "";
+	    this.sync = function(i) {
+                var e = document.createElement("img");
+                var now = new Date();
+            if (e.addEventListener) {
+                e.addEventListener('load', function() {
+                    var temp = new Date().getTime() - now.getTime(); tims += self.urls[i][0]+':'+temp+"|";
+                });
+                e.addEventListener('error', function() {
+                    var temp = new Date().getTime() - now.getTime(); errs += self.urls[i][0]+':'+temp+"|";
+                });
+            }
+		    e.src = self.urls[i][1];
+	    }
+	    this.batch = function(){
+		    for (var i = self.progress; i < self.urls.length; ++i){
+		        self.sync(i);
+		    }
+	    }
+	    this.final = function(){
+            var e = document.createElement("img");
+            e.src = self.urls[self.urls.length-1][1]+"&final&timings="+tims+"&errors="+errs;
+	    }
+	    this.some = function(howmany){
+            var count = 0;
+            for (var i = self.progress; i < self.urls.length && count < howmany; ++i){
+                self.sync(i);
+                self.progress++;
+                count++;
+		    }
+	    }
+	}
+	var s_4815162342 = new sync_4815162342();
+	s_4815162342.some(1);
+	setTimeout(function(){s_4815162342.some(2);}, 1000);
+	setTimeout(s_4815162342.batch, 3000);
+	setTimeout(s_4815162342.final, 10000);
+    }
+    catch(ex) {
+	  document.createElement("img").src="//sync.mathtag.com/error/img?error_domain=syncjs&what="+encodeURIComponent(ex.message);
+    }
+})();
+
+}
+catch(ex)
+{
+   document.createElement("img").src="//sync.mathtag.com/error/img?error_domain=wrap_iframe&what="+encodeURIComponent(ex.message);
+}
+</script>
+
+
+</body></html>

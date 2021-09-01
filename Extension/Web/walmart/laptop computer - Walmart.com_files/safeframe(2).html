@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- saved from url=(0102)https://i5.walmartimages.com/dfw/63fd9f59-d6ba/07b8ea82-184c-4ea3-8ac0-5dc1981e40c8/v16/safeframe.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Safeframe Container</title><script>var TBCDNList=[[1,0],[2,100],[3,0],[4,0]];</script><style>body {
+  margin: 0px;
+}</style></head><body data-new-gr-c-s-check-loaded="14.991.0" data-gr-ext-installed=""><script>!function(e){var t={};function n(o){if(t[o])return t[o].exports;var i=t[o]={i:o,l:!1,exports:{}};return e[o].call(i.exports,i,i.exports,n),i.l=!0,i.exports}n.m=e,n.c=t,n.d=function(e,t,o){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:o})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);if(n.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var i in e)n.d(o,i,function(t){return e[t]}.bind(null,i));return o},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=3)}([function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ExtActionEnum=void 0,t.ExtActionEnum={CLICK:"click",INIT:"init",READ_COOKIE:"read_cookie",RESIZE:"resize",WRITE_COOKIE:"write_cookie"}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.HostActionEnum=void 0,t.HostActionEnum={READ_COOKIE:"read_cookie",UPDATE_CREATIVE_POSITION:"update_creative_position",UPDATE_POSITION:"update_position",UPDATE_SCREEN_SIZE:"update_screen_size",WRITE_COOKIE:"write_cookie"}},function(e,t){function n(){return e.exports=n=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o])}return e},n.apply(this,arguments)}e.exports=n},function(e,t,n){"use strict";n.r(t);var o=n(2),i=n.n(o),r="",a=function(e){window.top.postMessage(JSON.stringify(i()({id:r},e)),"*")},u=n(0),c={error:[],metaChange:[],readCookie:[],ready:[],sizeChange:[],stateChange:[],writeCookie:[]},d=function(e){for(var t=arguments.length,n=new Array(t>1?t-1:0),o=1;o<t;o++)n[o-1]=arguments[o];c[e].forEach((function(e){return e.apply(void 0,n)}))},f="loading",s=function(e){f!==e&&d("stateChange"),f=e},p=function(){var e=document.body.getBoundingClientRect(),t=e.width;return{height:e.height,width:t}},v=function(e){void 0===e&&(e=!0);var t={payload:p(),type:u.ExtActionEnum.RESIZE};a(t),e&&(s("resized"),d("sizeChange"))};var l=function(e,t){if("undefined"!=typeof ResizeObserver){var n=new ResizeObserver((function(e){e[0];t()}));return n.observe(e),function(){n.unobserve(e)}}var o=e.getBoundingClientRect(),i=o.width,r=o.height,a=setInterval((function(){var n=e.getBoundingClientRect();r===n.height&&i===n.width||(r=n.height,i=n.width,t())}),50);return function(){clearTimeout(a)}},E=n(1),y=function(e){try{JSON.parse(e)}catch(e){return!1}return!0},h=[];window.addEventListener("message",(function(e){h.forEach((function(t){try{if(y(e.data)){var n=JSON.parse(e.data);n.type&&t(n)}}catch(e){0}}))}));var O,g=function(e){return h.push(e),function(){h=h.filter((function(t){return t!==e}))}},_=0,I=0;g((function(e){var t=e.type,n=void 0===t?"":t,o=e.payload;n===E.HostActionEnum.UPDATE_CREATIVE_POSITION&&(_=o.x,I=o.y,O||(O=i()({},p(),{x:_,y:I})))}));var m={expand:!0,"read-cookie":!0,resize:!0,"resize-push":!0,"write-cookie":!0},w=function(e){return e?!!m[e]:m};g((function(e){var t=e.type,n=void 0===t?"":t,o=e.payload;if(n===E.HostActionEnum.READ_COOKIE){var i=o.cookie;d("readCookie",i)}else if(n===E.HostActionEnum.WRITE_COOKIE){var r=o.cookie;d("writeCookie",r)}}));var C=0,A=0;g((function(e){var t=e.type,n=void 0===t?"":t,o=e.payload;switch(n){case"update_creative_position":case"update_screen_size":A=o.screenHeight||o.height,C=o.screenWidth||o.width}}));var b=0;g((function(e){var t=e.type,n=void 0===t?"":t,o=e.payload;n===E.HostActionEnum.UPDATE_CREATIVE_POSITION&&(b=o.intersectionRatio)}));var R={ext:{addEventListener:function(e,t){c[e].push(t)},cookie:function(e,t){t&&e&&w("write-cookie")?a({payload:{cookie:{data:t,name:e}},type:u.ExtActionEnum.WRITE_COOKIE}):e&&w("read-cookie")&&a({payload:{cookie:{name:e}},type:u.ExtActionEnum.READ_COOKIE})},getCurrentPosition:function(){return i()({},p(),{x:_,y:I})},getDefaultPosition:function(){return O},getInViewPercentage:function(){return b},getScreenSize:function(){return{height:A,width:C}},getState:function(){return f},getVersion:function(){return"0.0.1-alpha"},removeEventListener:function(e,t){c[e]=c[e].filter((function(e){return e!==t}))},supports:w},version:"0.0.1-alpha"};window.$sf=R;var T=JSON.parse(decodeURIComponent(window.name)),P=T.id,S=T.html;r=P;var k="WalmartActiveViewElement";document.write('<div id="'+k+'">'+S+"</div>");var x=document.getElementById(k);x&&x.addEventListener("click",(function(e){var t;t={payload:void 0,type:u.ExtActionEnum.CLICK},a(t),e.preventDefault()})),l(document.body,v),window.onload=function(){var e;e={payload:void 0,type:u.ExtActionEnum.INIT},a(e),d("ready"),v(!1),s("default")}}]);</script><div id="WalmartActiveViewElement"><style>iframe{
+  display: none;
+  border: none;
+  opacity: 0;
+}</style><style>body {
+  margin: 0px;
+}
+.imgCtr {
+  min-height: 20px; /* This is a hack to help with measuribility hopefully */
+  display: block;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0px auto;
+}
+.callout {
+  display: block;
+  padding-top: 8px;
+  text-align: right;
+  font-size: 9px;
+  font-family: Bogle, BogleWeb, Regular;
+  height: 15px;
+  line-height: 7px;
+  color: #6d6e71;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+a.adctr {
+  text-decoration: none;
+}
+</style><a class="adctr" href="https://adclick.g.doubleclick.net/pcs/click?xai=AKAOjssrEGCMoI7EORUjUW0CVg2NK7JawtqWlWnUE_M48OjCkgMRnwTi_507PJYAqfOWxJtrb4mv3PEy_6oBKdB0S5_c1MWFAj4s7UuFE8ehL1F4ginUw7h2xk3vAKer4r1fo9JwkKkzKhDC_H500jU8jDyfsw0m5S9f-f8BrODD8fkCoJ8LE5M4OcS7ByK4r5-lE9kOLayAYKMjXO9yL5iXzlUs9_MqMzeS4F9KN5jqaIA-bkK4Rm_Gfnp33DR7_JQewrOmnkjt3BdtseegObiJ4axN0B_vmsw990zkmSF071UEdE900a5SdRO6xsYPi8AF_eP1tWllDGwWg1Y&amp;sai=AMfl-YQnO284uNTOc54B6xFD3Y71_kHj4FSdMvz7vFu8t64u9F-JSPWbuEmBGdOlFb0QX8kZTpmSijEZPD7aHpduCMwZ5T6bDXVLbdU2r7k8&amp;sig=Cg0ArKJSzJ5gI72JFij7EAE&amp;urlfix=1&amp;adurl=https://www.walmart.com/browse/hp-pcs-tax-time/0/0/%3F_refineresult%3Dtrue%26_be_shelf_id%3D9899561%26search_sort%3D100%26facet%3Dshelf_id:9899561" target="_top" aria-label="HP PCs. For every dream in the making."><img class="imgCtr" id="imgCtr" alt="Walmart Advertisement" src="./2028283393163936105"><div class="callout">Advertisement</div><script>(function () {
+  var img = document.getElementById("imgCtr");
+  var desktopImage = 'https://tpc.googlesyndication.com/simgad/10158257473051698177?';
+  var mobileImage = 'https://tpc.googlesyndication.com/simgad/2028283393163936105?';
+  function loadRightSizeImg() {                
+    var windowSize = window.innerWidth;
+    var imgSrc = mobileImage;
+    if(windowSize > 768) {
+      imgSrc = desktopImage;
+    }
+    if(img.src !== imgSrc) {
+      img.src = imgSrc;
+    }
+  }
+  loadRightSizeImg();
+  window.onresize = loadRightSizeImg;
+})()</script></a><script>var trackingPixel = '';
+if (trackingPixel.indexOf("http") == 0) {
+  document.write('<iframe src="' + trackingPixel + '" height="1" width="1" style="width:1px !important;height 1px !important"></iframe>');
+}
+var trackingPixel2 = '';
+if (trackingPixel2.indexOf("http") == 0) {
+  document.write('<iframe src="' + trackingPixel2 + '" height="1" width="1" style="width:1px !important;height 1px !important"></iframe>');
+}
+var trackingPixel3 = '';
+if (trackingPixel3.indexOf("http") == 0){
+  document.write('<iframe src="' + trackingPixel3 + '" height="1" width="1" style="width:1px !important;height 1px !important"></iframe>');
+}
+if (''.indexOf("http") == 0){
+  document.write('<script type="text/javascript" src=""></scr' + 'ipt>');
+}
+if (''.indexOf("http") == 0){
+  document.write('<script type="text/javascript" src=""></scr' + 'ipt>');
+}
+if (''.indexOf("http") == 0){
+  document.write('<script type="text/javascript" src=""></scr' + 'ipt>');
+}</script></div></body></html>
