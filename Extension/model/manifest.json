@@ -17,7 +17,7 @@
         "persistent": false
     },
     "permissions": [
-        "activeTab","storage","<all_urls>"
+        "activeTab","storage","<all_urls>","storage"
     ],
     "commands": {
         "_execute_browser_action": {

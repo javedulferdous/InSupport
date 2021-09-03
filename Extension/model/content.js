@@ -1,21 +1,46 @@
 chrome.runtime.onConnect.addListener(openModal);
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Processing
 let allLinks = [],filterList = [],get_class_parent_node;
-let x = document.querySelectorAll('[data-attribute="filter"]');
-if( window.x === undefined)
-{
-    console.log(get_class_parent_node);
-    console.log(document.getElementsByClassName(get_class_parent_node));
-    //x = document.getElementsByClassName('facets');
-}
-get_class_parent_node = document.querySelectorAll('[data-attribute="filter"]')[0].parentElement.getAttribute("class");
 
-//get_class_parent_node=(((document.getElementById(document.querySelectorAll('[data-attribute="filter"]')[0].id).parentNode).children[0]).parentNode).getAttribute('class');
-console.log("Class: ",get_class_parent_node);
-console.log(document.getElementsByClassName(get_class_parent_node));
-var someVarName = "value";
-localStorage.setItem("someVarKey", someVarName);
-console.log(localStorage.getItem("someVarKey"));
+try {
+    if(document.querySelector('*[data-attribute="filter"]').getAttribute('data-attribute')==='filter')
+    {
+        x = document.querySelectorAll('[data-attribute="filter"]');
+        console.log("Hello");
+        
+    }
+}
+catch(e)
+{
+    let domain_name = document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '');
+    // Amazon
+    if(domain_name === 'amazon'){
+        x = document.getElementsByClassName('a-section a-spacing-double-large')[0].childNodes;
+        get_class_parent_node = document.getElementsByClassName('a-section a-spacing-double-large')[0].parentElement.getAttribute("class");
+
+
+    }
+    // Walmart
+    else if(domain_name === 'walmart'){
+        console.log('walmart');
+    }
+    else if(domain_name === 'ebay'){
+        console.log('ebay');
+        x = document.getElementsByClassName('x-refine__left__nav')[0].childNodes;
+    }
+}
+
+/*if( window.x === undefined)
+{
+    //x = document.getElementsByClassName('a-section a-spacing-double-large')[0].childNodes;
+    //console.log(x);
+}*/
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 function openModal(port) {
     port.onMessage.addListener(request => {
         if (request.action == "openModal") {           
@@ -36,26 +61,80 @@ function openModal(port) {
                         return [].slice.call(id).map(function(elem){
                           return elem.id;
                         });
-                      }
-                    
-                    for (let i = 0; i < 6; i += 1) {
-                        if ((x[i].childNodes[3]).textContent != undefined) {
-                            var array = [];
-                            var links = x[i].getElementsByTagName("a");
-                            for(var j=0; j<links.length; j++) {
-                            array.push(links[j].href);
-                            }
-                            filterList.push({
-                                rootClass:get_class_parent_node,
-                                name: x[i].childNodes[1].textContent.trim(),
-                                id_link:array,
-                                id_parrent:x[i].getAttribute('id'),
-                                id_child:getIds_1(x[i].childNodes[3]),
-                                id: (x[i].childNodes[3]).textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n').split('\n\n').filter(word => word.trim().length > 0)
-                            });
-                        }
                     }
-                    console.log(filterList);
+                    setTimeout("location.reload(true);", 10000);
+
+                    if(document.location.hostname === '')
+                    {
+                        console.log("saved page");
+                        try{
+                        for (let i = 1; i < 6; i += 1) {
+                            //if ((x[i].childNodes[3]).textContent != undefined) {
+                                var array = [];
+                                var links = x[i].getElementsByTagName("a");
+                                for(var j=0; j<links.length; j++) {
+                                array.push(links[j].href);
+                                }
+                                filterList.push({
+                                    rootClass:get_class_parent_node,
+                                    name: x[i].childNodes[1].textContent.trim(),
+                                    id_link:array,
+                                    id_parrent:x[i].getAttribute('id'),
+                                    id_child:getIds_1(x[i].childNodes[3]),
+                                    id: (x[i].childNodes[3]).textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n').split('\n\n').filter(word => word.trim().length > 0)
+                                });
+                           // }
+                            }
+                        }
+                        catch(e){}
+                        console.log(filterList);
+                    }
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'amazon'){
+                        console.log("amazon live");
+                        try{
+                            for (let i=1; i<=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].length; i=i+2){
+                                console.log(i);
+                                    var array = [];
+                                    var links = x[i].getElementsByTagName("a");
+                                    for(var j=0; j<links.length; j++) {
+                                    array.push(links[j].href);
+                                    }
+                                    filterList.push({
+                                        rootClass:get_class_parent_node,
+                                        name: x[i].childNodes[1].textContent.trim(),
+                                        id_link:array,
+                                        id_parrent:x[i].getAttribute('id'),
+                                        id_child:getIds_1(x[i].childNodes[3]),
+                                        id: (x[i].childNodes[3]).textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n').split('\n\n').filter(word => word.trim().length > 0)
+                                    });
+                            }
+                    }
+                    catch(e)
+                    {
+                        console.log(e);
+                    }
+                        console.log(filterList);
+                        
+                    }
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'ebay'){
+                        console.log("ebay");
+                        try
+                        {
+                            for( let i =1; i<=[1].length; i++)
+                            {
+                                //console.log(x[i].getElementsByTagName('div')[0].textContent);
+                                console.log(x[i].getElementsByTagName('div')[0].children);
+                                filterList.push({
+                                    name: x[i].getElementsByTagName('div')[0].textContent
+                                })
+                            }
+                        }
+                        catch(e)
+                        {
+                        }
+                        console.log(filterList);
+                    }
+                    
                     for (i = 0; i < filterList.length; i++)
                     {
                         var cinput = document.createElement("input");
@@ -113,7 +192,6 @@ function openModal(port) {
                 function sortFunction(){
                     let sentSortList = [];
                     let sortList = document.querySelectorAll('[data-attribute="sort"]');
-                    
                     sentSortList.push({
                         id: (sortList[0].textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n')).split('\n\n').filter(word => word.trim().length > 0)
                     });
@@ -132,19 +210,66 @@ function openModal(port) {
                 }
                 function pageFunction(){
                     let sentPageList = [];
-                    let pageList = document.querySelectorAll('[data-attribute="page"]');
-                    sentPageList.push({
-                        id: (pageList[0].textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n')).split('\n\n').filter(word => word.trim().length > 0)
-                    });
+                    if(document.location.hostname === '')
+                    {
+                        console.log("saved page");
+                        
+                        let pageList = document.querySelectorAll('[data-attribute="page"]');
+                        let linkurl = pageList[0].getElementsByTagName('a');
+                        try{
+                        let temp = pageList[0].childNodes[0].childNodes;
+                        for(let i in temp){
+                            if(linkurl[i]!== 'undefined')
+                            {
+                                console.log(linkurl[i].href);
+                                console.log(linkurl[i].textContent);
+                                sentPageList.push({
+                                    id: linkurl[i].textContent,
+                                    id_link_page: linkurl[i].href
+                                });
+                            }
+                            }
+                        }
+                        catch(e){}
+                    }
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'amazon')
+                    {
+                        console.log("amazon live");
+                        let pageClass = document.getElementsByClassName('s-pagination-strip');
+                        try{
+
+                            for(let i=0; i<20; i++)
+                            {
+                                if(pageClass[0].children[i]!='undefined')
+                                {
+                                    console.log((pageClass[0].children[i]).href);
+                                    console.log((pageClass[0].children[i]).textContent);
+                                    sentPageList.push({
+                                        id: (pageClass[0].children[i]).textContent,
+                                        id_link_page: (pageClass[0].children[i]).href
+                                    });
+                                }
+                                //console.log(pageClass[0].getElementsByTagName('a'));
+                            }
+                        }
+                        catch(e){
+                            console.log(e);
+                        }
+                        
+                    }
                     console.log(sentPageList);
                     for (i = 0; i < sentPageList.length; i++) {
                         var hLink = document.createElement("a");
                         hLink.text = sentPageList[i].id;
-                        hLink.target = '_blank';
-                        hLink.href = 'https://www.amazon.com/';
+                        hLink.target = '_self';
+                        hLink.href = sentPageList[i].id_link_page;
                         var node = document.createElement("LI");
+                        node.className = "list-group-item list-group-item-action";
+                        var nodeBreak = document.createElement("br");
                         node.appendChild(hLink);
+                        node.appendChild(nodeBreak);
                         document.getElementById("pageList").appendChild(node); ///append Item
+                        
                     }
                 
                 }
@@ -161,10 +286,14 @@ function openModal(port) {
             }
             else {
                 alert("here");
+                setTimeout("location.reload(true);", 1000);
             }
         }
     });
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 class UI {
     static modalMenu(){
         const modal = document.createElement('div');
@@ -173,11 +302,14 @@ class UI {
         modal.style.cssText = `
             padding: 0;
             display: block;
-            top: 250px;
-            left: 500px;
+            top: 50%;
+            left: 50%;
             right: 500px;
-            width: 40%;
-            height:50%;
+            width: 400px;
+            height: 200pxßß;
+            position: fixed;
+            z-index:100;
+            margin: -100px 0 0 -100px;
 
             overflow: auto;
             animation-name: modalopen;
@@ -194,8 +326,11 @@ class UI {
             width: auto;
             height: 400px;
             border-radius: 100px;
-            margin-left:30px;
-            margin-bottom:200px;
+            margin-left:auto;
+            margin-right: auto;
+            margin-bottom:auto;
+            display: flex;
+            justify-content: center;
         `;
         modalContent.innerHTML = `
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet">
@@ -231,15 +366,23 @@ class UI {
         
         const closeButton = document.createElement('button');
         closeButton.setAttribute('id','close');
-        closeButton.setAttribute('onclick','this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;');
+        closeButton.setAttribute('onclick','this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); setTimeout("location.reload(true);", 10); return false; ');
         let closeButtonText = document.createTextNode("X");
         closeButton.className = "btn btn-primary"
         closeButton.style.cssText = `background-color:black;color:white;`;  
         closeButton.appendChild(closeButtonText);
+        // Back button
+        const backButton = document.createElement('button');
+        backButton.setAttribute('id','backbtn');
+        backButton.setAttribute('onclick','window.history.back();');
+        let backButtonText = document.createTextNode("Back");
+        backButton.className = "btn btn-primary"
+        backButton.style.cssText = `background-color:yellow;color:blue;`;  
+        backButton.appendChild(backButtonText);
 
         const submitButton = document.createElement('button');
         submitButton.setAttribute("id","submitButton");
-        //submitButton.className = "btn btn-info";
+        submitButton.className = "btn btn-info";
         submitButton.setAttribute("value","Submit");
         submitButton.className = "submitButton";
         submitButton.innerHTML = "Submit";
@@ -297,7 +440,9 @@ class UI {
         divcol.appendChild(filterButton);
         divcol.appendChild(sortButton);
         divcol.appendChild(pageButton);
-       
+
+        divcol.appendChild(backButton);
+
         divcol.appendChild(closeButton);
 
         divcol.appendChild(sortbtn);
@@ -312,8 +457,8 @@ class UI {
         divrow.appendChild(divcol);
         modalContent.appendChild(divrow);
 
-        divSubmit.appendChild(submitButton);
-        divcol.appendChild(divSubmit);
+        /*divSubmit.appendChild(submitButton);
+        divcol.appendChild(divSubmit);*/
         
 
         modal.appendChild(modalContent);
@@ -330,3 +475,4 @@ class UI {
     }
 
 }
+
