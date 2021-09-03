@@ -7,8 +7,6 @@ try {
     if(document.querySelector('*[data-attribute="filter"]').getAttribute('data-attribute')==='filter')
     {
         x = document.querySelectorAll('[data-attribute="filter"]');
-        console.log("Hello");
-        
     }
 }
 catch(e)
@@ -18,8 +16,6 @@ catch(e)
     if(domain_name === 'amazon'){
         x = document.getElementsByClassName('a-section a-spacing-double-large')[0].childNodes;
         get_class_parent_node = document.getElementsByClassName('a-section a-spacing-double-large')[0].parentElement.getAttribute("class");
-
-
     }
     // Walmart
     else if(domain_name === 'walmart'){
@@ -30,7 +26,6 @@ catch(e)
         x = document.getElementsByClassName('x-refine__left__nav')[0].childNodes;
     }
 }
-
 /*if( window.x === undefined)
 {
     //x = document.getElementsByClassName('a-section a-spacing-double-large')[0].childNodes;
@@ -191,21 +186,52 @@ function openModal(port) {
                 function searchFunction(){alert("Search");}
                 function sortFunction(){
                     let sentSortList = [];
-                    let sortList = document.querySelectorAll('[data-attribute="sort"]');
-                    sentSortList.push({
-                        id: (sortList[0].textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n')).split('\n\n').filter(word => word.trim().length > 0)
-                    });
+                    if(document.location.hostname === '')
+                    {
+                        console.log("saved page");
+                        let sortList = document.querySelectorAll('[data-attribute="sort"]');
+                        try{
+                            for(let i=1; i<10;i++)
+                            {
+                            //console.log(sortList[0].childNodes[1][i].textContent);
+                            //console.log("www.amazon.com"+(sortList[0].childNodes[1])[i].getAttribute('data-url'));
+                            sentSortList.push({
+                                id: sortList[0].childNodes[1][i].textContent,
+                                id_sort_link:"https://www.amazon.com"+(sortList[0].childNodes[1])[i].getAttribute('data-url')
+                            });
+                            }
+                        }
+                        catch(e){console.log(e);}
+                    }
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'amazon')
+                    {
+                        let sortClass = document.getElementsByClassName('a-native-dropdown a-declarative');
+                        try{
+                            for(let i=1; i< 10; i=i+2)
+                            {
+                                //console.log("https://www.amazon.com"+sortClass[0].childNodes[i].getAttribute('data-url'));
+                                //console.log(sortClass[0].childNodes[i].textContent);
+                                sentSortList.push({
+                                    id: sortClass[0].childNodes[i].textContent,
+                                    id_sort_link:"https://www.amazon.com"+sortClass[0].childNodes[i].getAttribute('data-url')
+                                });
+                            }
+                        }
+                        catch(e){}
+                    }
                     console.log(sentSortList);
-
                     var list = document.createElement("ul");
                     for (var i in sentSortList) {
-                        let textnode = document.createTextNode(sentSortList[i].id);
-                        var elem = document.createElement("li");
-                        var breaknode = document.createElement("br");
-                        elem.appendChild(textnode);
-                        elem.appendChild(breaknode);
-                        list.appendChild(elem);
-                        document.getElementById("sortList").appendChild(list);
+                        var hLink = document.createElement("a");
+                        hLink.text = sentSortList[i].id;
+                        hLink.target = '_self';
+                        hLink.href = sentSortList[i].id_sort_link;
+                        var node = document.createElement("LI");
+                        node.className = "list-group-item list-group-item-action";
+                        var nodeBreak = document.createElement("br");
+                        node.appendChild(hLink);
+                        node.appendChild(nodeBreak);
+                        document.getElementById("sortList").appendChild(node); ///append Item
                     }
                 }
                 function pageFunction(){
@@ -213,7 +239,6 @@ function openModal(port) {
                     if(document.location.hostname === '')
                     {
                         console.log("saved page");
-                        
                         let pageList = document.querySelectorAll('[data-attribute="page"]');
                         let linkurl = pageList[0].getElementsByTagName('a');
                         try{
@@ -237,7 +262,6 @@ function openModal(port) {
                         console.log("amazon live");
                         let pageClass = document.getElementsByClassName('s-pagination-strip');
                         try{
-
                             for(let i=0; i<20; i++)
                             {
                                 if(pageClass[0].children[i]!='undefined')
@@ -274,7 +298,6 @@ function openModal(port) {
                 
                 }
                 function submitFunction(){
-                    
                     console.log("Submited");
                     for (let i = 0; i < allLinks.length; i++) {
                         //window.location.href=allLinks[i]; 
@@ -282,7 +305,6 @@ function openModal(port) {
                     };
                      allLinks=[];
                 }
-
             }
             else {
                 alert("here");
