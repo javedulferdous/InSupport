@@ -3,29 +3,7 @@ chrome.runtime.onConnect.addListener(openModal);
 // Processing
 let allLinks = [],filterList = [],get_class_parent_node;
 
-try {
-    if(document.querySelector('*[data-attribute="filter"]').getAttribute('data-attribute')==='filter')
-    {
-        x = document.querySelectorAll('[data-attribute="filter"]');
-    }
-}
-catch(e)
-{
-    let domain_name = document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '');
-    // Amazon
-    if(domain_name === 'amazon'){
-        x = document.getElementsByClassName('a-section a-spacing-double-large')[0].childNodes;
-        get_class_parent_node = document.getElementsByClassName('a-section a-spacing-double-large')[0].parentElement.getAttribute("class");
-    }
-    // Walmart
-    else if(domain_name === 'walmart'){
-        console.log('walmart');
-    }
-    else if(domain_name === 'ebay'){
-        console.log('ebay');
-        x = document.getElementsByClassName('x-refine__left__nav')[0].childNodes;
-    }
-}
+
 /*if( window.x === undefined)
 {
     //x = document.getElementsByClassName('a-section a-spacing-double-large')[0].childNodes;
@@ -51,6 +29,29 @@ function openModal(port) {
                 document.getElementById('submitButton').addEventListener('click', submitFunction);
                 
                 function filterFunction(){
+                    try {
+                        if(document.querySelector('*[data-attribute="filter"]').getAttribute('data-attribute')==='filter')
+                        {
+                            x = document.querySelectorAll('[data-attribute="filter"]');
+                        }
+                    }
+                    catch(e)
+                    {
+                        let domain_name = document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '');
+                        // Amazon
+                        if(domain_name === 'amazon'){
+                            x = document.getElementsByClassName('a-section a-spacing-double-large')[0].childNodes;
+                            get_class_parent_node = document.getElementsByClassName('a-section a-spacing-double-large')[0].parentElement.getAttribute("class");
+                        }
+                        // Walmart
+                        else if(domain_name === 'walmart'){
+                            console.log('walmart');
+                        }
+                        else if(domain_name === 'ebay'){
+                            console.log('ebay');
+                            x = document.getElementsByClassName('x-refine__left__nav')[0].childNodes;
+                        }
+                    }
                     function getIds_1(tempv){
                         let id = tempv.querySelectorAll('[id]');
                         return [].slice.call(id).map(function(elem){
@@ -183,7 +184,95 @@ function openModal(port) {
                     })
                     }
                 }
-                function searchFunction(){alert("Search");}
+                function searchFunction(){
+                    let searchInfo = [];
+                    if(document.location.hostname === '')
+                    {
+                        console.log("saved page");
+                        let searchNode = (document.querySelector('[data-attribute="search"]')).childNodes[3].children[0].getElementsByTagName('input');
+                        console.log(searchNode[0].value);
+                        console.log((document.querySelector('[data-attribute="search"]')).getAttribute('id'));
+                        console.log((document.querySelector('[data-attribute="search"]')).getAttribute('class'));
+                        console.log(searchNode[0].getAttribute('class'));
+                        console.log('https://www.amazon.com/s?k='+searchNode[0].value.replace(' ','+')+"&ref=nb_sb_noss_2");
+                        
+                        searchInfo.push({
+                            input_id:(document.querySelector('[data-attribute="search"]')).getAttribute('id'),
+                            input_class:(document.querySelector('[data-attribute="search"]')).getAttribute('class'),
+                            id_search: searchNode[0].value,
+                            id_search_link:'https://www.amazon.com/s?k='+searchNode[0].value.replace(' ','+'),
+                            searchButtonClass: searchNode[0].getAttribute('class')
+                        });
+                        
+                    }
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'amazon')
+                    {
+                        console.log("amazon live");
+                        //console.log(((document.getElementById('nav-search-bar-form')).getAttribute('id')));
+                        let livesearchNode = document.getElementById('nav-search-bar-form');
+                        //console.log((document.getElementById('nav-search-bar-form')).getAttribute('class'));
+                        //console.log(((livesearchNode.childNodes[3].children[0].getElementsByTagName('input')[0]).value).getAttribute('class'));
+                        //console.log((document.getElementsByClassName('nav-input nav-progressive-attribute')).value);
+                        console.log(livesearchNode.childNodes[3].children[0].getElementsByTagName('input')[0].value.replace(' ','+'));
+                        searchInfo.push({
+                            input_id:(document.getElementById('nav-search-bar-form')).getAttribute('id'),
+                            input_class:(document.getElementById('nav-search-bar-form')).getAttribute('class'),
+                            id_search: livesearchNode.childNodes[3].children[0].getElementsByTagName('input')[0].value
+                            //id_search_link:'https://www.amazon.com/s?k='+livesearchNode.childNodes[3].children[0].getElementsByTagName('input')[0].value.replace(' ','+')
+                            //searchButtonClass: (livesearchNode.childNodes[3].children[0].getElementsByTagName('input')[0]).value.getAttribute('class')
+                        });
+                        livesearchNode.childNodes[3].children[0].getElementsByTagName('input')[0].value=document.getElementById('twotabsearchtextbox').value;
+
+
+                    }
+                    console.log(searchInfo);
+                    try{
+                            let inputBox = document.createElement('input');
+                            inputBox.className = searchInfo[0].input_class;
+                            inputBox.setAttribute('id',searchInfo[0].input_id);
+                            inputBox.setAttribute('value',searchInfo[0].id_search);
+
+                            let buttonNode = document.createElement('input');
+                            buttonNode.setAttribute('type', 'submit');
+                            buttonNode.setAttribute('value', 'Search');
+                            buttonNode.onclick = function(){
+                                let inputItem = document.getElementById('nav-search-bar-form').value;
+                                window.location.href = 'https://www.amazon.com/s?k='+inputItem.replace(' ','+')
+                            }
+                            document.getElementById("searchList").appendChild(inputBox);
+                            document.getElementById("searchList").appendChild(buttonNode);
+                            /*var form = document.createElement('form');
+                            //form.setAttribute('action', searchInfo[0].id_search_link);
+                            form.setAttribute('method', 'POST');
+                            form.setAttribute('role', 'search');
+                            form.setAttribute('id',searchInfo[0].input_id);
+                            form.className=searchInfo[0].input_class;
+
+                            var text_field = document.createElement('input');
+                            text_field.setAttribute('type', 'text');
+                            text_field.setAttribute('value', searchInfo[0].id_search);
+                            text_field.setAttribute('id','twotabsearch');
+                            
+
+                            var button = document.createElement('input');
+                            button.setAttribute('type', 'submit');
+                            button.setAttribute('value', 'Search');
+                            button.className = searchInfo[0].searchButtonClass;
+                            button.onclick = function(){
+                                let inputItem = document.getElementById('twotabsearch').value;
+                                button.href = 'https://www.amazon.com/s?k='+inputItem.replace(' ','+')
+                                console.log(button.href);
+                            }
+
+                            form.appendChild(text_field);
+                            form.appendChild(button);
+
+                            document.getElementById("searchList").appendChild(form);
+                            console.log(document.getElementById('twotabsearch').value);*/
+
+                    }
+                    catch(e){console.log(e);}
+                }
                 function sortFunction(){
                     let sentSortList = [];
                     if(document.location.hostname === '')
@@ -476,6 +565,10 @@ class UI {
         modalContent.appendChild(divrow);
         
         divcol.appendChild(pagebtn);
+        divrow.appendChild(divcol);
+        modalContent.appendChild(divrow);
+
+        divcol.appendChild(searchbtn);
         divrow.appendChild(divcol);
         modalContent.appendChild(divrow);
 
