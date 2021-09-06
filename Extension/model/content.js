@@ -40,8 +40,15 @@ function openModal(port) {
                         let domain_name = document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '');
                         // Amazon
                         if(domain_name === 'amazon'){
-                            x = document.getElementsByClassName('a-section a-spacing-double-large')[0].childNodes;
-                            get_class_parent_node = document.getElementsByClassName('a-section a-spacing-double-large')[0].parentElement.getAttribute("class");
+                            if(window.document.getElementsByClassName('a-section a-spacing-double-large')[0]=== undefined)
+                            {
+                                alert("No filter group");
+                                window.location.reload();
+                            }
+                            else{
+                                x = document.getElementsByClassName('a-section a-spacing-double-large')[0].childNodes;
+                               get_class_parent_node = document.getElementsByClassName('a-section a-spacing-double-large')[0].parentElement.getAttribute("class");
+                            }
                         }
                         // Walmart
                         else if(domain_name === 'walmart'){
@@ -51,6 +58,7 @@ function openModal(port) {
                             console.log('ebay');
                             x = document.getElementsByClassName('x-refine__left__nav')[0].childNodes;
                         }
+                        
                     }
                     function getIds_1(tempv){
                         let id = tempv.querySelectorAll('[id]');
@@ -58,7 +66,7 @@ function openModal(port) {
                           return elem.id;
                         });
                     }
-                    setTimeout("location.reload(true);", 10000);
+                    //setTimeout("location.reload(true);", 10000);
 
                     if(document.location.hostname === '')
                     {
@@ -88,8 +96,14 @@ function openModal(port) {
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'amazon'){
                         console.log("amazon live");
                         try{
+                            /*let node_ =(document.getElementsByClassName('a-section a-spacing-double-large')[0].children[3]);
+                            let checkNode = node_.getElementsByTagName('input');
+                            if(checkNode){
+                                console.log(checkNode[0].hasAttribute('checked'));
+                                console.log(node_.getRootNode());
+                            }*/
                             for (let i=1; i<=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].length; i=i+2){
-                                console.log(i);
+                                    console.log(i);
                                     var array = [];
                                     var links = x[i].getElementsByTagName("a");
                                     for(var j=0; j<links.length; j++) {
@@ -108,9 +122,7 @@ function openModal(port) {
                     catch(e)
                     {
                         console.log(e);
-                    }
-                        console.log(filterList);
-                        
+                    }                        
                     }
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'ebay'){
                         console.log("ebay");
@@ -128,9 +140,7 @@ function openModal(port) {
                         catch(e)
                         {
                         }
-                        console.log(filterList);
-                    }
-                    
+                    }                  
                     for (i = 0; i < filterList.length; i++)
                     {
                         var cinput = document.createElement("input");
@@ -159,8 +169,7 @@ function openModal(port) {
                             checkbox.onclick = function(e){
                                 
                                 allLinks.push(idLink.href);
-                                console.log(allLinks);
-                                //window.location.href = idLink.href;
+                                window.location.href = idLink.href;
               
                             };
                             
@@ -231,44 +240,19 @@ function openModal(port) {
                             inputBox.className = searchInfo[0].input_class;
                             inputBox.setAttribute('id',searchInfo[0].input_id);
                             inputBox.setAttribute('value',searchInfo[0].id_search);
+                            inputBox.className= "input-group-append";
 
                             let buttonNode = document.createElement('input');
                             buttonNode.setAttribute('type', 'submit');
                             buttonNode.setAttribute('value', 'Search');
+                            buttonNode.className = "btn btn-primary";
                             buttonNode.onclick = function(){
                                 let inputItem = document.getElementById('nav-search-bar-form').value;
                                 window.location.href = 'https://www.amazon.com/s?k='+inputItem.replace(' ','+')
                             }
                             document.getElementById("searchList").appendChild(inputBox);
                             document.getElementById("searchList").appendChild(buttonNode);
-                            /*var form = document.createElement('form');
-                            //form.setAttribute('action', searchInfo[0].id_search_link);
-                            form.setAttribute('method', 'POST');
-                            form.setAttribute('role', 'search');
-                            form.setAttribute('id',searchInfo[0].input_id);
-                            form.className=searchInfo[0].input_class;
 
-                            var text_field = document.createElement('input');
-                            text_field.setAttribute('type', 'text');
-                            text_field.setAttribute('value', searchInfo[0].id_search);
-                            text_field.setAttribute('id','twotabsearch');
-                            
-
-                            var button = document.createElement('input');
-                            button.setAttribute('type', 'submit');
-                            button.setAttribute('value', 'Search');
-                            button.className = searchInfo[0].searchButtonClass;
-                            button.onclick = function(){
-                                let inputItem = document.getElementById('twotabsearch').value;
-                                button.href = 'https://www.amazon.com/s?k='+inputItem.replace(' ','+')
-                                console.log(button.href);
-                            }
-
-                            form.appendChild(text_field);
-                            form.appendChild(button);
-
-                            document.getElementById("searchList").appendChild(form);
-                            console.log(document.getElementById('twotabsearch').value);*/
 
                     }
                     catch(e){console.log(e);}
@@ -294,7 +278,15 @@ function openModal(port) {
                     }
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'amazon')
                     {
-                        let sortClass = document.getElementsByClassName('a-native-dropdown a-declarative');
+                        if(window.document.getElementsByClassName('a-native-dropdown a-declarative')[0]===undefined)
+                        {
+                            alert("Sort is not available");
+                            window.location.reload();
+                        }
+                        else
+                        {
+                            let sortClass = document.getElementsByClassName('a-native-dropdown a-declarative');
+                        
                         try{
                             for(let i=1; i< 10; i=i+2)
                             {
@@ -307,6 +299,7 @@ function openModal(port) {
                             }
                         }
                         catch(e){}
+                    }
                     }
                     console.log(sentSortList);
                     var list = document.createElement("ul");
@@ -349,25 +342,31 @@ function openModal(port) {
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'amazon')
                     {
                         console.log("amazon live");
-                        let pageClass = document.getElementsByClassName('s-pagination-strip');
-                        try{
-                            for(let i=0; i<20; i++)
-                            {
-                                if(pageClass[0].children[i]!='undefined')
+                        if(document.getElementsByClassName('s-pagination-strip')[0]===undefined){
+                            alert("Page is not available");
+                            window.location.reload();
+                        }
+                        else{
+                            let pageClass = document.getElementsByClassName('s-pagination-strip');
+                            try{
+                                for(let i=0; i<20; i++)
                                 {
-                                    console.log((pageClass[0].children[i]).href);
-                                    console.log((pageClass[0].children[i]).textContent);
-                                    sentPageList.push({
-                                        id: (pageClass[0].children[i]).textContent,
-                                        id_link_page: (pageClass[0].children[i]).href
-                                    });
+                                    if(pageClass[0].children[i]!='undefined')
+                                    {
+                                        console.log((pageClass[0].children[i]).href);
+                                        console.log((pageClass[0].children[i]).textContent);
+                                        sentPageList.push({
+                                            id: (pageClass[0].children[i]).textContent,
+                                            id_link_page: (pageClass[0].children[i]).href
+                                        });
+                                    }
+                                    //console.log(pageClass[0].getElementsByTagName('a'));
                                 }
-                                //console.log(pageClass[0].getElementsByTagName('a'));
                             }
-                        }
-                        catch(e){
-                            console.log(e);
-                        }
+                            catch(e){
+                                console.log(e);
+                            }
+                    }
                         
                     }
                     console.log(sentPageList);
@@ -414,10 +413,9 @@ class UI {
             padding: 0;
             display: block;
             top: 50%;
-            left: 50%;
+            left: 45%;
             right: 500px;
-            width: 400px;
-            height: 200pxßß;
+            width: 80%;
             position: fixed;
             z-index:100;
             margin: -100px 0 0 -100px;
@@ -434,7 +432,7 @@ class UI {
             position: auto;
             float: left;
             padding: 20px;
-            width: auto;
+            width: auto%;
             height: 400px;
             border-radius: 100px;
             margin-left:auto;
@@ -507,20 +505,20 @@ class UI {
         rootDiv.className = get_class_parent_node;  
               
         const searchbtn= document.createElement('div');
-        searchbtn.style.cssText = `width:800px; margin:0 auto;`;        
+        //searchbtn.style.cssText = `width:800px; margin:0 auto;`;        
         searchbtn.setAttribute('id', 'searchList');
 
         const filterbtn= document.createElement('div');
-        filterbtn.style.cssText = `width:800px; margin:0 auto;`;        
+        //filterbtn.style.cssText = `width:800px; margin:0 auto;`;        
         filterbtn.setAttribute('id', 'filterList');
         filterbtn.className = get_class_parent_node;
 
         const sortbtn= document.createElement('div');
-        sortbtn.style.cssText = `width:800px; margin:0 auto;`;        
+        //sortbtn.style.cssText = `width:800px; margin:0 auto;`;        
         sortbtn.setAttribute('id', 'sortList');
 
         const pagebtn= document.createElement('div');
-        pagebtn.style.cssText = `width:800px; margin:0 auto;`;        
+        //pagebtn.style.cssText = `width:800px; margin:0 auto;`;        
         pagebtn.setAttribute('id', 'pageList');
         
         const divSubmit = document.createElement('div');
