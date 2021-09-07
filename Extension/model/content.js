@@ -58,6 +58,7 @@ function openModal(port) {
                             console.log('ebay');
                             x = document.getElementsByClassName('x-refine__left__nav')[0].childNodes;
                         }
+                        console.log(x);
                         
                     }
                     function getIds_1(tempv){
@@ -226,19 +227,29 @@ function openModal(port) {
                         searchInfo.push({
                             input_id:(document.getElementById('nav-search-bar-form')).getAttribute('id'),
                             input_class:(document.getElementById('nav-search-bar-form')).getAttribute('class'),
-                            id_search: livesearchNode.childNodes[3].children[0].getElementsByTagName('input')[0].value
-                            //id_search_link:'https://www.amazon.com/s?k='+livesearchNode.childNodes[3].children[0].getElementsByTagName('input')[0].value.replace(' ','+')
+                            id_search: livesearchNode.childNodes[3].children[0].getElementsByTagName('input')[0].value,
+                            id_search_link:'https://www.amazon.com/s?k='
                             //searchButtonClass: (livesearchNode.childNodes[3].children[0].getElementsByTagName('input')[0]).value.getAttribute('class')
                         });
-                        livesearchNode.childNodes[3].children[0].getElementsByTagName('input')[0].value=document.getElementById('twotabsearchtextbox').value;
-
-
                     }
-                    console.log(searchInfo);
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'ebay'){
+                        let eBaySearchNode = document.getElementById('gh-ac-box2');
+                        console.log(eBaySearchNode.getElementsByTagName('input')[0].value);
+                        console.log(eBaySearchNode.getElementsByTagName('input')[0].getAttribute('id'));
+                        console.log(eBaySearchNode.getElementsByTagName('input')[0].getAttribute('class'));
+
+                        searchInfo.push({
+                            input_id:eBaySearchNode.getElementsByTagName('input')[0].getAttribute('id'),
+                            input_class:eBaySearchNode.getElementsByTagName('input')[0].getAttribute('id'),
+                            id_search: eBaySearchNode.getElementsByTagName('input')[0].value,
+                            id_search_link:'https://www.ebay.com/sch/i.html?_nkw='
+                            //searchButtonClass: (livesearchNode.childNodes[3].children[0].getElementsByTagName('input')[0]).value.getAttribute('class')
+                        });
+                    }
                     try{
                             let inputBox = document.createElement('input');
                             inputBox.className = searchInfo[0].input_class;
-                            inputBox.setAttribute('id',searchInfo[0].input_id);
+                            inputBox.setAttribute('id','nav-search-bar-form');
                             inputBox.setAttribute('value',searchInfo[0].id_search);
                             inputBox.className= "input-group-append";
 
@@ -248,7 +259,13 @@ function openModal(port) {
                             buttonNode.className = "btn btn-primary";
                             buttonNode.onclick = function(){
                                 let inputItem = document.getElementById('nav-search-bar-form').value;
-                                window.location.href = 'https://www.amazon.com/s?k='+inputItem.replace(' ','+')
+                                if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '')==='amazon')
+                                {
+                                    window.location.href = 'https://www.amazon.com/s?k='+inputItem.replace(' ','+')
+                                }
+                                else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '')==='ebay'){
+                                    window.location.href = 'https://www.ebay.com/sch/i.html?_nkw='+inputItem.replace(' ','+')
+                                }
                             }
                             document.getElementById("searchList").appendChild(inputBox);
                             document.getElementById("searchList").appendChild(buttonNode);
@@ -258,7 +275,7 @@ function openModal(port) {
                     catch(e){console.log(e);}
                 }
                 function sortFunction(){
-                    let sentSortList = [];
+                    let sortName = [],sortNumber=[];
                     if(document.location.hostname === '')
                     {
                         console.log("saved page");
@@ -301,13 +318,26 @@ function openModal(port) {
                         catch(e){}
                     }
                     }
-                    console.log(sentSortList);
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'ebay'){
+                        if(window.document.getElementsByClassName('fake-menu__items')[0]===undefined)
+                        {
+                            alert("Sort is not available");
+                            window.location.reload();
+                        }
+                        else{
+                        let sortClass = document.getElementsByClassName('srp-controls__row-cells right clearfix')[0];
+                        for(let i=0; i<6; i++){
+                            sortName.push(sortClass.children[0].getElementsByTagName('li')[i].textContent);
+                            sortNumber.push(((sortClass.children[0].getElementsByTagName('li')[i]).getElementsByTagName('a')[0]).getAttribute('href'));
+                            }
+                        }
+                    }
                     var list = document.createElement("ul");
-                    for (var i in sentSortList) {
+                    for (var i in sortName) {
                         var hLink = document.createElement("a");
-                        hLink.text = sentSortList[i].id;
+                        hLink.text = sortName[i];
                         hLink.target = '_self';
-                        hLink.href = sentSortList[i].id_sort_link;
+                        hLink.href = sortNumber[i];
                         var node = document.createElement("LI");
                         node.className = "list-group-item list-group-item-action";
                         var nodeBreak = document.createElement("br");
@@ -369,7 +399,33 @@ function openModal(port) {
                     }
                         
                     }
-                    console.log(sentPageList);
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'ebay'){
+                        console.log('eBay');
+                        if(document.getElementsByClassName('pagination__items')[0]===undefined){
+                            alert("Page is not available");
+                            window.location.reload();
+                        }
+                        else{
+                            let pageClass = document.getElementsByClassName('pagination__items');
+                            try{
+                                for(let i=0; i<20; i++)
+                                {
+                                    if(pageClass[0].children[i]!='undefined')
+                                    {
+                                        console.log((pageClass[0].children[i]).getElementsByTagName('a')[0].href);
+                                        console.log((pageClass[0].children[i]).getElementsByTagName('a')[0].textContent);
+                                        sentPageList.push({
+                                            id: (pageClass[0].children[i]).getElementsByTagName('a')[0].textContent,
+                                            id_link_page: (pageClass[0].children[i]).getElementsByTagName('a')[0].href
+                                        });
+                                    }
+                                }
+                            }
+                            catch(e){
+                                console.log(e);
+                            }
+                        }
+                    }
                     for (i = 0; i < sentPageList.length; i++) {
                         var hLink = document.createElement("a");
                         hLink.text = sentPageList[i].id;
