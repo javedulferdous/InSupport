@@ -1,7 +1,7 @@
 chrome.runtime.onConnect.addListener(openModal);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Processing
-let allLinks = [],filterList = [],get_class_parent_node;
+let allLinks = [],filterList = [],get_class_parent_node, tempID = [];
 
 
 /*if( window.x === undefined)
@@ -23,6 +23,7 @@ function openModal(port) {
                 body.insertBefore(UI.modalMenu(), body.firstChild);
                 let filterdata = document.getElementById('filterButton');
                 filterdata.addEventListener('click', filterFunction);
+
                 document.getElementById('searchButton').addEventListener('click', searchFunction);
                 document.getElementById('sortButton').addEventListener('click', sortFunction);
                 document.getElementById('pageButton').addEventListener('click', pageFunction);
@@ -55,10 +56,8 @@ function openModal(port) {
                             console.log('walmart');
                         }
                         else if(domain_name === 'ebay'){
-                            console.log('ebay');
-                            x = document.getElementsByClassName('x-refine__left__nav')[0].childNodes;
-                        }
-                        console.log(x);
+                            //console.log('ebay');
+                    }
                         
                     }
                     function getIds_1(tempv){
@@ -126,21 +125,45 @@ function openModal(port) {
                     }                        
                     }
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'ebay'){
-                        console.log("ebay");
-                        try
-                        {
-                            for( let i =1; i<=[1].length; i++)
+                        //console.log("ebay");
+                        try{
+                            console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[0].getAttribute('href'));
+                            console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[1].getAttribute('href'));
+                            console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[2].getAttribute('href'));
+                            for(let i=0; i<10; i++)
                             {
-                                //console.log(x[i].getElementsByTagName('div')[0].textContent);
-                                console.log(x[i].getElementsByTagName('div')[0].children);
+                                /*
+                                if((document.getElementById('x-refine__group__'+i))===null)
+                                {
+                                    console.log([i],"Null");
+                                    continue;
+                                }
+                                else{
+                                    if(document.getElementById('x-refine__group__'+i).getAttribute('id')==='x-refine__group__8')
+                                    {
+                                        console.log([i],"pass");
+                                        tempID.push((document.getElementById('x-refine__group__8').children[0].innerText).split('\n'));
+                                    }
+                                    if(document.getElementById('x-refine__group__'+i).getAttribute('id')==='x-refine__group__0'){
+                                        tempID.push((document.getElementById('x-refine__group__0').children[0].innerText).split('\n'));
+                                    }
+
+                                }*/
+                                var array = [];
+                                var links = (document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[i].getAttribute('href');
+                                for(var j=0; j<links.length; j++) {
+                                array.push(links[j].href);
+                                }
+                                console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[i].getAttribute('href'));
                                 filterList.push({
-                                    name: x[i].getElementsByTagName('div')[0].textContent
+                                    name:(((document.getElementsByClassName('x-refine__left__nav')[0].children[i].getElementsByTagName('h3'))[0]).textContent),
+                                    id: (document.getElementById('x-refine__group__'+i).children[0].innerText).split('\n'), //working till now
+                                    id_link: array,
                                 })
                             }
-                        }
-                        catch(e)
-                        {
-                        }
+                            }
+                            catch(e){ console.log(e);}
+                        console.log(filterList);
                     }                  
                     for (i = 0; i < filterList.length; i++)
                     {
@@ -275,7 +298,7 @@ function openModal(port) {
                     catch(e){console.log(e);}
                 }
                 function sortFunction(){
-                    let sortName = [],sortNumber=[];
+                    let sortName = [],sortNumber=[],sentSortList=[];
                     if(document.location.hostname === '')
                     {
                         console.log("saved page");
@@ -302,6 +325,7 @@ function openModal(port) {
                         }
                         else
                         {
+                            console.log("enter");
                             let sortClass = document.getElementsByClassName('a-native-dropdown a-declarative');
                         
                         try{
@@ -309,13 +333,12 @@ function openModal(port) {
                             {
                                 //console.log("https://www.amazon.com"+sortClass[0].childNodes[i].getAttribute('data-url'));
                                 //console.log(sortClass[0].childNodes[i].textContent);
-                                sentSortList.push({
-                                    id: sortClass[0].childNodes[i].textContent,
-                                    id_sort_link:"https://www.amazon.com"+sortClass[0].childNodes[i].getAttribute('data-url')
-                                });
+                                sortName.push(sortClass[0].childNodes[i].textContent);
+                                sortNumber.push("https://www.amazon.com"+sortClass[0].childNodes[i].getAttribute('data-url'));
                             }
                         }
                         catch(e){}
+                        console.log(sentSortList);
                     }
                     }
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'ebay'){
@@ -331,6 +354,9 @@ function openModal(port) {
                             sortNumber.push(((sortClass.children[0].getElementsByTagName('li')[i]).getElementsByTagName('a')[0]).getAttribute('href'));
                             }
                         }
+                    }
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'ebay'){
+                        alert("walmart");
                     }
                     var list = document.createElement("ul");
                     for (var i in sortName) {
@@ -426,6 +452,9 @@ function openModal(port) {
                             }
                         }
                     }
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'walmart'){
+                        console.log('walmart');
+                    }
                     for (i = 0; i < sentPageList.length; i++) {
                         var hLink = document.createElement("a");
                         hLink.text = sentPageList[i].id;
@@ -451,7 +480,7 @@ function openModal(port) {
                 }
             }
             else {
-                alert("here");
+                alert("Already loaded");
                 setTimeout("location.reload(true);", 1000);
             }
         }
