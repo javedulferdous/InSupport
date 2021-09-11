@@ -127,11 +127,25 @@ function openModal(port) {
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'ebay'){
                         //console.log("ebay");
                         try{
-                            console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[0].getAttribute('href'));
-                            console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[1].getAttribute('href'));
-                            console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[2].getAttribute('href'));
-                            for(let i=0; i<10; i++)
+                            //console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[0].getAttribute('href'));
+                            //console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[1].getAttribute('href'));
+                            //console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[2].getAttribute('href'));
+                            for(let i=0; i<2; i++)
                             {
+                                if(document.getElementById('x-refine__group__'+i)===null)
+                                {
+                                    for(let j =0; j<(document.getElementById('x-refine__group_1__0').children[0]).children.length; j++){
+                                        //console.log([i],((document.getElementById('x-refine__group_1__0').children[0]).children[j].textContent));
+                                        //console.log([i],((document.getElementById('x-refine__group_1__0').children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('href'));
+                                        filterList.push({
+                                            id: ((document.getElementById('x-refine__group_1__0').children[0]).children[j].textContent),//working till now
+                                            id_link:((document.getElementById('x-refine__group_1__0').children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('href')
+                                        })
+                                    }
+                                }
+                                else{
+                                    //console.log(document.getElementsByClassName('x-refine__main__list')[i]);
+                                }
                                 /*
                                 if((document.getElementById('x-refine__group__'+i))===null)
                                 {
@@ -149,17 +163,15 @@ function openModal(port) {
                                     }
 
                                 }*/
-                                var array = [];
-                                var links = (document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[i].getAttribute('href');
-                                for(var j=0; j<links.length; j++) {
-                                array.push(links[j].href);
-                                }
-                                console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[i].getAttribute('href'));
-                                filterList.push({
-                                    name:(((document.getElementsByClassName('x-refine__left__nav')[0].children[i].getElementsByTagName('h3'))[0]).textContent),
-                                    id: (document.getElementById('x-refine__group__'+i).children[0].innerText).split('\n'), //working till now
-                                    id_link: array,
-                                })
+                                
+                                //console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[i].getAttribute('href'));
+                                
+                                /*filterList.push({
+                                    name:(((document.getElementsByClassName('x-refine__left__nav')[0].children[i].getElementsByTagName('h3'))[0]).textContent)
+                                    id: (document.getElementById('x-refine__group__'+i).children[0].innerText).split('\n') //working till now
+                                    //id_link: (document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[i].getAttribute('href')
+                                })*/
+                            
                             }
                             }
                             catch(e){ console.log(e);}
