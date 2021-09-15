@@ -125,56 +125,274 @@ function openModal(port) {
                     }                        
                     }
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'ebay'){
-                        //console.log("ebay");
                         try{
-                            //console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[0].getAttribute('href'));
-                            //console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[1].getAttribute('href'));
-                            //console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[2].getAttribute('href'));
-                            for(let i=0; i<2; i++)
+                            console.log(document.getElementById('x-refine__group__0').children[0].textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n').split('\n\n').filter(word => word.trim().length > 0));
+                            console.log(document.getElementById('x-refine__group__2').children[0].textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n').split('\n\n').filter(word => word.trim().length > 0));
+                            console.log(document.getElementById('x-refine__group__2').previousSibling.textContent);
+                            for(let i=0; i<=8; i++)
                             {
-                                if(document.getElementById('x-refine__group__'+i)===null)
+                                let temp_id = [], temp_link = [],temp_id_child=[], temp_name = [];
+                                let idVar = 'x-refine__group_1__'+i;
+                                if(document.getElementById(idVar).getAttribute('id')==='x-refine__group_1__1')
                                 {
-                                    for(let j =0; j<(document.getElementById('x-refine__group_1__0').children[0]).children.length; j++){
+                                    
+                                    for(let j =0; j<(document.getElementById(idVar).children[0]).children.length; j++){
                                         //console.log([i],((document.getElementById('x-refine__group_1__0').children[0]).children[j].textContent));
                                         //console.log([i],((document.getElementById('x-refine__group_1__0').children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('href'));
-                                        filterList.push({
-                                            id: ((document.getElementById('x-refine__group_1__0').children[0]).children[j].textContent),//working till now
-                                            id_link:((document.getElementById('x-refine__group_1__0').children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('href')
-                                        })
+                                        temp_name = (document.getElementsByClassName('x-refine__left__nav'))[1].getElementsByTagName('h3')[i].textContent
+                                        temp_id.push(((document.getElementById(idVar).children[0]).children[j].textContent))
+                                        temp_link.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('href'));
+                                        temp_id_child.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('class'));
+                                        
                                     }
+                                    filterList.push({
+                                        name: temp_name,
+                                        id: temp_id,//working till now
+                                        id_link:temp_link,
+                                        id_child:temp_id_child
+                                    })
                                 }
-                                else{
-                                    //console.log(document.getElementsByClassName('x-refine__main__list')[i]);
-                                }
-                                /*
-                                if((document.getElementById('x-refine__group__'+i))===null)
+                                else if(document.getElementById(idVar).getAttribute('id')==='x-refine__group_1__0')
                                 {
-                                    console.log([i],"Null");
-                                    continue;
+                                    
+                                    for(let j =0; j<(document.getElementById(idVar).children[0]).children.length; j++){
+                                        temp_name = (document.getElementsByClassName('x-refine__left__nav'))[1].getElementsByTagName('h3')[i].textContent
+                                        temp_id.push(((document.getElementById(idVar).children[0]).children[j].textContent))
+                                        temp_link.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('href'));
+                                        temp_id_child.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('class'));
+                                        
+                                    }
+                                    filterList.push({
+                                        name: temp_name,
+                                        id: temp_id,
+                                        id_link:temp_link,
+                                        id_child:temp_id_child
+                                    })
                                 }
-                                else{
-                                    if(document.getElementById('x-refine__group__'+i).getAttribute('id')==='x-refine__group__8')
-                                    {
-                                        console.log([i],"pass");
-                                        tempID.push((document.getElementById('x-refine__group__8').children[0].innerText).split('\n'));
+                                else if(document.getElementById(idVar).getAttribute('id')==='x-refine__group_1__2')
+                                {
+                                    
+                                    for(let j =0; j<(document.getElementById(idVar).children[0]).children.length; j++){
+                                        temp_name = (document.getElementsByClassName('x-refine__left__nav'))[1].getElementsByTagName('h3')[i].textContent
+                                        temp_id.push(((document.getElementById(idVar).children[0]).children[j].textContent))
+                                        temp_link.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('href'));
+                                        temp_id_child.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('class'));
+                                        
                                     }
-                                    if(document.getElementById('x-refine__group__'+i).getAttribute('id')==='x-refine__group__0'){
-                                        tempID.push((document.getElementById('x-refine__group__0').children[0].innerText).split('\n'));
+                                    filterList.push({
+                                        name: temp_name,
+                                        id: temp_id,
+                                        id_link:temp_link,
+                                        id_child:temp_id_child
+                                    })
+                                }
+                                else if(document.getElementById(idVar).getAttribute('id')==='x-refine__group_1__3')
+                                {
+                                    
+                                    for(let j =0; j<(document.getElementById(idVar).children[0]).children.length; j++){
+                                        temp_name = (document.getElementsByClassName('x-refine__left__nav'))[1].getElementsByTagName('h3')[i].textContent
+                                        temp_id.push(((document.getElementById(idVar).children[0]).children[j].textContent))
+                                        temp_link.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('href'));
+                                        temp_id_child.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('class'));
+                                        
                                     }
-
-                                }*/
-                                
-                                //console.log((document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[i].getAttribute('href'));
-                                
-                                /*filterList.push({
-                                    name:(((document.getElementsByClassName('x-refine__left__nav')[0].children[i].getElementsByTagName('h3'))[0]).textContent)
-                                    id: (document.getElementById('x-refine__group__'+i).children[0].innerText).split('\n') //working till now
-                                    //id_link: (document.getElementById('x-refine__group__0').children[0]).getElementsByTagName("a")[i].getAttribute('href')
-                                })*/
-                            
-                            }
+                                    filterList.push({
+                                        name: temp_name,
+                                        id: temp_id,
+                                        id_link:temp_link,
+                                        id_child:temp_id_child
+                                    })
+                                }
+                                else if(document.getElementById(idVar).getAttribute('id')==='x-refine__group_1__4')
+                                {
+                                    
+                                    for(let j =0; j<(document.getElementById(idVar).children[0]).children.length; j++){
+                                        temp_name = (document.getElementsByClassName('x-refine__left__nav'))[1].getElementsByTagName('h3')[i].textContent
+                                        temp_id.push(((document.getElementById(idVar).children[0]).children[j].textContent))
+                                        temp_link.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('href'));
+                                        temp_id_child.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('class'));
+                                        
+                                    }
+                                    filterList.push({
+                                        name: temp_name,
+                                        id: temp_id,
+                                        id_link:temp_link,
+                                        id_child:temp_id_child
+                                    })
+                                }
+                                else if(document.getElementById(idVar).getAttribute('id')==='x-refine__group_1__5')
+                                {
+                                    
+                                    for(let j =0; j<(document.getElementById(idVar).children[0]).children.length; j++){
+                                        temp_name = (document.getElementsByClassName('x-refine__left__nav'))[1].getElementsByTagName('h3')[i].textContent
+                                        temp_id.push(((document.getElementById(idVar).children[0]).children[j].textContent))
+                                        temp_link.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('href'));
+                                        temp_id_child.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('class'));
+                                        
+                                    }
+                                    filterList.push({
+                                        name: temp_name,
+                                        id: temp_id,
+                                        id_link:temp_link,
+                                        id_child:temp_id_child
+                                    })
+                                }
+                                else if(document.getElementById(idVar).getAttribute('id')==='x-refine__group_1__6')
+                                {
+                                    
+                                    for(let j =0; j<(document.getElementById(idVar).children[0]).children.length; j++){
+                                        temp_name = (document.getElementsByClassName('x-refine__left__nav'))[1].getElementsByTagName('h3')[i].textContent
+                                        temp_id.push(((document.getElementById(idVar).children[0]).children[j].textContent))
+                                        temp_link.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('href'));
+                                        temp_id_child.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('class'));
+                                        
+                                    }
+                                    filterList.push({
+                                        name: temp_name,
+                                        id: temp_id,
+                                        id_link:temp_link,
+                                        id_child:temp_id_child
+                                    })
+                                }
+                                else if(document.getElementById(idVar).getAttribute('id')==='x-refine__group_1__7')
+                                {
+                                    
+                                    for(let j =0; j<(document.getElementById(idVar).children[0]).children.length; j++){
+                                        temp_name = (document.getElementsByClassName('x-refine__left__nav'))[1].getElementsByTagName('h3')[i].textContent
+                                        temp_id.push(((document.getElementById(idVar).children[0]).children[j].textContent))
+                                        temp_link.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('href'));
+                                        temp_id_child.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('class'));
+                                        
+                                    }
+                                    filterList.push({
+                                        name: temp_name,
+                                        id: temp_id,
+                                        id_link:temp_link,
+                                        id_child:temp_id_child
+                                    })
+                                }
+                                else if(document.getElementById(idVar).getAttribute('id')==='x-refine__group_1__8')
+                                {
+                                    
+                                    for(let j =0; j<(document.getElementById(idVar).children[0]).children.length; j++){
+                                        temp_name = (document.getElementsByClassName('x-refine__left__nav'))[1].getElementsByTagName('h3')[i].textContent
+                                        temp_id.push(((document.getElementById(idVar).children[0]).children[j].textContent))
+                                        temp_link.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('href'));
+                                        temp_id_child.push(((document.getElementById(idVar).children[0]).children[j]).getElementsByTagName('a')[0].getAttribute('class'));
+                                        
+                                    }
+                                    filterList.push({
+                                        name: temp_name,
+                                        id: temp_id,
+                                        id_link:temp_link,
+                                        id_child:temp_id_child
+                                    })
+                                }
+                            }                  
                             }
                             catch(e){ console.log(e);}
+                            // Need to work here
+                            /*if(document.getElementById('x-refine__group__0')){
+                                filterList.push({
+                                    name: document.getElementById('x-refine__group__0').previousSibling.textContent,
+                                    id: document.getElementById('x-refine__group__0').children[0].textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n').split('\n\n').filter(word => word.trim().length > 0)       
+                                })
+                            }*/
+                            // Group 0 [has issue]
+
+                            // Group 2
+                            if(document.getElementById('x-refine__group__2')){
+                                let temp_id =[], temp_link=[];
+                                for(let j=0;j<((document.getElementById('x-refine__group__2').children[0]).children.length);j++)
+                                {
+                                    //console.log([j],((document.getElementById('x-refine__group__2').children[0]).children[j].textContent));
+                                    //console.log(((document.getElementById('x-refine__group__2').children[0]).children[j]).children[0].children[0].getAttribute('href'))
+                                    temp_id.push(((document.getElementById('x-refine__group__2').children[0]).children[j].textContent))
+                                    temp_link.push(((document.getElementById('x-refine__group__2').children[0]).children[j]).children[0].children[0].getAttribute('href'));
+
+                                }
+                                filterList.push({
+                                    name: document.getElementById('x-refine__group__2').previousSibling.textContent,
+                                    id: temp_id,
+                                    id_link:temp_link,
+                                })
+                            }
+                            // Group 3 is not working 
+                            // Group 4
+                            if(document.getElementById('x-refine__group__4')){
+                                let temp_id =[], temp_link=[];
+                                for(let j=0;j<((document.getElementById('x-refine__group__4').children[0]).children.length);j++)
+                                {
+                                    temp_id.push(((document.getElementById('x-refine__group__4').children[0]).children[j].textContent))
+                                    temp_link.push(((document.getElementById('x-refine__group__4').children[0]).children[j]).children[0].children[0].getAttribute('href'));
+
+                                }
+                                filterList.push({
+                                    name: document.getElementById('x-refine__group__4').previousSibling.textContent,
+                                    id: temp_id,
+                                    id_link:temp_link,
+                                })
+                            }
+                            // Group 5 [Has issue]
+                            if(document.getElementById('x-refine__group__5')){
+                                let temp_id =[], temp_link=[];
+                                for(let j=0;j<((document.getElementById('x-refine__group__5').children[0]).children.length);j++)
+                                {
+                                    temp_id.push(((document.getElementById('x-refine__group__5').children[0]).children[j].textContent))
+                                    temp_link.push(((document.getElementById('x-refine__group__5').children[0]).children[j]).children[0].children[0].getAttribute('href'));
+
+                                }
+                                filterList.push({
+                                    name: document.getElementById('x-refine__group__5').previousSibling.textContent,
+                                    id: temp_id,
+                                    id_link:temp_link,
+                                })
+                            }
+                            // Group 6 
+                            if(document.getElementById('x-refine__group__6')){
+                                let temp_id =[], temp_link=[];
+                                for(let j=0;j<((document.getElementById('x-refine__group__6').children[0]).children.length);j++)
+                                {
+                                    temp_id.push(((document.getElementById('x-refine__group__6').children[0]).children[j].textContent))
+                                    temp_link.push(((document.getElementById('x-refine__group__6').children[0]).children[j]).children[0].children[0].getAttribute('href'));
+
+                                }
+                                filterList.push({
+                                    name: document.getElementById('x-refine__group__6').previousSibling.textContent,
+                                    id: temp_id,
+                                    id_link:temp_link,
+                                })
+                            }
+                            // Group 7 [Has issue]
+                            if(document.getElementById('x-refine__group__7')){
+                                let temp_id =[], temp_link=[];
+                                for(let j=0;j<((document.getElementById('x-refine__group__7').children[0]).children.length);j++)
+                                {
+                                    temp_id.push(((document.getElementById('x-refine__group__7').children[0]).children[j].textContent))
+                                    temp_link.push(((document.getElementById('x-refine__group__7').children[0]).children[j]).children[0].children[0].getAttribute('href'));
+
+                                }
+                                filterList.push({
+                                    name: document.getElementById('x-refine__group__7').previousSibling.textContent,
+                                    id: temp_id,
+                                    id_link:temp_link,
+                                })
+                            }
+                            // Group 8 
+                            if(document.getElementById('x-refine__group__8')){
+                                let temp_id =[], temp_link=[];
+                                for(let j=0;j<((document.getElementById('x-refine__group__8').children[0]).children.length);j++)
+                                {
+                                    temp_id.push(((document.getElementById('x-refine__group__8').children[0]).children[j].textContent))
+                                    temp_link.push(((document.getElementById('x-refine__group__8').children[0]).children[j]).children[0].children[0].getAttribute('href'));
+
+                                }
+                                filterList.push({
+                                    name: document.getElementById('x-refine__group__8').previousSibling.textContent,
+                                    id: temp_id,
+                                    id_link:temp_link,
+                                })
+                            }
                         console.log(filterList);
                     }                  
                     for (i = 0; i < filterList.length; i++)
@@ -200,7 +418,7 @@ function openModal(port) {
                             idLink.innerHTML = filterList[i].id[j];
                             idLink.target = "_self";
                             checkbox.type = "checkbox";
-                            checkbox.id = filterList[i].id_child[j];
+                            //checkbox.id = filterList[i].id_child[j];
                             checkbox.name = filterList[i].id[j];
                             checkbox.onclick = function(e){
                                 
@@ -626,21 +844,25 @@ class UI {
         searchButton.setAttribute('id', 'searchButton');
         searchButton.innerText = 'Search';
         searchButton.className = "btn btn-primary"
+        searchButton.style.cssText = `background-color:yellow;color:blue;`;  
 
         const filterButton = document.createElement('button');
         filterButton.setAttribute('id', 'filterButton');
         filterButton.innerText = 'Filter';
         filterButton.className = "btn btn-primary"
+        filterButton.style.cssText = `background-color:yellow;color:blue;`;  
 
         const sortButton = document.createElement('button');
         sortButton.setAttribute('id', 'sortButton');
         sortButton.innerText = 'Sort';
         sortButton.className = "btn btn-primary"
+        sortButton.style.cssText = `background-color:yellow;color:blue;`;  
 
         const pageButton = document.createElement('button');
         pageButton.setAttribute('id', 'pageButton');
         pageButton.innerText = 'Page';
         pageButton.className = "btn btn-primary"
+        pageButton.style.cssText = `background-color:yellow;color:blue;`;  
 
         divcol.appendChild(searchButton);
         divcol.appendChild(filterButton);
