@@ -126,9 +126,9 @@ function openModal(port) {
                     }
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'ebay'){
                         try{
-                            console.log(document.getElementById('x-refine__group__0').children[0].textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n').split('\n\n').filter(word => word.trim().length > 0));
-                            console.log(document.getElementById('x-refine__group__2').children[0].textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n').split('\n\n').filter(word => word.trim().length > 0));
-                            console.log(document.getElementById('x-refine__group__2').previousSibling.textContent);
+                            //console.log(document.getElementById('x-refine__group__0').children[0].textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n').split('\n\n').filter(word => word.trim().length > 0));
+                            //console.log(document.getElementById('x-refine__group__2').children[0].textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n').split('\n\n').filter(word => word.trim().length > 0));
+                            //console.log(document.getElementById('x-refine__group__2').previousSibling.textContent);
                             for(let i=0; i<=8; i++)
                             {
                                 let temp_id = [], temp_link = [],temp_id_child=[], temp_name = [];
@@ -291,15 +291,28 @@ function openModal(port) {
                             }                  
                             }
                             catch(e){ console.log(e);}
-                            // Need to work here
-                            /*if(document.getElementById('x-refine__group__0')){
+                            // Group 0
+                            if(document.getElementById('x-refine__group__0')){
+                                let temp_id = [], temp_link = [];
+                                //console.log(document.getElementsByClassName('srp-refine__category__item srp-refine__category__list--flush')[0].children[0].textContent);
+                                //console.log(document.getElementsByClassName('srp-refine__category__item srp-refine__category__list--flush')[0].children[1].children[1].children[0].textContent);
+                                for(let i=0; i<document.getElementsByClassName('srp-refine__category__item').length; i++){
+                                    if(document.getElementsByClassName('srp-refine__category__item')[i].nodeValue===0){
+                                        //console.log(document.getElementsByClassName('srp-refine__category__item')[i].textContent);
+                                        console.log([i]);
+                                        
+                                    }
+                                    else{
+                                        temp_id.push(document.getElementsByClassName('srp-refine__category__item')[i].children[0].innerText);
+                                        temp_link.push(document.getElementsByClassName('srp-refine__category__item')[i].children[0].getAttribute('href'));
+                                    }
+                                }
                                 filterList.push({
                                     name: document.getElementById('x-refine__group__0').previousSibling.textContent,
-                                    id: document.getElementById('x-refine__group__0').children[0].textContent.replace(/(.*?\s.*?\s)/g, '$1' + '\n').split('\n\n').filter(word => word.trim().length > 0)       
+                                    id: temp_id,
+                                    id_link:temp_link
                                 })
-                            }*/
-                            // Group 0 [has issue]
-
+                            }
                             // Group 2
                             if(document.getElementById('x-refine__group__2')){
                                 let temp_id =[], temp_link=[];
@@ -318,6 +331,20 @@ function openModal(port) {
                                 })
                             }
                             // Group 3 is not working 
+                            if(document.getElementById('x-refine__group__3')){
+                                let temp_id =[], temp_link=[];
+                                for(let j=0;j<((document.getElementById('x-refine__group__3').children[0]).children.length);j++)
+                                {
+                                    temp_id.push(((document.getElementById('x-refine__group__3').children[0]).children[j].textContent));
+                                    temp_link.push((((document.getElementById('x-refine__group__3').children[0]).children[j]).children[0].children[0].getAttribute('href')));
+
+                                }
+                                filterList.push({
+                                    name: document.getElementById('x-refine__group__4').previousSibling.textContent,
+                                    id: temp_id,
+                                    id_link:temp_link
+                                })
+                            }
                             // Group 4
                             if(document.getElementById('x-refine__group__4')){
                                 let temp_id =[], temp_link=[];
@@ -335,17 +362,22 @@ function openModal(port) {
                             }
                             // Group 5 [Has issue]
                             if(document.getElementById('x-refine__group__5')){
-                                let temp_id =[], temp_link=[];
-                                for(let j=0;j<((document.getElementById('x-refine__group__5').children[0]).children.length);j++)
+                                let temp_5_id =[], temp_5_link=[];
+                                for(let m=0;m<5;m++)
                                 {
-                                    temp_id.push(((document.getElementById('x-refine__group__5').children[0]).children[j].textContent))
-                                    temp_link.push(((document.getElementById('x-refine__group__5').children[0]).children[j]).children[0].children[0].getAttribute('href'));
-
+                                    if(document.getElementsByClassName('x-refine__single-select__drop-down-text-form')[0].getAttribute('class')==='x-refine__single-select__drop-down-text-form')
+                                    {
+                                    }
+                                    else{
+                                        temp_5_id.push(((document.getElementById('x-refine__group__5').children[0]).children[m].children[0].children[0].children[0].innerText));
+                                        temp_5_link.push(((document.getElementById('x-refine__group__5').children[0]).children[m]).children[0].children[0].getAttribute('href'));
+                                    }
+                                
                                 }
                                 filterList.push({
                                     name: document.getElementById('x-refine__group__5').previousSibling.textContent,
-                                    id: temp_id,
-                                    id_link:temp_link,
+                                    id: temp_5_id,
+                                    id_link:temp_5_link
                                 })
                             }
                             // Group 6 
@@ -363,19 +395,24 @@ function openModal(port) {
                                     id_link:temp_link,
                                 })
                             }
-                            // Group 7 [Has issue]
+                            // Group 7 [Has issue- Partial]
                             if(document.getElementById('x-refine__group__7')){
                                 let temp_id =[], temp_link=[];
                                 for(let j=0;j<((document.getElementById('x-refine__group__7').children[0]).children.length);j++)
                                 {
-                                    temp_id.push(((document.getElementById('x-refine__group__7').children[0]).children[j].textContent))
-                                    temp_link.push(((document.getElementById('x-refine__group__7').children[0]).children[j]).children[0].children[0].getAttribute('href'));
-
+                                    if(document.getElementById('x-refine__group__7').children[0].children[j].getAttribute('name')==='LH_PrefLoc')
+                                    {
+                                        continue;
+                                    }
+                                    else{
+                                        temp_id.push(((document.getElementById('x-refine__group__7').children[0]).children[j].textContent))
+                                        temp_link.push(((document.getElementById('x-refine__group__7').children[0]).children[j]).children[0].children[0].getAttribute('href'));
+                                    }
                                 }
                                 filterList.push({
                                     name: document.getElementById('x-refine__group__7').previousSibling.textContent,
                                     id: temp_id,
-                                    id_link:temp_link,
+                                    id_link:temp_link
                                 })
                             }
                             // Group 8 
@@ -747,7 +784,7 @@ class UI {
             position: auto;
             float: left;
             padding: 20px;
-            width: auto%;
+            width: 40%;
             height: 400px;
             border-radius: 100px;
             margin-left:auto;
@@ -820,20 +857,20 @@ class UI {
         rootDiv.className = get_class_parent_node;  
               
         const searchbtn= document.createElement('div');
-        //searchbtn.style.cssText = `width:800px; margin:0 auto;`;        
+        //searchbtn.style.cssText = `width:500px; margin:0 auto;`;        
         searchbtn.setAttribute('id', 'searchList');
 
         const filterbtn= document.createElement('div');
-        //filterbtn.style.cssText = `width:800px; margin:0 auto;`;        
+        //filterbtn.style.cssText = `width:500px; margin:0 auto;`;        
         filterbtn.setAttribute('id', 'filterList');
         filterbtn.className = get_class_parent_node;
 
         const sortbtn= document.createElement('div');
-        //sortbtn.style.cssText = `width:800px; margin:0 auto;`;        
+        //sortbtn.style.cssText = `width:500px; margin:0 auto;`;        
         sortbtn.setAttribute('id', 'sortList');
 
         const pagebtn= document.createElement('div');
-        //pagebtn.style.cssText = `width:800px; margin:0 auto;`;        
+        //pagebtn.style.cssText = `width:500px; margin:0 auto;`;        
         pagebtn.setAttribute('id', 'pageList');
         
         const divSubmit = document.createElement('div');
