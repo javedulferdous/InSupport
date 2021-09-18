@@ -2,17 +2,7 @@ chrome.runtime.onConnect.addListener(openModal);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Processing
 let allLinks = [],filterList = [],get_class_parent_node, tempID = [];
-
-
-/*if( window.x === undefined)
-{
-    //x = document.getElementsByClassName('a-section a-spacing-double-large')[0].childNodes;
-    //console.log(x);
-}*/
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 function openModal(port) {
     port.onMessage.addListener(request => {
@@ -928,20 +918,20 @@ class UI {
         rootDiv.className = get_class_parent_node;  
               
         const searchbtn= document.createElement('div');
-        //searchbtn.style.cssText = `width:500px; margin:0 auto;`;        
+        searchbtn.style.cssText = `width:500px; margin:0 auto;`;        
         searchbtn.setAttribute('id', 'searchList');
 
         const filterbtn= document.createElement('div');
-        //filterbtn.style.cssText = `width:500px; margin:0 auto;`;        
+        filterbtn.style.cssText = `width:500px; margin:0 auto;`;        
         filterbtn.setAttribute('id', 'filterList');
         filterbtn.className = get_class_parent_node;
 
         const sortbtn= document.createElement('div');
-        //sortbtn.style.cssText = `width:500px; margin:0 auto;`;        
+        sortbtn.style.cssText = `width:500px; margin:0 auto;`;        
         sortbtn.setAttribute('id', 'sortList');
 
         const pagebtn= document.createElement('div');
-        //pagebtn.style.cssText = `width:500px; margin:0 auto;`;        
+        pagebtn.style.cssText = `width:500px; margin:0 auto;`;        
         pagebtn.setAttribute('id', 'pageList');
         
         const divSubmit = document.createElement('div');
