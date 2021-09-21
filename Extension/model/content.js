@@ -498,17 +498,11 @@ function openModal(port) {
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'target'){
                         let temp_id = [], temp_name= [];
                         console.log(document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[0].getElementsByTagName('h3')[0].innerText)
+                        try{
+                        temp_name.push(document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[0].getElementsByTagName('h3')[0].innerText);
                         for(let i =0;i<document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[0].children[1].children[0].length; i++)
                         {   // Need to work on extracting link
-                            temp_name.push(document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[0].getElementsByTagName('h3')[0].innerText);
                             temp_id.push(document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[0].children[1].children[0].children[i].children[0].innerText);
-                        }
-                        for(let i =0;i<document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[2].children[0].children.length; i++){
-                            if(document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[2].children[0].children[i]){
-                                for(let i =0;i<document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[2].children[0].children[0].children[1].children[0].children[0].children[0].children.length; i++){
-                                temp_id.push(document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[2].children[0].children[0].children[1].children[0].children[0].children[0].children[i].innerText);
-                                }
-                            }
                         }
                         filterList.push({
                             name: temp_name,
@@ -517,6 +511,16 @@ function openModal(port) {
                             id_child:[],
                             id_id_name: []
                         })
+                        }
+                        catch(e){}
+                            for(let i =0;i<document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[2].children[0].children.length; i++){
+                                console.log(document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[2].children[0].children[i].getElementsByTagName('a')[0].innerText);   
+                                console.log(document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[2].children[0].children[1].children[1].getElementsByTagName('input')[i].value);      
+                                //temp_id.push(document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[2].children[0].children[0].children[1].children[0].children[0].children[0].children[i].innerText);
+                                }
+                            
+                        
+                        
                     }                
                     for (i = 0; i < filterList.length; i++)
                     {
@@ -573,6 +577,8 @@ function openModal(port) {
                 }
                 function searchFunction(){
                     let searchInfo = [];
+                    let searchWord = (document.getElementsByClassName('Heading__StyledHeading-sc-1mp23s9-0 UABvu h-display-block h-margin-b-tiny')[0].innerText).match(/\w+|"[^"]+"/g).slice(-1)[0];
+
                     if(document.location.hostname === '')
                     {
                         console.log("saved page");
@@ -624,11 +630,10 @@ function openModal(port) {
                         });
                     }
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'target'){
-                        console.log(document.getElementsByClassName('searchInputForm')[0].children[0].value);
                         searchInfo.push({
-                            input_id:document.getElementsByClassName('searchInputForm')[0].children[1].getAttribute('class'),
-                            input_class:document.getElementsByClassName('searchInputForm')[0].children[1].getAttribute('class'),
-                            id_search: document.getElementsByClassName('searchInputForm')[0].children[0].value,
+                            input_id:document.getElementsByClassName('SearchInput__StyledInput-sc-i05682-0 kMtJRh')[0].getAttribute('class'),
+                            input_class:document.getElementsByClassName('SearchInput__StyledInput-sc-i05682-0 kMtJRh')[0].getAttribute('class'),
+                            id_search: searchWord,
                             id_search_link:'https://www.target.com/s?searchTerm='
                         });
                     }
@@ -725,13 +730,27 @@ function openModal(port) {
                         alert("walmart");
                     }
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'target'){
-                        let expandNode = (document.getElementsByClassName('h-position-relative')[1].children[0]).click()
-                        let sortClass = document.getElementsByClassName('OptionsList-g9hycc-0 fvHfrH')[0];
-                        for(let i=0; i<6; i++){
-                            console.log(sortClass.children[i].innerText);
-                            //sortNumber.push(((sortClass.children[0].getElementsByTagName('li')[i]).getElementsByTagName('a')[0]).getAttribute('href'));
+                        document.getElementsByClassName('BaseButton-sc-3v3oog-0 styles__CircularBaseButton-sc-1b362wk-0 xuSzc eSGYkb')[0].click();
+                        document.getElementsByClassName('sc-gtsrHT bppWVE h-margin-l-tight')[0].click();
+                        for(let i=0; i<=6; i++){
+                            sortName.push(document.getElementsByClassName('styles__ContentWrapper-sc-190xyua-1 ixWUPy')[0].getElementsByClassName('h-border-b h-text-left h-padding-v-default')[i].innerText);
                             
                         }
+                        /*(document.getElementsByClassName('h-position-relative')[1].children[0]).click();
+                        let sortClass = document.getElementsByClassName('OptionsList-g9hycc-0 fvHfrH')[0];
+                        for(let i=0; i<6; i++){
+                            sortName.push(sortClass.children[i].innerText);
+                           
+                        }*/ 
+                        let searchWord = (document.getElementsByClassName('Heading__StyledHeading-sc-1mp23s9-0 UABvu h-display-block h-margin-b-tiny')[0].innerText).match(/\w+|"[^"]+"/g).slice(-1)[0];
+
+                        sortNumber.push('https://www.target.com/s?searchTerm='+searchWord+'&sortBy=relevance');                            
+                        sortNumber.push('https://www.target.com/s?searchTerm='+searchWord+'&sortBy=Featured');
+                        sortNumber.push('https://www.target.com/s?searchTerm='+searchWord+'&sortBy=PriceLow');
+                        sortNumber.push('https://www.target.com/s?searchTerm='+searchWord+'&sortBy=PriceHigh');
+                        sortNumber.push('https://www.target.com/s?searchTerm='+searchWord+'&sortBy=RatingHigh');
+                        sortNumber.push('https://www.target.com/s?searchTerm='+searchWord+'&sortBy=bestselling');
+                        sortNumber.push('https://www.target.com/s?searchTerm='+searchWord+'&sortBy=newest');                
                     }
                     var list = document.createElement("ul");
                     for (var i in sortName) {
@@ -829,6 +848,21 @@ function openModal(port) {
                     }
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'walmart'){
                         console.log('walmart');
+                    }
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'target'){
+                            document.getElementsByClassName('BaseButton-sc-3v3oog-0 SelectBox__BlankButton-sc-a7khb8-4 xuSzc iwqDGe SelectBox__SelectButtonWithValidation-sc-a7khb8-5 dnkazu')[0].click()
+
+                            let nodeNumber = document.getElementsByClassName('Col-favj32-0 sc-jSgupP jkeqlL eVYAHa')[0].children[0].children[0].children.length;
+                            document.getElementsByClassName('Button-bwu3xu-0 SelectBox__SelectButtonWithValidation-sc-6gt3w9-1 hUOeWC kCheAN')[0].click();
+                            for(let i = 0; i<42; i++){
+                                sentPageList.push({
+                                    id: document.getElementsByClassName('OptionsList-g9hycc-0 fvHfrH')[0].children[i].textContent,
+                                    id_link_page: "https://www.target.com/s?searchTerm="+document.getElementsByClassName('searchInputForm')[0].children[0].value+"&sortBy=Featured&Nao="+ i*24
+                                });
+                            }
+                            console.log(sentPageList);
+
+
                     }
                     for (i = 0; i < sentPageList.length; i++) {
                         var hLink = document.createElement("a");
