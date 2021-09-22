@@ -12,6 +12,7 @@ function openModal(port) {
             if (!modal) {
                 body.insertBefore(UI.modalMenu(), body.firstChild);
                 let filterdata = document.getElementById('filterButton');
+                document.getElementById("searchButton").focus();
                 filterdata.addEventListener('click', filterFunction);
 
                 document.getElementById('searchButton').addEventListener('click', searchFunction);
@@ -497,33 +498,42 @@ function openModal(port) {
                     }  
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'target'){
                         let temp_id = [], temp_name= [];
-                        console.log(document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[0].getElementsByTagName('h3')[0].innerText)
-                        try{
-                        temp_name.push(document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[0].getElementsByTagName('h3')[0].innerText);
-                        for(let i =0;i<document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[0].children[1].children[0].length; i++)
-                        {   // Need to work on extracting link
-                            temp_id.push(document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[0].children[1].children[0].children[i].children[0].innerText);
-                        }
-                        filterList.push({
-                            name: temp_name,
-                            id: temp_id,
-                            id_link:[],
-                            id_child:[],
-                            id_id_name: []
-                        })
-                        }
-                        catch(e){}
-                            for(let i =0;i<document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[2].children[0].children.length; i++){
-                                console.log(document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[2].children[0].children[i].getElementsByTagName('a')[0].innerText);   
-                                console.log(document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[2].children[0].children[1].children[1].getElementsByTagName('input')[i].value);      
-                                //temp_id.push(document.getElementsByClassName('Row-uds8za-0 fdXLni')[0].children[2].children[0].children[0].children[1].children[0].children[0].children[0].children[i].innerText);
-                                }
+                        document.getElementsByClassName('BaseButton-sc-3v3oog-0 styles__CircularBaseButton-sc-1b362wk-0 xuSzc eSGYkb')[0].click()
+                        if(document.getElementsByClassName('h-display-flex h-flex-direction-col')[13])
+                        {
+                            document.getElementsByClassName('h-display-flex h-flex-direction-col')[13].click();
+
+                            for(let i =1; i<document.getElementsByClassName('styles__ContentWrapper-sc-190xyua-1 ixWUPy')[0].children.length-1; i++){
+                                temp_id.push(document.getElementsByClassName('styles__ContentWrapper-sc-190xyua-1 ixWUPy')[0].children[i].innerText);
+                            }   
+                                filterList.push({
+                                    name: document.getElementsByClassName('styles__ContentWrapper-sc-190xyua-1 ixWUPy')[0].children[0].innerText,
+                                    id: temp_id,
+                                    id_link:[],
+                                    id_child:[],
+                                    id_id_name: []
+                                })
                             
-                        
+                        }
+                        else if(document.getElementsByClassName('h-display-flex h-flex-direction-col')[14]){
+                            document.getElementsByClassName('h-display-flex h-flex-direction-col')[14].click();
+
+                            for(let i =1; i<document.getElementsByClassName('styles__ContentWrapper-sc-190xyua-1 ixWUPy')[0].children.length-1; i++){
+                                temp_id.push(document.getElementsByClassName('styles__ContentWrapper-sc-190xyua-1 ixWUPy')[0].children[i].innerText);
+                            }   
+                                filterList.push({
+                                    name: document.getElementsByClassName('styles__ContentWrapper-sc-190xyua-1 ixWUPy')[0].children[0].innerText,
+                                    id: temp_id,
+                                    id_link:[],
+                                    id_child:[],
+                                    id_id_name: []
+                                })
+                        }
+                         
+                        console.log(temp_name);
                         
                     }                
-                    for (i = 0; i < filterList.length; i++)
-                    {
+                    for (i = 0; i < filterList.length; i++){
                         var cinput = document.createElement("input");
                         cinput.setAttribute('type', 'submit');
                         cinput.setAttribute('value', filterList[i].name);
@@ -850,16 +860,22 @@ function openModal(port) {
                         console.log('walmart');
                     }
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'target'){
-                            document.getElementsByClassName('BaseButton-sc-3v3oog-0 SelectBox__BlankButton-sc-a7khb8-4 xuSzc iwqDGe SelectBox__SelectButtonWithValidation-sc-a7khb8-5 dnkazu')[0].click()
-
-                            let nodeNumber = document.getElementsByClassName('Col-favj32-0 sc-jSgupP jkeqlL eVYAHa')[0].children[0].children[0].children.length;
-                            document.getElementsByClassName('Button-bwu3xu-0 SelectBox__SelectButtonWithValidation-sc-6gt3w9-1 hUOeWC kCheAN')[0].click();
-                            for(let i = 0; i<42; i++){
+                            // Need to work on why text nodes getting empty string
+                            document.getElementsByClassName('BaseButton-sc-3v3oog-0 SelectBox__BlankButton-sc-a7khb8-4 xuSzc iwqDGe SelectBox__SelectButtonWithValidation-sc-a7khb8-5 dnkazu')[0].click();
+                            console.log([0], document.getElementsByClassName('OptionsList-sc-1k3sxb6-0 GIgmJ')[0].children[0].innerText);
+                            let totalSearchResult = document.getElementsByClassName('Heading__StyledHeading-sc-1mp23s9-0 UABvu h-display-block h-margin-b-tiny')[0].innerText.match(/(\d+)/)[0];
+                            let pageNumber = document.getElementsByClassName('Pagination__StyledSpan-sc-1nywsxy-5 dPMkLN')[0].innerText.replace(/\D/g, '').slice(-2);
+                            
+                            try{
+                            for(let i = 0; i<document.getElementsByClassName('Pagination__StyledSpan-sc-1nywsxy-5 dPMkLN')[0].innerText.replace(/\D/g, '').slice(-2); i++){
+                                console.log([i], document.getElementsByClassName('OptionsList-sc-1k3sxb6-0 GIgmJ')[0].children[0].innerText);
                                 sentPageList.push({
-                                    id: document.getElementsByClassName('OptionsList-g9hycc-0 fvHfrH')[0].children[i].textContent,
-                                    id_link_page: "https://www.target.com/s?searchTerm="+document.getElementsByClassName('searchInputForm')[0].children[0].value+"&sortBy=Featured&Nao="+ i*24
+                                    id: document.getElementsByClassName('OptionsList-sc-1k3sxb6-0 GIgmJ')[0].children[i].children[0].children[0].children[0].textContent,
+                                    id_link_page: "https://www.target.com/s?searchTerm=laptop&sortBy=Featured&Nao="+ i*Math.round(totalSearchResult/pageNumber)
                                 });
                             }
+                            }
+                            catch(e){}
                             console.log(sentPageList);
 
 
