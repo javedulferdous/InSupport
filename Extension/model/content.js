@@ -549,7 +549,6 @@ function openModal(port) {
                     } 
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'bestbuy'){
                         try{
-                        let temp_id = [];
                         temp_id.push(document.getElementsByClassName('facet-list-container')[0].children[1].children[1].children[0].children[0].children[1].children[0].children[1].innerText);
                         filterList.push({
                             name: document.getElementsByClassName('facet-list-container')[0].children[1].children[0].innerText,
@@ -982,7 +981,68 @@ function openModal(port) {
                         }
                     }
                     catch(e){}
-                    }               
+                    }         
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'costco'){
+                        try{
+                        if(document.getElementsByClassName('accordion panel-group')[0].children[0]){
+                            let temp_id = [], temp_link = [];
+                            for(let i = 0; i<document.getElementsByClassName('accordion panel-group')[0].children[0].children[1].children[0].children.length;i++){
+                                temp_id.push(document.getElementsByClassName('accordion panel-group')[0].children[0].children[1].children[0].children[i].children[0].children[0].innerText.split('\n')[0]);
+                                temp_link.push(document.getElementsByClassName('accordion panel-group')[0].children[0].children[1].children[0].children[i].children[0].getAttribute('href'));
+                            }
+                            filterList.push({
+                                name: document.getElementsByClassName('accordion panel-group')[0].children[0].children[0].innerText,
+                                id: temp_id,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('accordion panel-group')[1].children[0]){
+                            let temp_1_id = [], temp_1_link = [];
+                            for(let i = 0; i<document.getElementsByClassName('accordion panel-group')[0].children[1].children[1].children[0].children.length-1;i++){
+                                temp_1_id.push(document.getElementsByClassName('accordion panel-group')[0].children[1].children[1].children[0].children[i].children[0].children[2].children[0].innerText);
+                                temp_1_link.push(document.getElementsByClassName('accordion panel-group')[0].children[1].children[1].children[0].children[i].getAttribute('href'));
+                            }
+                            filterList.push({
+                                name: document.getElementsByClassName('accordion panel-group')[0].children[1].children[0].children[0].children[0].innerText,
+                                id: temp_1_id,
+                                id_link: temp_1_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('accordion panel-group')[0].children[2]){
+                            let temp_2_id = [], temp_2_link = [];
+                            for(let i = 0; i<document.getElementsByClassName('accordion panel-group')[0].children[2].children[1].children[0].children.length-1;i++){
+                                temp_2_id.push(document.getElementsByClassName('accordion panel-group')[0].children[2].children[1].children[0].children[i].children[0].children[2].children[0].innerText);
+                                temp_2_link.push(document.getElementsByClassName('accordion panel-group')[0].children[2].children[1].children[0].children[i].getAttribute('href'));
+                            }
+                            filterList.push({
+                                name: document.getElementsByClassName('accordion panel-group')[0].children[2].children[0].children[0].children[0].innerText,
+                                id: temp_2_id,
+                                id_link: temp_2_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('accordion panel-group')[0].children[3]){
+                            let temp_3_id = [], temp_3_link = [];
+                            for(let i = 0; i<document.getElementsByClassName('accordion panel-group')[0].children[3].children[1].children[0].children.length-1;i++){
+                                temp_3_id.push(document.getElementsByClassName('accordion panel-group')[0].children[3].children[1].children[0].children[i].children[0].children[2].children[0].innerText);
+                                temp_3_link.push(document.getElementsByClassName('accordion panel-group')[0].children[3].children[1].children[0].children[i].getAttribute('href'));
+                            }
+                            filterList.push({
+                                name: document.getElementsByClassName('accordion panel-group')[0].children[3].children[0].children[0].children[0].innerText,
+                                id: temp_3_id,
+                                id_link: temp_3_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        }
+                        catch(e){console.log(e);}
+                    }      
                     for (i = 0; i < filterList.length; i++){
                         var cinput = document.createElement("input");
                         cinput.setAttribute('type', 'submit');
@@ -1022,7 +1082,6 @@ function openModal(port) {
                             document.getElementById("filterList").appendChild(node);
                         }
                     }
-                    
                     var coll = document.getElementsByClassName("collapsible");
                     for (let i = 0; i < coll.length; i++) {
                     coll[i].addEventListener("click", function() {
@@ -1107,13 +1166,15 @@ function openModal(port) {
                         });
                     }
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'costco'){
+                        try{
                         searchInfo.push({
-                            input_id:document.getElementsByClassName('search-bar input-field')[0].children[0].getAttribute('id'),
-                            input_class:document.getElementsByClassName('search-bar input-field')[0].children[0].getAttribute('class'),
-                            id_search: document.getElementsByClassName('search-bar input-field')[0].children[0].value,
+                            input_id:document.getElementById('search-field').getAttribute('id'),
+                            input_class:document.getElementById('search-field').getAttribute('class'),
+                            id_search: document.getElementsByClassName('toolbar')[0].innerText.match(/\w+|"[^"]+"/g).slice(-1)[0],
                             id_search_link:'https://www.costco.com/CatalogSearch?keyword='
-                            //searchButtonClass: (livesearchNode.childNodes[3].children[0].getElementsByTagName('input')[0]).value.getAttribute('class')
                         });
+                        }
+                        catch(e){}
                     }
                     try{
                             let inputBox = document.createElement('input');
@@ -1125,8 +1186,10 @@ function openModal(port) {
                             let buttonNode = document.createElement('input');
                             buttonNode.setAttribute('type', 'submit');
                             buttonNode.setAttribute('value', 'Search');
-                            buttonNode.className = "btn btn-primary";
+                            buttonNode.className = "btn btn-success";
+                            
                             buttonNode.onclick = function(){
+                                try{
                                 let inputItem = document.getElementById('nav-search-bar-form').value;
                                 if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '')==='amazon')
                                 {
@@ -1141,6 +1204,11 @@ function openModal(port) {
                                 else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '')==='bestbuy'){
                                     window.location.href = 'https://www.bestbuy.com/site/searchpage.jsp?st='+inputItem.replace(' ','+')
                                 }
+                                else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '')==='costco'){
+                                    window.location.href = 'https://www.costco.com/CatalogSearch?keyword='+inputItem.replace(' ','+')
+                                }
+                                }
+                                catch(e){}
                             }
                             document.getElementById("searchList").appendChild(inputBox);
                             document.getElementById("searchList").appendChild(buttonNode);
@@ -1245,6 +1313,17 @@ function openModal(port) {
                         sortNumber.push('https://www.bestbuy.com/site/searchpage.jsp?st='+document.getElementsByClassName('search-bar input-field')[0].children[0].value+'&sp=-displaydate%20skuidsaas');
                         sortNumber.push('https://www.bestbuy.com/site/searchpage.jsp?st='+document.getElementsByClassName('search-bar input-field')[0].children[0].value+'&sp=%2Bbrand%20skuidsaas');  
                         sortNumber.push('https://www.bestbuy.com/site/searchpage.jsp?st='+document.getElementsByClassName('search-bar input-field')[0].children[0].value+'&sp=-brand%20skuidsaas');  
+                    }
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'costco'){
+                        for(let i=0; i<document.getElementById('sort_by').children.length; i++){
+                            sortName.push(document.getElementById('sort_by').children[i].innerText.replace(/\s/g, ''));
+                        }
+                        sortNumber.push('https://www.costco.com/CatalogSearch?keyword='+document.getElementsByClassName('toolbar')[0].innerText.match(/\w+|"[^"]+"/g).slice(-1)[0]+'&sortBy=+');                            
+                        sortNumber.push('https://www.costco.com/CatalogSearch?keyword='+document.getElementsByClassName('toolbar')[0].innerText.match(/\w+|"[^"]+"/g).slice(-1)[0]+'&sortBy=item_location_pricing_salePrice+desc');
+                        sortNumber.push('https://www.costco.com/CatalogSearch?keyword='+document.getElementsByClassName('toolbar')[0].innerText.match(/\w+|"[^"]+"/g).slice(-1)[0]+'&sortBy=item_location_pricing_salePrice+asc');
+                        sortNumber.push('https://www.costco.com/CatalogSearch?keyword='+document.getElementsByClassName('toolbar')[0].innerText.match(/\w+|"[^"]+"/g).slice(-1)[0]+'&sortBy=item_ratings+desc');
+                        sortNumber.push('https://www.costco.com/CatalogSearch?keyword='+document.getElementsByClassName('toolbar')[0].innerText.match(/\w+|"[^"]+"/g).slice(-1)[0]+'&sortBy=item_startDate+desc');
+                        sortNumber.push('https://www.costco.com/CatalogSearch?keyword='+document.getElementsByClassName('toolbar')[0].innerText.match(/\w+|"[^"]+"/g).slice(-1)[0]+'&sortBy=item_page_views+desc');
                     }
                     var list = document.createElement("ul");
                     for (var i in sortName) {
@@ -1370,6 +1449,17 @@ function openModal(port) {
                                 sentPageList.push({
                                     id: document.getElementsByClassName('paging-list')[0].children[i].children[0].innerText,
                                     id_link_page: document.getElementsByClassName('paging-list')[0].children[i].children[0].getAttribute('href')
+                                });
+                            }
+                            }
+                            catch(e){}
+                    }
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'costco'){
+                        try{
+                            for(let i = 1; i<document.getElementsByClassName('paging col-xs-12')[0].children[0].children.length; i++){
+                                sentPageList.push({
+                                    id: document.getElementsByClassName('paging col-xs-12')[0].children[0].children[i].children[0].children[1].innerText,
+                                    id_link_page: document.getElementsByClassName('paging col-xs-12')[0].children[0].children[i].children[0].getAttribute('href')
                                 });
                             }
                             }
@@ -1578,11 +1668,8 @@ class UI {
 
         /*divSubmit.appendChild(submitButton);
         divcol.appendChild(divSubmit);*/
-        
-
+    
         modal.appendChild(modalContent);
-
-
         return modal;
     }
     //#endregion
@@ -1592,6 +1679,4 @@ class UI {
         let body = document.querySelector('body');
         body.firstChild.remove();
     }
-
 }
-
