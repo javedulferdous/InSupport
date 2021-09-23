@@ -499,11 +499,38 @@ function openModal(port) {
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'target'){
                         let temp_id = [], temp_name= [];
                         document.getElementsByClassName('BaseButton-sc-3v3oog-0 styles__CircularBaseButton-sc-1b362wk-0 xuSzc eSGYkb')[0].click()
+                        for(i=13;i <=26; i++){
+                            filterList.push({
+                                name: document.getElementsByClassName('h-display-flex h-flex-direction-col')[i].innerText,
+                                id: [],
+                                id_link:[],
+                                id_child:[],
+                                id_id_name: []
+                            })
+                        }
                         if(document.getElementsByClassName('h-display-flex h-flex-direction-col')[13])
                         {
                             document.getElementsByClassName('h-display-flex h-flex-direction-col')[13].click();
 
-                            for(let i =1; i<document.getElementsByClassName('styles__ContentWrapper-sc-190xyua-1 ixWUPy')[0].children.length-1; i++){
+                            for(let i = 1; i<document.getElementsByClassName('styles__ContentWrapper-sc-190xyua-1 ixWUPy')[0].children.length-1; i++){
+                                temp_id.push(document.getElementsByClassName('styles__ContentWrapper-sc-190xyua-1 ixWUPy')[0].children[i].innerText);
+                            }   
+
+                            /*filterList.push({
+                                    name: temp_name[i],
+                                    id: temp_id,
+                                    id_link:[],
+                                    id_child:[],
+                                    id_id_name: []
+                                })*/
+                            
+                        }
+                        console.log(temp_name);
+                        /*if(document.getElementsByClassName('h-display-flex h-flex-direction-col')[14])
+                        {
+                            document.getElementsByClassName('h-display-flex h-flex-direction-col')[14].click();
+
+                            for(let i = 1; i<document.getElementsByClassName('styles__ContentWrapper-sc-190xyua-1 ixWUPy')[0].children.length-1; i++){
                                 temp_id.push(document.getElementsByClassName('styles__ContentWrapper-sc-190xyua-1 ixWUPy')[0].children[i].innerText);
                             }   
                                 filterList.push({
@@ -514,25 +541,448 @@ function openModal(port) {
                                     id_id_name: []
                                 })
                             
-                        }
-                        else if(document.getElementsByClassName('h-display-flex h-flex-direction-col')[14]){
-                            document.getElementsByClassName('h-display-flex h-flex-direction-col')[14].click();
-
-                            for(let i =1; i<document.getElementsByClassName('styles__ContentWrapper-sc-190xyua-1 ixWUPy')[0].children.length-1; i++){
-                                temp_id.push(document.getElementsByClassName('styles__ContentWrapper-sc-190xyua-1 ixWUPy')[0].children[i].innerText);
-                            }   
-                                filterList.push({
-                                    name: document.getElementsByClassName('styles__ContentWrapper-sc-190xyua-1 ixWUPy')[0].children[0].innerText,
-                                    id: temp_id,
-                                    id_link:[],
-                                    id_child:[],
-                                    id_id_name: []
-                                })
-                        }
+                        }*/
+                    
                          
                         console.log(temp_name);
                         
-                    }                
+                    } 
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'bestbuy'){
+                        try{
+                        let temp_id = [];
+                        temp_id.push(document.getElementsByClassName('facet-list-container')[0].children[1].children[1].children[0].children[0].children[1].children[0].children[1].innerText);
+                        filterList.push({
+                            name: document.getElementsByClassName('facet-list-container')[0].children[1].children[0].innerText,
+                            id: temp_id,
+                            id_link: ["https://www.bestbuy.com/site/searchpage.jsp?st="+document.getElementsByClassName('search-bar input-field')[0].children[0].value+"&qp=storepickupstores_facet%3DStore%20Availability%20-%20In%20Store%20Pickup~766"],
+                            id_child:[],
+                            id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                        })
+                        if(document.getElementsByClassName('facet-list-container')[0].children[2].children[0].getAttribute('class')==='facet-section'){
+                            filterList.push({
+                                name: document.getElementsByClassName('facet-list-container')[0].children[2].children[0].children[0].children[0].children[0].innerText,
+                                id: [document.getElementsByClassName('facet-list-container')[0].children[2].children[0].children[0].children[0].children[1].innerText],
+                                id_link: ["https://www.bestbuy.com/site/searchpage.jsp?st="+document.getElementsByClassName('search-bar input-field')[0].children[0].value+"&qp=soldout_facet%3DAvailability~Exclude%20Out%20of%20Stock%20Items"],
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[0].getAttribute('class')){
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<4;i++){
+                                temp_id_cat.push(document.getElementsByName('Category')[0].children[1].children[i].innerText);
+                                temp_link.push(document.getElementsByName('Category')[0].children[1].children[i].children[0].children[0].getAttribute('href'));
+                            }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('c-section-title-text')[1].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[2].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[2].children[0].children[2].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[2].children[0].children[2].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[2].children[0].children[2].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                            }
+                            }
+                            catch(e){console.log(e);}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[2].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[3].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<8;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[3].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[3].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                            }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[3].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[4].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[4].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[4].children[0].children[1].children[i].children[0].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[4].children[0].children[1].children[i].children[0].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                            }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[4].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[5].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[5].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[5].children[0].children[1].children[i].children[0].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[5].children[0].children[1].children[i].children[0].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                            }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[5].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[6].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[6].children[0].children[2].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[6].children[0].children[2].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[6].children[0].children[2].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                            }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[6].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[7].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[7].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[7].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[7].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[7].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[8].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[8].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[8].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[8].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[8].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[9].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[9].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[9].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[9].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[9].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[10].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[10].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[10].children[0].children[1].children[i].innerText.split('\n')[0]);
+                                temp_link.push(document.getElementsByClassName('lv facet')[10].children[0].children[1].children[i].getElementsByTagName('a')[0].getAttribute('href'));
+                                }
+                            }
+                            catch(e){console.log(e);}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[10].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[11].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[11].children[0].children[2].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[11].children[0].children[2].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[11].children[0].children[2].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[11].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[12].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[12].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[12].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[12].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[12].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[13].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=1; i<document.getElementsByClassName('lv facet')[13].children[0].children[1].children.length;i++){
+                                temp_id_cat.push((document.getElementsByClassName('lv facet')[13].children[0].children[1].children.length)-i);
+                                temp_link.push(document.getElementsByClassName('lv facet')[13].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[1].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){console.log(e);}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[13].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[14].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[14].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[14].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[14].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[14].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[15].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[15].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[15].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[15].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[15].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[16].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[16].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[16].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[16].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[16].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[17].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[17].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[17].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[17].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[17].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[18].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[18].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[18].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[18].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[18].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[19].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[19].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[19].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[19].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[19].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[20].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[20].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[20].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[20].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[20].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[21].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[21].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[21].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[21].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[21].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[22].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[22].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[22].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[22].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[22].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                        if(document.getElementsByClassName('lv facet')[23].getAttribute('class')){
+                            console.log();
+                            let temp_id_cat = [], temp_link=[];
+                            try{
+                            for(let i=0; i<document.getElementsByClassName('lv facet')[23].children[0].children[1].children.length;i++){
+                                temp_id_cat.push(document.getElementsByClassName('lv facet')[23].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[0].innerText);
+                                temp_link.push(document.getElementsByClassName('lv facet')[23].children[0].children[1].children[i].children[0].children[0].children[0].children[1].children[0].children[1].getAttribute('href'));
+                                }
+                            }
+                            catch(e){}
+                            filterList.push({
+                                name: document.getElementsByClassName('lv facet')[23].children[0].children[0].children[0].children[0].innerText,
+                                id: temp_id_cat,
+                                id_link: temp_link,
+                                id_child:[],
+                                id_id_name: [(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7),(Math.random() + 1).toString(36).substring(7)]
+                            })
+                        }
+                    }
+                    catch(e){}
+                    }               
                     for (i = 0; i < filterList.length; i++){
                         var cinput = document.createElement("input");
                         cinput.setAttribute('type', 'submit');
@@ -587,7 +1037,6 @@ function openModal(port) {
                 }
                 function searchFunction(){
                     let searchInfo = [];
-                    let searchWord = (document.getElementsByClassName('Heading__StyledHeading-sc-1mp23s9-0 UABvu h-display-block h-margin-b-tiny')[0].innerText).match(/\w+|"[^"]+"/g).slice(-1)[0];
 
                     if(document.location.hostname === '')
                     {
@@ -640,11 +1089,30 @@ function openModal(port) {
                         });
                     }
                     else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'target'){
+                        let searchWord = (document.getElementsByClassName('Heading__StyledHeading-sc-1mp23s9-0 UABvu h-display-block h-margin-b-tiny')[0].innerText).match(/\w+|"[^"]+"/g).slice(-1)[0];
                         searchInfo.push({
                             input_id:document.getElementsByClassName('SearchInput__StyledInput-sc-i05682-0 kMtJRh')[0].getAttribute('class'),
                             input_class:document.getElementsByClassName('SearchInput__StyledInput-sc-i05682-0 kMtJRh')[0].getAttribute('class'),
                             id_search: searchWord,
                             id_search_link:'https://www.target.com/s?searchTerm='
+                        });
+                    }
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'bestbuy'){
+                        searchInfo.push({
+                            input_id:document.getElementsByClassName('search-bar input-field')[0].children[0].getAttribute('id'),
+                            input_class:document.getElementsByClassName('search-bar input-field')[0].children[0].getAttribute('class'),
+                            id_search: document.getElementsByClassName('search-bar input-field')[0].children[0].value,
+                            id_search_link:'https://www.bestbuy.com/site/searchpage.jsp?st='
+                            //searchButtonClass: (livesearchNode.childNodes[3].children[0].getElementsByTagName('input')[0]).value.getAttribute('class')
+                        });
+                    }
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'costco'){
+                        searchInfo.push({
+                            input_id:document.getElementsByClassName('search-bar input-field')[0].children[0].getAttribute('id'),
+                            input_class:document.getElementsByClassName('search-bar input-field')[0].children[0].getAttribute('class'),
+                            id_search: document.getElementsByClassName('search-bar input-field')[0].children[0].value,
+                            id_search_link:'https://www.costco.com/CatalogSearch?keyword='
+                            //searchButtonClass: (livesearchNode.childNodes[3].children[0].getElementsByTagName('input')[0]).value.getAttribute('class')
                         });
                     }
                     try{
@@ -669,6 +1137,9 @@ function openModal(port) {
                                 }
                                 else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '')==='target'){
                                     window.location.href = 'https://www.target.com/s?searchTerm='+inputItem.replace(' ','+')
+                                }
+                                else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '')==='bestbuy'){
+                                    window.location.href = 'https://www.bestbuy.com/site/searchpage.jsp?st='+inputItem.replace(' ','+')
                                 }
                             }
                             document.getElementById("searchList").appendChild(inputBox);
@@ -761,6 +1232,19 @@ function openModal(port) {
                         sortNumber.push('https://www.target.com/s?searchTerm='+searchWord+'&sortBy=RatingHigh');
                         sortNumber.push('https://www.target.com/s?searchTerm='+searchWord+'&sortBy=bestselling');
                         sortNumber.push('https://www.target.com/s?searchTerm='+searchWord+'&sortBy=newest');                
+                    }
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'bestbuy'){
+                        for(let i=0; i<=7; i++){
+                            sortName.push(document.getElementsByClassName('tb-select-wrapper sort-dropdown')[0].children[0].children[i].innerText);
+                        }
+                        sortNumber.push('https://www.bestbuy.com/site/searchpage.jsp?st='+document.getElementsByClassName('search-bar input-field')[0].children[0].value+'&id=pcat17071');                            
+                        sortNumber.push('https://www.bestbuy.com/site/searchpage.jsp?st='+document.getElementsByClassName('search-bar input-field')[0].children[0].value+'&sp=-bestsellingsort%20skuidsaas');
+                        sortNumber.push('https://www.bestbuy.com/site/searchpage.jsp?st='+document.getElementsByClassName('search-bar input-field')[0].children[0].value+'&sp=%2Bcurrentprice%20skuidsaas');
+                        sortNumber.push('https://www.bestbuy.com/site/searchpage.jsp?st='+document.getElementsByClassName('search-bar input-field')[0].children[0].value+'&sp=-currentprice%20skuidsaas');
+                        sortNumber.push('https://www.bestbuy.com/site/searchpage.jsp?st='+document.getElementsByClassName('search-bar input-field')[0].children[0].value+'&sp=customerrating%20numberofreviewssaas');
+                        sortNumber.push('https://www.bestbuy.com/site/searchpage.jsp?st='+document.getElementsByClassName('search-bar input-field')[0].children[0].value+'&sp=-displaydate%20skuidsaas');
+                        sortNumber.push('https://www.bestbuy.com/site/searchpage.jsp?st='+document.getElementsByClassName('search-bar input-field')[0].children[0].value+'&sp=%2Bbrand%20skuidsaas');  
+                        sortNumber.push('https://www.bestbuy.com/site/searchpage.jsp?st='+document.getElementsByClassName('search-bar input-field')[0].children[0].value+'&sp=-brand%20skuidsaas');  
                     }
                     var list = document.createElement("ul");
                     for (var i in sortName) {
@@ -871,7 +1355,7 @@ function openModal(port) {
                                 console.log([i], document.getElementsByClassName('OptionsList-sc-1k3sxb6-0 GIgmJ')[0].children[0].innerText);
                                 sentPageList.push({
                                     id: document.getElementsByClassName('OptionsList-sc-1k3sxb6-0 GIgmJ')[0].children[i].children[0].children[0].children[0].textContent,
-                                    id_link_page: "https://www.target.com/s?searchTerm=laptop&sortBy=Featured&Nao="+ i*Math.round(totalSearchResult/pageNumber)
+                                    id_link_page: "https://www.target.com/s?searchTerm="+(document.getElementsByClassName('Heading__StyledHeading-sc-1mp23s9-0 UABvu h-display-block h-margin-b-tiny')[0].innerText).match(/\w+|"[^"]+"/g).slice(-1)[0]+"&sortBy=Featured&Nao="+ i*Math.round(totalSearchResult/pageNumber)
                                 });
                             }
                             }
@@ -879,6 +1363,17 @@ function openModal(port) {
                             console.log(sentPageList);
 
 
+                    }
+                    else if(document.location.hostname.match(/\w*\.\w*$/gi)[0].replace(/([.]\w+)$/, '') === 'bestbuy'){
+                        try{
+                            for(let i = 0; i<document.getElementsByClassName('paging-list')[0].children.length; i++){
+                                sentPageList.push({
+                                    id: document.getElementsByClassName('paging-list')[0].children[i].children[0].innerText,
+                                    id_link_page: document.getElementsByClassName('paging-list')[0].children[i].children[0].getAttribute('href')
+                                });
+                            }
+                            }
+                            catch(e){}
                     }
                     for (i = 0; i < sentPageList.length; i++) {
                         var hLink = document.createElement("a");
