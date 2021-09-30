@@ -4,15 +4,35 @@ chrome.runtime.onConnect.addListener(openModal);
 let allLinks = [],filterList = [],get_class_parent_node, tempID = [];
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
 function openModal(port) {
     port.onMessage.addListener(request => {
         if (request.action == "openModal") {           
             let modal = document.querySelector('#modalMenu');
             let body = document.querySelector('body');
             if (!modal) {
+            // actual code
+            $(document).keydown(function(e){    
+                if (e.keyCode == 37) { // left
+                    if($('.focused').prev('.focusable').length)
+                        $('.focused').removeClass('focused').prev('.focusable').focus().addClass('focused');
+                }
+                if (e.keyCode == 38) { // left
+                    if($('.focused').prev('.focusable').length)
+                        $('.focused').removeClass('focused').prev('.focusable').focus().addClass('focused');
+                }
+                if (e.keyCode == 39) { // right
+                    if($('.focused').next('.focusable').length)
+                        $('.focused').removeClass('focused').next('.focusable').focus().addClass('focused');
+                }
+                if (e.keyCode == 40) { // right
+                    if($('.focused').next('.focusable').length)
+                        $('.focused').removeClass('focused').next('.focusable').focus().addClass('focused');
+                }
+            });
+
                 body.insertBefore(UI.modalMenu(), body.firstChild);
                 let filterdata = document.getElementById('filterButton');
-                document.getElementById("searchButton").focus();
                 filterdata.addEventListener('click', filterFunction);
 
                 document.getElementById('searchButton').addEventListener('click', searchFunction);
@@ -1096,7 +1116,7 @@ function openModal(port) {
                 }
                 function searchFunction(){
                     let searchInfo = [];
-
+                    
                     if(document.location.hostname === '')
                     {
                         console.log("saved page");
@@ -1553,6 +1573,8 @@ class UI {
           }
         .collapsible:hover {
         background-color: #555;
+        border: 5px solid black;
+
         }
         .content {
             padding: 0 18px;
@@ -1561,7 +1583,9 @@ class UI {
             background-color: yellow;
             width: 60%;
         }
-        
+        .focused {
+            border: 5px solid black;
+        }
         </style>
         `;
         
@@ -1569,21 +1593,21 @@ class UI {
         closeButton.setAttribute('id','close');
         closeButton.setAttribute('onclick','this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); setTimeout("location.reload(true);", 10); return false; ');
         let closeButtonText = document.createTextNode("X");
-        closeButton.className = "btn btn-primary"
-        closeButton.style.cssText = `background-color:black;color:white;`;  
+        closeButton.className = "focusable"
+        closeButton.style.cssText = `background-color:black;color:white;width:60px;height:60px;`;  
         closeButton.appendChild(closeButtonText);
         // Back button
         const backButton = document.createElement('button');
         backButton.setAttribute('id','backbtn');
         backButton.setAttribute('onclick','window.history.back();');
         let backButtonText = document.createTextNode("Back");
-        backButton.className = "btn btn-primary"
-        backButton.style.cssText = `background-color:yellow;color:blue;`;  
+        backButton.className = "focusable"
+        backButton.style.cssText = `background-color:yellow;color:blue;width:60px;height:60px;`;  
         backButton.appendChild(backButtonText);
 
         const submitButton = document.createElement('button');
         submitButton.setAttribute("id","submitButton");
-        submitButton.className = "btn btn-info";
+        submitButton.className = "focusable";
         submitButton.setAttribute("value","Submit");
         submitButton.className = "submitButton";
         submitButton.innerHTML = "Submit";
@@ -1612,7 +1636,7 @@ class UI {
         const pagebtn= document.createElement('div');
         pagebtn.style.cssText = `width:500px; margin:0 auto;`;        
         pagebtn.setAttribute('id', 'pageList');
-        
+
         const divSubmit = document.createElement('div');
         divSubmit.setAttribute('id', 'divSubmit');
         divSubmit.className = "divSubmit";
@@ -1620,26 +1644,26 @@ class UI {
         const searchButton = document.createElement('button');
         searchButton.setAttribute('id', 'searchButton');
         searchButton.innerText = 'Search';
-        searchButton.className = "btn btn-primary"
-        searchButton.style.cssText = `background-color:yellow;color:blue;`;  
+        searchButton.className = "focusable focused"
+        searchButton.style.cssText = `background-color:yellow;color:blue;width:60px;height:60px;`;  
 
         const filterButton = document.createElement('button');
         filterButton.setAttribute('id', 'filterButton');
         filterButton.innerText = 'Filter';
-        filterButton.className = "btn btn-primary"
-        filterButton.style.cssText = `background-color:yellow;color:blue;`;  
+        filterButton.className = "focusable"
+        filterButton.style.cssText = `background-color:yellow;color:blue;width:60px;height:60px;`;  
 
         const sortButton = document.createElement('button');
         sortButton.setAttribute('id', 'sortButton');
         sortButton.innerText = 'Sort';
-        sortButton.className = "btn btn-primary"
-        sortButton.style.cssText = `background-color:yellow;color:blue;`;  
+        sortButton.className = "focusable";
+        sortButton.style.cssText = `background-color:yellow;color:blue;width:60px;height:60px;`;  
 
         const pageButton = document.createElement('button');
         pageButton.setAttribute('id', 'pageButton');
         pageButton.innerText = 'Page';
-        pageButton.className = "btn btn-primary"
-        pageButton.style.cssText = `background-color:yellow;color:blue;`;  
+        pageButton.className = "focusable"
+        pageButton.style.cssText = `background-color:yellow;color:blue;width:60px;height:60px;`;  
 
         divcol.appendChild(searchButton);
         divcol.appendChild(filterButton);
