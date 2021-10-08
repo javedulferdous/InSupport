@@ -1083,6 +1083,7 @@ function openModal(port) {
                             //console.log(filterList[i].id_child[j]);
                             idLink.href = filterList[i].id_link[j];
                             idLink.innerHTML = filterList[i].id[j];
+                            idLink.style.cssText = `color:#00008b;`
                             idLink.target = "_self";
                             checkbox.type = "checkbox";
                             idLink.id = filterList[i].id_id_name[j];
@@ -1351,11 +1352,13 @@ function openModal(port) {
                         hLink.text = sortName[i];
                         hLink.target = '_self';
                         hLink.href = sortNumber[i];
+                        hLink.style.cssText = `color:yellow;`;
                         var node = document.createElement("LI");
                         node.className = "list-group-item list-group-item-action";
                         var nodeBreak = document.createElement("br");
                         node.appendChild(hLink);
                         node.appendChild(nodeBreak);
+                        node.style.cssText = `background-color:#00008b; text-align:center`;
                         document.getElementById("sortList").appendChild(node); ///append Item
                     }
                 }
@@ -1490,11 +1493,14 @@ function openModal(port) {
                         hLink.text = sentPageList[i].id;
                         hLink.target = '_self';
                         hLink.href = sentPageList[i].id_link_page;
+                        hLink.style.cssText = `color:yellow;`
                         var node = document.createElement("LI");
                         node.className = "list-group-item list-group-item-action";
                         var nodeBreak = document.createElement("br");
                         node.appendChild(hLink);
                         node.appendChild(nodeBreak);
+                        node.style.cssText = `background-color:#00008b; text-align:center`;
+
                         document.getElementById("pageList").appendChild(node); ///append Item
                         
                     }
@@ -1558,8 +1564,8 @@ class UI {
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <style>
             .collapsible {
-            background-color: rgb(46, 111, 171);
-            color: white;
+            background-color: #00008b;
+            color: yellow;
             cursor: pointer;
             padding: 18px;
             width: 60%;
@@ -1572,19 +1578,20 @@ class UI {
             margin:0px auto; //it will center them 
           }
         .collapsible:hover {
-        background-color: #555;
-        border: 5px solid black;
+        background-color: #f7786b;
+        border: 5px solid #CCFFCC;
+        color: white;
 
         }
         .content {
             padding: 0 18px;
             display: none;
             overflow: hidden;
-            background-color: yellow;
+            background-color: #87CEEB;
             width: 60%;
         }
         .focused {
-            border: 5px solid black;
+            border: 5px solid #CCFFCC;
         }
         </style>
         `;
@@ -1602,7 +1609,7 @@ class UI {
         backButton.setAttribute('onclick','window.history.back();');
         let backButtonText = document.createTextNode("Back");
         backButton.className = "focusable"
-        backButton.style.cssText = `background-color:yellow;color:blue;width:60px;height:60px;`;  
+        backButton.style.cssText = `background-color:#87CEEB;color:black;width:60px;height:60px;`;  
         backButton.appendChild(backButtonText);
 
         const submitButton = document.createElement('button');
@@ -1630,11 +1637,11 @@ class UI {
         filterbtn.className = get_class_parent_node;
 
         const sortbtn= document.createElement('div');
-        sortbtn.style.cssText = `width:500px; margin:0 auto;`;        
+        sortbtn.style.cssText = `background-color:#00008b; width:60%;`;        
         sortbtn.setAttribute('id', 'sortList');
 
         const pagebtn= document.createElement('div');
-        pagebtn.style.cssText = `width:500px; margin:0 auto;`;        
+        pagebtn.style.cssText = `width:60%;`;        
         pagebtn.setAttribute('id', 'pageList');
 
         const divSubmit = document.createElement('div');
@@ -1645,25 +1652,25 @@ class UI {
         searchButton.setAttribute('id', 'searchButton');
         searchButton.innerText = 'Search';
         searchButton.className = "focusable focused"
-        searchButton.style.cssText = `background-color:yellow;color:blue;width:60px;height:60px;`;  
+        searchButton.style.cssText = `background-color:#87CEEB;color:black;width:60px;height:60px;`;  
 
         const filterButton = document.createElement('button');
         filterButton.setAttribute('id', 'filterButton');
         filterButton.innerText = 'Filter';
         filterButton.className = "focusable"
-        filterButton.style.cssText = `background-color:yellow;color:blue;width:60px;height:60px;`;  
+        filterButton.style.cssText = `background-color:#87CEEB;color:black;width:60px;height:60px;`;  
 
         const sortButton = document.createElement('button');
         sortButton.setAttribute('id', 'sortButton');
         sortButton.innerText = 'Sort';
         sortButton.className = "focusable";
-        sortButton.style.cssText = `background-color:yellow;color:blue;width:60px;height:60px;`;  
+        sortButton.style.cssText = `background-color:#87CEEB;color:black;width:60px;height:60px;`;  
 
         const pageButton = document.createElement('button');
         pageButton.setAttribute('id', 'pageButton');
         pageButton.innerText = 'Page';
         pageButton.className = "focusable"
-        pageButton.style.cssText = `background-color:yellow;color:blue;width:60px;height:60px;`;  
+        pageButton.style.cssText = `background-color:#87CEEB;color:black;width:60px;height:60px;`;  
 
         divcol.appendChild(searchButton);
         divcol.appendChild(filterButton);
