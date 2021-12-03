@@ -1,4 +1,4 @@
-# QuickFilter
+# InSupport
 
 ## Dataset
 1. Install  [gdown](https://github.com/wkentaro/gdown) by using `pip install gdown`.
