@@ -6,6 +6,8 @@
 
 ####  Category by Number
 
+<div align="center">
+
 | No  |  Category Name | Number of webpage  | 
 |:-:|:-:|:-:|
 |  1  |  Shopping |  42 |
@@ -25,3 +27,5 @@
 |  15 |  Sports |  4 |
 |  16 |  Healthy Living |  2 |
 |  17 |  Real Estate | 1  |
+  
+</div>
