@@ -1,10 +1,30 @@
 # InSupport
 
-## Dataset
+### What it does
+It employs custom-built machine learning models to automatically extract auxiliary segments on any webpage containing data records, and provides an instantly accessible proxy one-stop interface for easily navigating the extracted segments using basic screen reader shortcuts.
+
+To pop-open the extension and watch the list, press:
+
+```
+Windows: Ctrl+Shift+Z
+Mac: Command+Shift+Z
+Chromeos: Ctrl+Shift+Z
+Linux: Ctrl+Shift+Z
+```
+### Extention installation guidelines
+Please download the extension first and then follow the instructions:
+
+Go to Google Chrome settings.
+Click Extensions from the left panel.
+Click on "Load unpacked" from the top panel. - Now you have to select the folder containing the extension files.
+The extension will be added to your browser by now. If you change any code please save it and reload it from the extension window to get the impacts.
+
+
+### Dataset
 1. Install  [gdown](https://github.com/wkentaro/gdown) by using `pip install gdown`.
 2. run  `gdown --id 1XUQ8bP_yMrbaakuVhXT3_fn0e-iwda3A` command on the terminal/command prompt.
 
-####  Category by Number
+#####  Category by Number
 
 <div align="center">
 
