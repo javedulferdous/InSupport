@@ -7,7 +7,7 @@
 ####  Category by Number
 
 | No  |  Category Name | Number of webpage  | 
-|---|---|---|
+|:-:|:-:|:-:|
 |  1  |  Shopping |  42 |
 |  2 | Style & Fashion  | 36  |
 |  3 |  Travel | 39  |
