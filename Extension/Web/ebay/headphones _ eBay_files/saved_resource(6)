@@ -1,27 +1,0 @@
-
-var ftGUID_4593403="462831F5CE9B1C";
-var ftConfID_4593403="0";
-var ftParams_4593403="ftx=&fty=&ftadz=&ftscw=&ft_custom=&ftOBA=1&ft_agentEnv=0&ft_referrer=https%3A%2F%2F880b6a0cfc079aac5060ab40262b7d5c.safeframe.googlesyndication.com%2Fsafeframe%2F1-0-37%2Fhtml%2Fcontainer.html&cachebuster=381050.875794261";
-var ftKeyword_4593403="";
-var ftCustom_4593403="";
-var ftSection_4593403="";
-var ftSegment_4593403="aebv,adr0,ad30,um2,aanx,w2c,acqu_uhvp2_2,aead,aev9,fs18_13972_1_1600487662,ad4o,aeoj,ad65,ad7t,ado6,aef3,v6k,ubl,ubl721793v,xsy,ykd,xsw,lj7_chicago_illinois_united_states,yxt,yxt721793v,m6g,uei,uei3000005381,wl7,adrw,adcv,adbj,aa06,aa06paud_headphones,nl2,ae7d,ae65,xh0,abxn";
-var ftSegmentList_4593403=[{s:'aebv'},{s:'adr0'},{s:'ad30'},{s:'um2'},{s:'aanx',t:46310000},{s:'w2c'},{m:'c14388_prosp_acqu_uhvp2',s:'acqu_uhvp2_2'},{s:'aead'},{s:'aev9'},{m:'fs18_13972_vp',s:'fs18_13972_1_1600487662'},{s:'ad4o'},{s:'aeoj'},{s:'ad65'},{s:'ad7t'},{s:'ado6'},{s:'aef3'},{s:'v6k'},{s:'ubl'},{m:'ubm_v',s:'ubl721793v'},{s:'xsy'},{s:'ykd',t:46710000},{s:'xsw'},{m:'c8445_city',s:'lj7_chicago_illinois_united_states'},{s:'yxt'},{m:'hytxy',s:'yxt721793v'},{s:'m6g'},{s:'uei'},{m:'uei_v',s:'uei3000005381'},{s:'wl7',t:46680000},{s:'adrw'},{s:'adcv',t:46750000},{m:'bbjbda',s:'adbj',t:46750000},{s:'aa06',t:46750000},{s:'aa06paud_headphones',t:46750000},{s:'nl2',t:46750000},{s:'ae7d'},{s:'ae65'},{s:'xh0'},{s:'abxn'}];
-var ftRuleMatch_4593403="0";
-var ftTimestamp_4593403="1604181434";
-var ftImp4593403 = {};
-ftImp4593403.privacy = "x";
-ftImp4593403.guidAge = "59";
-ftImp4593403.impID = "D660A934-3BC6-5089-5DE3-3CF298643876";
-ftImp4593403.duid = "FT:462831F5CE9B1C";
-
-ftImp4593403.ft_tpplid = "";
-ftImp4593403.ft_c = {};
-ftImp4593403.gdpr = "";
-ftImp4593403.gdpr_consent = "";
-ftImp4593403.gdpr_pd = "";
-ftImp4593403.oob_consent = "";
-ftImp4593403.gdprStoredConsent = "";
-ftImp4593403.us_privacy = "";
-
-document.write('<scr'+'ipt src="https://cdn.flashtalking.com/xre/459/4593403/3168546/js/j-4593403-3168546.js" id="ftscript_m4593403" name="ftscript_m4593403"></scr'+'ipt>');

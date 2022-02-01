@@ -1,1 +1,0 @@
-SLI=window.SLI||{};SLI.jQuery(document).on("sli-rac-event",function(event){switch(event.message){case"postInit":event.racData.preRequest=function _racPreRequest(url){url=url.replace(/ts=/,"filter=orderable:YES&ts=");return url};break;default:break}});

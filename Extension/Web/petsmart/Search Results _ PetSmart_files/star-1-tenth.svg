@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
-<defs>
-    <clipPath id="tenth-of-star">
-        <rect width="5" height="50" />
-    </clipPath>
-</defs>
-<path fill="#007DB4" stroke="#007DB4" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z" clip-path="url(#tenth-of-star)"/>
-</svg>

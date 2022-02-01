@@ -1,9 +1,0 @@
-BrightTag.site('6EeDEhH',function(s){
-s.dbe('bang - entirely pets - product sku number - product description page', 'jQuery(\x27.item-code:last\x27).text().split(\x22 \x22).pop()',{pageId:2786669});
-s.dbe('entirely pets - product name desicription', 'jQuery(\x27.item-title\x27).text()',{pageId:2786669});
-s.store([{name:'btpdb.6EeDEhH.dGZjLjQ4Mzg0NDc',value:'U0VTU0lPTg'}]);
-s.domready(function(){
-s.tag('\x3cimg height\x3d\x221\x22 width\x3d\x221\x22 style\x3d\x22border-style:none;\x22 alt\x3d\x22\x22 src\x3d\x22//insight.adsrvr.org/track/conv/?adv\x3dpz4fc9k\x26ct\x3d0:3if0vhd\x26fmt\x3d3\x26td1\x3d'+s.data('entirely pets - product name desicription')+'\x26td2\x3d'+s.data('bang - entirely pets - product sku number - product description page')+'\x22/\x3e',{tagId:4838442});
-s.tag('\x3cimg height\x3d\x221\x22 width\x3d\x221\x22 style\x3d\x22border-style:none;\x22 alt\x3d\x22\x22 src\x3d\x22//insight.adsrvr.org/track/conv/?adv\x3dpz4fc9k\x26ct\x3d0:huhvky2\x26fmt\x3d3\x22/\x3e',{tagId:4838447});
-});
-});
