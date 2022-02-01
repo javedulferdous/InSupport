@@ -24,4 +24,4 @@
 |  14 |  Home & Garden | 3  |
 |  15 |  Sports |  4 |
 |  16 |  Healthy Living |  2 |
-|  17 |  Real Estate |   |
+|  17 |  Real Estate | 1  |
