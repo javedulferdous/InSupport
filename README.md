@@ -49,3 +49,15 @@ The extension will be added to your browser by now. If you change any code pleas
 |  17 |  Real Estate | 1  |
   
 </div>
+
+### Bibtex
+
+```
+@inproceedings{ferdous2022insupport,
+  title={InSupport: Proxy Interface for Enabling Efficient Non-Visual Interaction with Web Data Records},
+  author={Ferdous, Javedul and Lee, Hae-Na and Jayarathna, Sampath and Ashok, Vikas},
+  booktitle={27th International Conference on Intelligent User Interfaces},
+  pages={49--62},
+  year={2022}
+}
+```
