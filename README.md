@@ -52,14 +52,6 @@ The extension will be added to your browser by now. If you change any code pleas
   
 </div>
 
-#### Testing
-Testing dataset can be found [here.](https://drive.google.com/drive/folders/1Oe4MD59RU5fvZmTrmfkvS847MOcdxbKi?usp=sharing)
-
-or
-
-run  `gdown --id 1Oe4MD59RU5fvZmTrmfkvS847MOcdxbKi` command on the terminal/command prompt.
-
-
 
 ### Bibtex
 
