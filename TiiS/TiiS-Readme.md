@@ -57,7 +57,15 @@ run  `gdown --id 1Oe4MD59RU5fvZmTrmfkvS847MOcdxbKi` command on the terminal/comm
 *  **testURL.py**: The source for our test dataset
 
 
+### Evaluation
+We keep updating our work to have a better performance using the model.
+Our reported result:
 
+|||
+|:-:|:-:|:-:|
+| Precision  |  Recall | Accuracy | 
+|:-:|:-:|:-:|
+Our current result
 
 ### Bibtex
 
