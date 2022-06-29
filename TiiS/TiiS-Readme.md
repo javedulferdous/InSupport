@@ -64,16 +64,16 @@ Our reported result:
 |Feature |Search  |  Sort | Filter | Multilink Page |
 |:-:|:-:|:-:|:-:|:-:|
 |Accuracy|0.87 |0.90 |0.82 |0.86 |
-| Precision|0.98 |0.86 |0.85 |0.95 |
+|Precision|0.98 |0.86 |0.85 |0.95 |
 |Recall|0.83 | 0.98|0.95 | 0.89|
 
 Our current result
 
 |Feature |Search  |  Sort | Filter | Multilink Page |
 |:-:|:-:|:-:|:-:|:-:|
-|Precision| | | | |
-|Recall| | | | |
-|Accuracy| | | | |
+|Accuracy|0.87 |0.9 | 0.9|0.97 |
+|Precision|0.98 |0.86 | 1|1 |
+|Recall|0.83 | 0.98|0.9 | 0.97|
 
 ### Bibtex
 
