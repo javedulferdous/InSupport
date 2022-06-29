@@ -1,4 +1,4 @@
-# InSupport
+# InSupport: Proxy Interface for Enabling Efficient Non - Visual Interaction with Web Data Records
 
 ### What it does
 It employs custom-built machine learning models to automatically extract auxiliary segments on any webpage containing data records, and provides an instantly accessible proxy one-stop interface for easily navigating the extracted segments using basic screen reader shortcuts.
