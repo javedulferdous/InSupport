@@ -61,11 +61,19 @@ run  `gdown --id 1Oe4MD59RU5fvZmTrmfkvS847MOcdxbKi` command on the terminal/comm
 We keep updating our work to have a better performance using the model.
 Our reported result:
 
-|||
-|:-:|:-:|:-:|
-| Precision  |  Recall | Accuracy | 
-|:-:|:-:|:-:|
+|Feature |Search  |  Sort | Filter | Multilink Page |
+|:-:|:-:|:-:|:-:|:-:|
+|Accuracy|0.87 |0.90 |0.82 |0.86 |
+| Precision|0.98 |0.86 |0.85 |0.95 |
+|Recall|0.83 | 0.98|0.95 | 0.89|
+
 Our current result
+
+|Feature |Search  |  Sort | Filter | Multilink Page |
+|:-:|:-:|:-:|:-:|:-:|
+|Precision| | | | |
+|Recall| | | | |
+|Accuracy| | | | |
 
 ### Bibtex
 
