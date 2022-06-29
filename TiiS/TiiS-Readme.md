@@ -3,7 +3,7 @@
 
 ### Dataset
 
-Testing dataset can be found [here.](https://drive.google.com/drive/folders/1Oe4MD59RU5fvZmTrmfkvS847MOcdxbKi?usp=sharing)
+Algorithm evaluation dataset can be found [here.](https://drive.google.com/drive/folders/1Oe4MD59RU5fvZmTrmfkvS847MOcdxbKi?usp=sharing)
 
 or
 
