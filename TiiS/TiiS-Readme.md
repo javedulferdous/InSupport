@@ -16,7 +16,7 @@ run  `gdown --id 1Oe4MD59RU5fvZmTrmfkvS847MOcdxbKi` command on the terminal/comm
 
 | No  |  Category Name | Number of webpage  | 
 |:-:|:-:|:-:|
-|  1 | Miscellaneous  | 36  |
+|  1 | Miscellaneous  | 6  |
 |  2 |  Real Estate Industry  | 19  |
 |  3 |  Personal Finance | 1  |
 |  4 |  Shopping |  57 |
