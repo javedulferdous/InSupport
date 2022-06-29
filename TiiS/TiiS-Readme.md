@@ -16,17 +16,16 @@ run  `gdown --id 1Oe4MD59RU5fvZmTrmfkvS847MOcdxbKi` command on the terminal/comm
 
 | No  |  Category Name | Number of webpage  | 
 |:-:|:-:|:-:|
-|  1  |  Shopping |  6 |
-|  2 | Miscellaneous  | 36  |
-|  3 |  Real Estate Industry  | 19  |
-|  4 |  Personal Finance | 1  |
-|  5 |  Shopping |  57 |
-|  6 |  Design and Art | 1  |
-|  7 |  Family and Relationships | 2  |
-|  8 |  Travel | 5  |
-|  9 |  Home & Garden | 4  |
-|  10 |  Business and Finance | 3  |
-|  11 |  Technology & Computing | 2  |
+|  1 | Miscellaneous  | 36  |
+|  2 |  Real Estate Industry  | 19  |
+|  3 |  Personal Finance | 1  |
+|  4 |  Shopping |  57 |
+|  5 |  Design and Art | 1  |
+|  6 |  Family and Relationships | 2  |
+|  7 |  Travel | 5  |
+|  8 |  Home & Garden | 4  |
+|  9 |  Business and Finance | 3  |
+|  10 |  Technology & Computing | 2  |
 
   
 </div>
