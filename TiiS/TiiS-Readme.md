@@ -19,13 +19,14 @@ run  `gdown --id 1Oe4MD59RU5fvZmTrmfkvS847MOcdxbKi` command on the terminal/comm
 |  1 | Miscellaneous  | 6  |
 |  2 |  Real Estate Industry  | 19  |
 |  3 |  Personal Finance | 1  |
-|  4 |  Shopping |  57 |
+|  4 |  Shopping |  56 |
 |  5 |  Design and Art | 1  |
 |  6 |  Lifestyle | 2  |
 |  7 |  Travel | 5  |
 |  8 |  Home & Garden | 4  |
 |  9 |  Finance | 3  |
 |  10 |  Technology & Computing | 2  |
+|  11 |  Sports | 1  |
 
   
 </div>
