@@ -1,5 +1,5 @@
 
-## Enabling EfficientWeb Data-Record Interaction for People with Visual Impairments via Proxy Interfaces
+## Enabling Efficient Web Data-Record Interaction for People with Visual Impairments via Proxy Interfaces
 
 ### Dataset
 
