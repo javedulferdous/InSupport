@@ -2,6 +2,8 @@
 ## Enabling Efficient Web Data-Record Interaction for People with Visual Impairments via Proxy Interfaces
 
 ### Abstract
+<div align="justify"> 
+
 Web data records are usually accompanied by auxiliary webpage segments such as filters, sort options, search
 form, and multi-page links, to enhance interaction efficiency and convenience for end users. However, blind
 and visually impaired (BVI) persons are presently unable to fully exploit the auxiliary segments like their
@@ -21,6 +23,7 @@ interface for easily navigating the extracted auxiliary segments using either ba
 mouse actions. Evaluation studies with 14 blind participants and 16 low vision participants showed significant
 improvement in web usability with InSupport, driven by increased reduction in interaction time and user
 effort, compared to state-of-the-art solutions.
+</div>
 
 ### Dataset
 
