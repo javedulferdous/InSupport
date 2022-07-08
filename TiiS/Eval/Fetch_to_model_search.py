@@ -38,8 +38,8 @@ def search_extract_model(_name_):
 
 search_GT = "/Users/mdjavedulferdous/Desktop/TiiS/Code/result/search/search_GT__1.csv"
 search_GT_df = pd.read_csv(search_GT)
-name_of_csv_sort = []
+name_of_csv_search = []
 for i in range(len(search_GT_df['URL name'])):
-    name_of_csv_sort.append((search_GT_df['URL name'][i].split('/')[-1]).split('.')[0])
-for i in name_of_csv_sort:
+    name_of_csv_search.append((search_GT_df['URL name'][i].split('/')[-1]).split('.')[0])
+for i in name_of_csv_search:
     search_extract_model(i)
