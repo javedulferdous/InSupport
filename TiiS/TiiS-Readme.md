@@ -81,6 +81,13 @@ run  `gdown --id 1Oe4MD59RU5fvZmTrmfkvS847MOcdxbKi` command on the terminal/comm
 
 *  **testURL.py**: The source for our test dataset
 
+### Procedure
+Most of the code is contained in two folders: Eval, and GT. Inside of GT folder, existing the code will produce all the ground truth for each of the auxiliary segments, therefore, this folder needs to be executed first. The instruction running all code in the Eval folder is as follows:
+
+1. *Feature*_Eval.py
+2. Split_CSV_*Feature*.py
+3. Fetch_to_model_*Feature*.py
+4. Model_Eval_*Feature*.py
 
 ### Evaluation
 We keep updating our work to have a better performance using the model.
