@@ -28,10 +28,9 @@ The extension will be added to your browser by now. If you change any code pleas
 
 ### Dataset
 
-Model evaluation dataset can be found [here](https://drive.google.com/file/d/1XUQ8bP_yMrbaakuVhXT3_fn0e-iwda3A/view?usp=sharing).
+Model evaluation dataset can be found [here](https://olddominion-my.sharepoint.com/:u:/g/personal/mferd002_odu_edu/EZTB6dbjVkxTFJzqw6VRML0B3gwHrkHBFWpnuLXfDDjBdA?e=2MdKSO).
 
-1. Install  [gdown](https://github.com/wkentaro/gdown) by using `pip install gdown`.
-2. run  `gdown --id 1XUQ8bP_yMrbaakuVhXT3_fn0e-iwda3A` command on the terminal/command prompt.
+
 
 #####  Category by Number
 
