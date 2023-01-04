@@ -27,7 +27,7 @@ effort, compared to state-of-the-art solutions.
 
 ### Dataset
 
-Algorithm evaluation dataset can be found [here.]([https://drive.google.com/drive/folders/1Oe4MD59RU5fvZmTrmfkvS847MOcdxbKi?usp=sharing](https://olddominion-my.sharepoint.com/:f:/g/personal/mferd002_odu_edu/ErtjFoD0jpFKkdo8_Xr7CysBQ7miD21CXxR6TJqVC6CXPw?e=TkYiFz))
+Algorithm evaluation dataset can be found [here.]([https://olddominion-my.sharepoint.com/:f:/g/personal/mferd002_odu_edu/ErtjFoD0jpFKkdo8_Xr7CysBQ7miD21CXxR6TJqVC6CXPw?e=TkYiFz]
 
 
 
