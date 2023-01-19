@@ -107,6 +107,13 @@ Our current result
 ### Bibtex
 
 ```
-[Not available right now]
+@article{ferdous2023enabling,
+  title={Enabling Efficient Web Data-Record Interaction for People with Visual Impairments via Proxy Interfaces},
+  author={Ferdous, Javedul and Lee, Hae-Na and Jayarathna, Sampath and Ashok, Vikas},
+  journal={ACM Transactions on Interactive Intelligent Systems},
+  year={2023},
+  publisher={ACM New York, NY}
+}
+
 ```
 
